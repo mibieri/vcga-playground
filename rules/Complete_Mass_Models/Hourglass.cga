@@ -1,0 +1,121 @@
+extension FloorMass --> NIL
+
+
+@Order(0)
+@Enum(valuesAttr=_footprintShapes)
+attr Footprint_Shape = label_parcel
+
+@Order(1)
+@Range(min=1, max=10, stepsize=0.1, restricted=false)
+attr Floor_Height = 3
+
+@Order(2)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors = 20
+
+@Order(3)
+@Percent
+@Range(min=-1, max=1)
+attr Narrowing = 0.3
+
+@Order(4)
+@Percent
+@Range(min=0, max=1)
+attr Excentric = 0.0
+
+@Order(5)
+@Angle
+@Range(min=-180, max=180)
+attr Excentric_Azimuth = 0.0
+
+@Order(6)
+@Angle
+@Range(min=-180, max=180, stepsize=1)
+attr TwistAngle = 30
+
+const inf = 1/0
+
+@Hidden
+attr _footprintShapes = [label_parcel, label_ellipse, label_circle, label_rectangle, label_square]
+@Hidden
+attr _startSX = 0
+@Hidden
+attr _startSZ = 0
+
+const label_parcel = "Initial Shape"
+const label_ellipse = "Ellipse"
+const label_circle = "Circle"
+const label_rectangle = "Rectangle"
+const label_square = "Square"
+
+start Start with(
+	twistPerFloor := TwistAngle / N_Floors
+) -->
+	case Footprint_Shape == label_parcel:
+		Building
+	case Footprint_Shape == label_ellipse:
+		innerRectangle(edge){
+			shape: 
+				alignScopeToGeometry(yUp, largest, longest)
+				primitiveDisk(32) 
+				Building
+		}
+	case Footprint_Shape == label_circle:
+		innerRectangle(edge){
+			shape: 
+				alignScopeToGeometry(yUp, largest, longest)
+				s(min(scope.sx, scope.sz), 0, min(scope.sx, scope.sz)) 
+				center(xz)
+				primitiveDisk(32)
+				Building
+		}
+	case Footprint_Shape == label_rectangle:
+		innerRectangle(edge){
+			shape: Building
+		}
+	case Footprint_Shape == label_square:
+		innerRectangle(edge){
+			shape: 
+				alignScopeToGeometry(yUp, largest, longest)
+				s(min(scope.sx, scope.sz), 0, min(scope.sx, scope.sz)) 
+				center(xz) 
+				Building
+		}
+	else:
+		Building
+
+
+Building with(
+	twistPerFloor := TwistAngle / N_Floors
+) -->
+	set(_startSX, scope.sx)
+	set(_startSZ, scope.sz)
+	FloorsRecursive(twistPerFloor, 0)
+	
+
+
+getSizeOnFloor(maxNumFloors, floorIndex) =  (1 - Narrowing * sin(180 * (floorIndex / maxNumFloors)))
+getExcentricDistance(maxNumFloors, floorIndex) = Excentric * sin(180 * (floorIndex / maxNumFloors))
+	
+FloorsRecursive(twistPerFloor, floorIndex) -->
+	case floorIndex >= N_Floors:
+		NIL
+	else:
+		s(scope.sx * getSizeOnFloor(N_Floors, floorIndex), '1, scope.sz * getSizeOnFloor(N_Floors, floorIndex))
+		center(xz)
+		Floor(floorIndex * twistPerFloor, floorIndex)
+		s(_startSX, '1, _startSZ)
+		center(xz)
+		t(0, Floor_Height, 0)
+		FloorsRecursive(twistPerFloor, floorIndex + 1)
+		
+Floor(absoluteTwist, floorIndex) -->
+	t(
+		cos(Excentric_Azimuth) * getExcentricDistance(N_Floors, floorIndex) * _startSX, 
+		0, 
+		sin(Excentric_Azimuth) * getExcentricDistance(N_Floors, floorIndex) * _startSZ
+	)
+	r(scopeCenter, 0, absoluteTwist, 0)
+	extrude(Floor_Height)
+	FloorMass
+edge

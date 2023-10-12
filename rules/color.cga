@@ -1,0 +1,8 @@
+version "2023.1"
+
+@Color
+attr Color = "#FFFFFF"
+
+start Start -->
+	color(Color)
+	Start.
