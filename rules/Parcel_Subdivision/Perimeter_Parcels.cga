@@ -1,3 +1,4 @@
+extension Courtyard --> NIL
 extension Parcels --> NIL
 extension Parcel1 --> NIL
 extension Parcel2 --> NIL
@@ -91,11 +92,11 @@ getParcelLength(parcelIndex) =
 
 start Start -->
 	case useUniformDistribution():
-		splitAndSetbackPerimeter(Reference_Point){
+		splitAndSetbackPerimeter('Reference_Point){
 			'getParcelLength(1) : Parcel_Width : Parcels
-		}*{remainder: NIL}
+		}*{remainder: Courtyard}
 	else:
-		splitAndSetbackPerimeter(Reference_Point){
+		splitAndSetbackPerimeter('Reference_Point){
 			'getParcelLength(1) : Parcel_Width : Parcels Parcel1 |
 			'getParcelLength(2) : Parcel_Width : Parcels Parcel2 |
 			'getParcelLength(3) : Parcel_Width : Parcels Parcel3 |
@@ -106,5 +107,5 @@ start Start -->
 			'getParcelLength(8) : Parcel_Width : Parcels Parcel8 |
 			'getParcelLength(9) : Parcel_Width : Parcels Parcel9 |
 			'getParcelLength(10) : Parcel_Width : Parcels Parcel10
-		}{remainder: NIL}
+		}{remainder: Courtyard}
 	
