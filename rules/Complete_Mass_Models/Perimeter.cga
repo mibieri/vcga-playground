@@ -1,0 +1,95 @@
+extension FloorMass --> FloorMass.
+
+@Group("General", 0)
+@Order(1)
+@Percent
+attr Reference_Point = 0.0
+
+@Order(1)
+@Range(min=0, max=10)
+attr Floor_Height = 3.0
+
+@Group("Building 1", 1)
+@Order(10)
+@Range(min=0, max=30)
+attr Building1_Depth = 15
+
+@Order(12)
+@Percent
+attr Building1_Length = 0.25
+
+@Order(13)
+@Range(min=0, max=30, stepsize=1)
+attr Building1_N_Floors = 5
+
+
+@Group("Building 2", 1)
+@Order(20)
+@Percent
+attr Gap_To_Building1 = 0.0
+
+@Order(21)
+@Range(min=0, max=30)
+attr Building2_Depth = 15
+
+@Order(22)
+@Percent
+attr Building2_Length = 0.05
+
+@Order(23)
+@Range(min=0, max=30, stepsize=1)
+attr Building2_N_Floors = 12
+
+
+@Group("Building 3", 1)
+@Order(30)
+@Percent
+attr Gap_To_Building2 = 0.10
+
+@Order(31)
+@Range(min=0, max=30)
+attr Building3_Depth = 15
+
+@Order(32)
+@Percent
+attr Building3_Length = 0.25
+
+@Order(33)
+@Range(min=0, max=30, stepsize=1)
+attr Building3_N_Floors = 5
+
+
+@Group("Building 4", 1)
+@Order(40)
+@Percent
+attr Gap_To_Building3 = 0.15
+
+@Order(41)
+@Range(min=0, max=30)
+attr Building4_Depth = 15
+
+@Order(42)
+@Percent
+attr Building4_Length = 0.10
+
+@Order(43)
+@Range(min=0, max=30, stepsize=1)
+attr Building4_N_Floors = 12
+
+
+start Start -->
+	splitAndSetbackPerimeter(Reference_Point){
+		'Building1_Length : Building1_Depth : Building(Building1_N_Floors) |
+		'Gap_To_Building1 : 0 : NIL |
+		'Building2_Length : Building2_Depth : Building(Building2_N_Floors) |
+		'Gap_To_Building2 : 0 : NIL |
+		'Building3_Length : Building3_Depth : Building(Building3_N_Floors) |
+		'Gap_To_Building3 : 0 : NIL |
+		'Building4_Length : Building4_Depth : Building(Building4_N_Floors)
+	}{remainder: NIL}
+	
+Building(nFloors) -->
+	extrude(nFloors * Floor_Height)
+	split(y){
+		~Floor_Height: FloorMass
+	}*

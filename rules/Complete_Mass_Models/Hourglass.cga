@@ -1,4 +1,4 @@
-extension FloorMass --> NIL
+extension FloorMass --> FloorMass.
 
 
 @Order(0)

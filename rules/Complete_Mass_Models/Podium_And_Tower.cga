@@ -1,10 +1,5 @@
-extension PodiumFloor_Footprint --> NIL
-extension PodiumFloor_FacadeFace --> NIL
-extension PodiumFloor_Mass --> NIL
-
-extension TowerFloor_Footprint --> NIL
-extension TowerFloor_FacadeFace --> NIL
-extension TowerFloor_Mass --> NIL
+extension PodiumFloorMass --> PodiumFloorMass.
+extension TowerFloorMass --> TowerFloorMass.
 
 
 @Group("Podium", 10)
@@ -24,7 +19,7 @@ attr Floor_Height_Podium = 3.0
 @Group("Tower", 10)
 @Order(10)
 @Range(min=0, max=30)
-attr Tower_Setback = 0.0
+attr Tower_Setback = 5.0
 
 @Order(11)
 @Range(min=1, max=10, stepsize=1)
@@ -52,29 +47,12 @@ start Start -->
 Podium -->
 	extrude(getPodiumHeight())
 	split(y){
-		~Floor_Height_Podium: PodiumFloor
+		~Floor_Height_Podium: PodiumFloorMass
 	}*
 	
 	
 Tower -->
 	extrude(getTowerHeight())
 	split(y){
-		~Floor_Height_Tower: TowerFloor
+		~Floor_Height_Tower: TowerFloorMass
 	}*
-
-
-PodiumFloor -->
-	PodiumFloor_Mass
-	comp(f){
-		side: PodiumFloor_FacadeFace |
-		top: alignScopeToGeometry(yUp, largest, longest) t(0, -Floor_Height_Podium, 0) PodiumFloor_Footprint
-	}
-
-
-TowerFloor -->
-	TowerFloor_Mass
-	comp(f){
-		side: TowerFloor_FacadeFace |
-		top: alignScopeToGeometry(yUp, largest, longest) t(0, -Floor_Height_Tower, 0) TowerFloor_Footprint
-	}
-
