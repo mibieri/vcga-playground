@@ -1,0 +1,16 @@
+# cityengine
+.metadata
+.prtcache
+ESRI.lib
+ce.lib
+CGA Console.txt
+*.rpk
+*.cgb
+*.class
+*.pyc
+.vscode/*
+.DS_Store
+
+urban-city/.pydevproject
+urban-city/data/
+urban-city/models/
