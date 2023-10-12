@@ -1,0 +1,110 @@
+extension Parcels --> NIL
+extension Parcel1 --> NIL
+extension Parcel2 --> NIL
+extension Parcel3 --> NIL
+extension Parcel4 --> NIL
+extension Parcel5 --> NIL
+extension Parcel6 --> NIL
+extension Parcel7 --> NIL
+extension Parcel8 --> NIL
+extension Parcel9 --> NIL
+extension Parcel10 --> NIL
+
+
+
+@Group("Width and Start", 0)
+@Order(1)
+@Range(min=0, max=40)
+attr Parcel_Width = 15.0
+
+@Order(2)
+@Percent
+attr Reference_Point = 0.0
+
+
+@Group("Parcel Length Distribution", 10)
+@Order(10)
+@Enum("Uniform", "Custom")
+attr Parcel_Length_Distribution = "Uniform"
+
+@Order(11)
+@Range(min=1, max=30, stepsize=1)
+attr Number_Of_Uniform_Parcels = 10
+
+
+@Group("Custom Parcel Length", 20)
+@Order(32)
+@Percent
+attr Parcel1_Length = 0.2
+
+@Order(33)
+@Percent
+attr Parcel2_Length = 0.2
+
+@Order(34)
+@Percent
+attr Parcel3_Length = 0.2
+
+@Order(35)
+@Percent
+attr Parcel4_Length = 0.2
+
+@Order(36)
+@Percent
+attr Parcel5_Length = 0.1
+
+@Order(37)
+@Percent
+attr Parcel6_Length = 0.1
+
+@Order(38)
+@Percent
+attr Parcel7_Length = 0.0
+
+@Order(39)
+@Percent
+attr Parcel8_Length = 0.0
+
+@Order(40)
+@Percent
+attr Parcel9_Length = 0.0
+
+@Order(41)
+@Percent
+attr Parcel10_Length = 0.0
+
+useUniformDistribution() = Parcel_Length_Distribution == "Uniform"
+
+getParcelLength(parcelIndex) =
+	case useUniformDistribution(): 1 / Number_Of_Uniform_Parcels
+	case parcelIndex == 1: Parcel1_Length
+	case parcelIndex == 2: Parcel2_Length
+	case parcelIndex == 3: Parcel3_Length
+	case parcelIndex == 4: Parcel4_Length
+	case parcelIndex == 5: Parcel5_Length
+	case parcelIndex == 6: Parcel6_Length
+	case parcelIndex == 7: Parcel7_Length
+	case parcelIndex == 8: Parcel8_Length
+	case parcelIndex == 9: Parcel9_Length
+	case parcelIndex == 10: Parcel10_Length
+	else: 0
+
+start Start -->
+	case useUniformDistribution():
+		splitAndSetbackPerimeter(Reference_Point){
+			'getParcelLength(1) : Parcel_Width : Parcels
+		}*{remainder: NIL}
+	else:
+		splitAndSetbackPerimeter(Reference_Point){
+			'getParcelLength(1) : Parcel_Width : Parcels Parcel1 |
+			'getParcelLength(2) : Parcel_Width : Parcels Parcel2 |
+			'getParcelLength(3) : Parcel_Width : Parcels Parcel3 |
+			'getParcelLength(4) : Parcel_Width : Parcels Parcel4 |
+			'getParcelLength(5) : Parcel_Width : Parcels Parcel5 |
+			'getParcelLength(6) : Parcel_Width : Parcels Parcel6 |
+			'getParcelLength(7) : Parcel_Width : Parcels Parcel7 |
+			'getParcelLength(8) : Parcel_Width : Parcels Parcel8 |
+			'getParcelLength(9) : Parcel_Width : Parcels Parcel9 |
+			'getParcelLength(10) : Parcel_Width : Parcels Parcel10
+		}{remainder: NIL}
+	

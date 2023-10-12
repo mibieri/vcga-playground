@@ -1,0 +1,84 @@
+extension LowerPartFloorMass --> LowerPartFloorMass.
+extension UpperPartFloorMass --> UpperPartFloorMass.
+
+import edgeVisualisation:"rules/edge-visualisation.cga"
+
+@Group("Footprint", 10)
+@Order(10)
+@Range(min=0, max=30)
+attr Front_Setback = 3.0
+
+@Order(12)
+@Range(min=0, max=30)
+attr Side_Setback = 1.0
+
+@Order(13)
+@Range(min=0, max=30)
+attr Building_Width = 15.0
+
+
+@Group("Building", 20)
+@Order(12)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(11)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors_Lower_Part = 5
+
+@Order(11)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors_Upper_Part = 1
+
+@Order(12)
+@Range(min=1, max=10)
+attr Front_Stepback_Upper_Part = 5.0
+
+@Order(12)
+@Range(min=1, max=10)
+attr Side_Stepback_Upper_Part = 2.0
+
+hasSetbackTags() = len(sum(geometry.tags("setback"))) > 0
+
+getSetbacks(frontSetback, sideSetback) = 
+	case hasSetbackTags():
+		comp(fe){
+			isTagged("setback.front"): frontSetback |
+			isTagged("setback.side"): sideSetback
+		}
+	else:
+		comp(fe){
+			front: frontSetback |
+			side: sideSetback
+		}
+
+
+start Start -->
+	Footprints
+
+
+Footprints -->
+	setback(getSetbacks(Front_Setback + Building_Width, 0)){
+		all:
+			setback(getSetbacks(Front_Setback, Side_Setback)){
+				all = NIL | remainder:  LowerPart
+			}
+			setback(getSetbacks(Front_Stepback_Upper_Part, Side_Stepback_Upper_Part)){
+				all = NIL | remainder:  UpperPart
+			}
+	}
+
+
+LowerPart -->
+	extrude(Floor_Height * N_Floors_Lower_Part)
+	split(y){
+		~Floor_Height: LowerPartFloorMass
+	}*
+
+
+UpperPart -->
+	t(0, Floor_Height * N_Floors_Lower_Part, 0)
+	extrude(Floor_Height * N_Floors_Upper_Part)
+	split(y){
+		~Floor_Height: UpperPartFloorMass
+	}*
