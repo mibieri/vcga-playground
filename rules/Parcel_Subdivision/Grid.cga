@@ -1,0 +1,52 @@
+extension Parcels --> Parcels.
+
+@Order(1)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_X = 30
+
+@Order(2)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_Z = 20
+
+@Order(3)
+@Angle
+attr Grid_Rotation = 0
+
+@Order(4)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Cell_Setback = 0
+
+
+
+
+start Start -->
+	LabelParcelVolume
+	Grid
+
+
+LabelParcelVolume -->
+	t(0, -1, 0)
+	extrude(2)
+	label("parcel_volume")
+	NIL
+
+
+Grid -->
+	primitiveQuad()
+	r(scopeCenter, 0, Grid_Rotation, 0)
+	split(x){
+		~Cell_Size_X: Strip
+	}*
+	
+	
+Strip -->
+	split(z){
+		~Cell_Size_Z: Cell
+	}*
+	
+
+Cell -->
+	case inside(intra, "parcel_volume"):
+		setback(Cell_Setback){all: NIL | remainder: Parcels}
+	else:
+		NIL
