@@ -1,0 +1,83 @@
+attr Expression = "(A+B)*-C>=!D"
+
+@Group("Inputs", 0)
+
+@Order(10)
+attr A = 0
+
+@Order(11)
+attr B = 0
+
+@Order(12)
+attr C = 0
+
+@Order(13)
+attr D = 0
+
+
+@Group("Output", 1)
+@Order(20)
+attr FloatResult = 0
+@Order(21)
+attr BoolResult = false
+
+const operators = [
+	"^", "*", "/", "+", "-",
+	">", "<", "<=", ">=", "==", "!=",
+	"&&", "||", 
+	"!",
+	"(", ")"
+]
+
+const numericChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]
+const identifiers = ["A", "B", "C", "D"]
+
+
+const tokenized = tokenize(replace(Expression, " ", ""))
+
+tokenize(expression) = tokenizeRecursive(expression, 0, stringArray())
+tokenizeRecursive(expression, position, result) with(
+	number := consumeNumberToken(expression, position)
+	identifier := consumeIdentifierToken(expression, position)
+	operator := consumeOperatorToken(expression, position)
+	token := 
+		case number != "": number
+		case identifier != "": identifier
+		case operator != "": operator
+		else: ""
+) = 
+	case token != "":
+		tokenizeRecursive(
+			expression, 
+			position + len(token),  
+			[result, token]
+		)
+	else:
+		result
+		
+consumeOperatorToken(expression, position) with(
+	substr1 := substring(expression, position, position + 1)
+	substr2 := substring(expression, position, position + 2)
+) =
+	case findFirst(operators, substr2) >= 0: substr2
+	case findFirst(operators, substr1) >= 0: substr1
+	else: ""
+
+
+consumeNumberToken(expression, position) with(
+	char := substring(expression, position, position + 1)
+)=
+	case findFirst(numericChars, char) >= 0: 
+		char + consumeNumberToken(expression, position + 1)
+	else:
+		""
+		
+consumeIdentifierToken(expression, position) with(
+	char := substring(expression, position, position + 1)
+) =
+	case findFirst(identifiers, char) >= 0: char
+	else: ""
+
+
+start Start -->
+	print(tokenized)
