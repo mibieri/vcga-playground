@@ -1,0 +1,28 @@
+extension Shapes --> NIL
+extension DiscardedShapes --> NIL
+
+@Order(10)
+@Enum("==", ">=", "<=", "<", ">", "!=")
+attr Operation = "=="
+
+@Order(20)
+attr A = 0
+
+@Order(30)
+attr B = 0
+
+@Order(40)
+attr Result = evalOperation()
+
+evalOperation() =
+	case Operation == "==": A == B
+	case Operation == ">=": A >= B
+	case Operation == "<=": A <= B
+	case Operation == "<": A < B
+	case Operation == ">": A > B
+	case Operation == "!=": A != B
+	else: false
+
+start Start -->
+	case evalOperation(): Shapes
+	else: DiscardedShapes

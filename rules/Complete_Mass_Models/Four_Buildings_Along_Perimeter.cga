@@ -78,7 +78,7 @@ attr Building4_N_Floors = 12
 
 
 start Start -->
-	splitAndSetbackPerimeter(Reference_Point){
+	splitAndSetbackPerimeter('Reference_Point){
 		'Building1_Length : Building1_Depth : Building(Building1_N_Floors) |
 		'Gap_To_Building1 : 0 : NIL |
 		'Building2_Length : Building2_Depth : Building(Building2_N_Floors) |
@@ -93,3 +93,182 @@ Building(nFloors) -->
 	split(y){
 		~Floor_Height: FloorMass
 	}*
+	
+	
+style One_Slab_Around_Perimeter
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 1.0
+attr Building1_N_Floors = 5
+attr Gap_To_Building1 = 0.0
+attr Building2_Depth = 15
+attr Building2_Length = 0.0
+attr Building2_N_Floors = 8
+attr Gap_To_Building2 = 0.0
+attr Building3_Depth = 15
+attr Building3_Length = 0.0
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.0
+attr Building4_N_Floors = 8
+
+style One_Open_Slab_Around_Perimeter
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.75
+attr Building1_N_Floors = 8
+attr Gap_To_Building1 = 0.0
+attr Building2_Depth = 15
+attr Building2_Length = 0.0
+attr Building2_N_Floors = 8
+attr Gap_To_Building2 = 0.0
+attr Building3_Depth = 15
+attr Building3_Length = 0.0
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.0
+attr Building4_N_Floors = 8
+
+
+style Two_Opposite_Slabs_Small_Gaps
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.40
+attr Building1_N_Floors = 5
+attr Gap_To_Building1 = 0.1
+attr Building2_Depth = 15
+attr Building2_Length = 0.40
+attr Building2_N_Floors = 5
+attr Gap_To_Building2 = 0.10
+attr Building3_Depth = 15
+attr Building3_Length = 0.0
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.0
+attr Building4_N_Floors = 12
+
+
+style Two_Opposite_Slabs_Large_Gaps
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.25
+attr Building1_N_Floors = 5
+attr Gap_To_Building1 = 0.25
+attr Building2_Depth = 15
+attr Building2_Length = 0.25
+attr Building2_N_Floors = 8
+attr Gap_To_Building2 = 0.25
+attr Building3_Depth = 15
+attr Building3_Length = 0.0
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.0
+attr Building4_N_Floors = 8
+
+
+style Four_Slabs_Small_Gaps
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.15
+attr Building1_N_Floors = 5
+attr Gap_To_Building1 = 0.1
+attr Building2_Depth = 15
+attr Building2_Length = 0.15
+attr Building2_N_Floors = 5
+attr Gap_To_Building2 = 0.1
+attr Building3_Depth = 15
+attr Building3_Length = 0.15
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.1
+attr Building4_Depth = 15
+attr Building4_Length = 0.15
+attr Building4_N_Floors = 5
+
+
+style One_Low_Slab_With_Tower
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.35
+attr Building1_N_Floors = 3
+attr Gap_To_Building1 = 0.0
+attr Building2_Depth = 15
+attr Building2_Length = 0.07
+attr Building2_N_Floors = 8
+attr Gap_To_Building2 = 0.0
+attr Building3_Depth = 15
+attr Building3_Length = 0.0
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.0
+attr Building4_N_Floors = 8
+
+
+style Two_Low_Slabs_With_Tower
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.35
+attr Building1_N_Floors = 3
+attr Gap_To_Building1 = 0.0
+attr Building2_Depth = 15
+attr Building2_Length = 0.07
+attr Building2_N_Floors = 8
+attr Gap_To_Building2 = 0.10
+attr Building3_Depth = 15
+attr Building3_Length = 0.35
+attr Building3_N_Floors = 5
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.07
+attr Building4_N_Floors = 8
+
+
+style Two_High_Two_Low_Slabs_No_Gaps
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.25
+attr Building1_N_Floors = 8
+attr Gap_To_Building1 = 0.0
+attr Building2_Depth = 15
+attr Building2_Length = 0.25
+attr Building2_N_Floors = 4
+attr Gap_To_Building2 = 0.0
+attr Building3_Depth = 15
+attr Building3_Length = 0.25
+attr Building3_N_Floors = 8
+attr Gap_To_Building3 = 0.0
+attr Building4_Depth = 15
+attr Building4_Length = 0.25
+attr Building4_N_Floors = 4
+
+
+style Two_High_Two_Low_Slabs_Small_Gaps
+attr Reference_Point = 0.0
+attr Floor_Height = 3.0
+attr Building1_Depth = 15
+attr Building1_Length = 0.15
+attr Building1_N_Floors = 8
+attr Gap_To_Building1 = 0.10
+attr Building2_Depth = 15
+attr Building2_Length = 0.15
+attr Building2_N_Floors = 4
+attr Gap_To_Building2 = 0.10
+attr Building3_Depth = 15
+attr Building3_Length = 0.15
+attr Building3_N_Floors = 8
+attr Gap_To_Building3 = 0.1
+attr Building4_Depth = 15
+attr Building4_Length = 0.15
+attr Building4_N_Floors = 4

@@ -17,6 +17,10 @@ attr Grid_Rotation = 0
 attr Cell_Setback = 0
 
 
+attr cellIndexX = 0
+attr cellIndexZ = 0
+attr gridSizeX = 0
+attr gridSizeZ = 0
 
 
 start Start -->
@@ -35,18 +39,24 @@ Grid -->
 	primitiveQuad()
 	r(scopeCenter, 0, Grid_Rotation, 0)
 	split(x){
-		~Cell_Size_X: Strip
+		~Cell_Size_X: 
+			set(gridSizeX, split.total)
+			Strip(split.index)
 	}*
 	
 	
-Strip -->
+Strip(splitIndexX) -->
 	split(z){
-		~Cell_Size_Z: Cell
+		~Cell_Size_Z: 
+			set(gridSizeZ, split.total)
+			Cell(splitIndexX, split.index)
 	}*
 	
 
-Cell -->
+Cell(splitIndexX, splitIndexZ) -->
 	case inside(intra, "parcel_volume"):
+		set(cellIndexX, splitIndexX)
+		set(cellIndexZ, splitIndexZ)
 		setback(Cell_Setback){all: NIL | remainder: Parcels}
 	else:
 		NIL

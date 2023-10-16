@@ -1,0 +1,60 @@
+extension Footprint --> Footprint.
+
+@Order(1)
+@Enum(valuesAttr=_referenceEnum)
+attr Reference = label_shape
+
+
+@Order(2)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_All = 0.0
+
+@Order(3)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Front = 0.0
+
+@Order(4)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Side = 0.0
+
+@Order(5)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Rear = 0.0
+
+@Hidden
+attr _referenceEnum = [label_edgeAttr, label_shape]
+const label_edgeAttr = "Edge Attributes"
+const label_shape = "Edge Selectors"
+
+
+getSetbacks() =
+	case Reference == label_edgeAttr:
+		getEdgeAttrSetbacks()
+	case Reference == label_shape:
+		getShapeSetbacks()
+	else:
+		floatArray()
+		
+
+getEdgeAttrSetbacks() = 
+	comp(fe){ all: 
+		case edgeAttr.getString("orientations") == "front": Setback_Front
+		case edgeAttr.getString("orientations") == "rear": Setback_Rear
+		case edgeAttr.getString("orientations") == "side": Setback_Side
+		else: 0
+	}
+
+getShapeSetbacks() = 
+	comp(fe){ 
+		front: Setback_Front |
+		back: Setback_Rear |
+		side: Setback_Side
+	}	
+
+
+start Start -->
+	setback(getSetbacks() .+ Setback_All){
+		all: NIL |
+		remainder: Footprint
+	}
+	

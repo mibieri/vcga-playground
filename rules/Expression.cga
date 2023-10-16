@@ -79,5 +79,17 @@ consumeIdentifierToken(expression, position) with(
 	else: ""
 
 
+evalExpression(tokens, state, position, operandStack, program) with(
+	token := tokens[position]
+	operator := getOperatorFromToken(token)
+	operand := getOperandFromToken(token)
+	nextPosition := position + 1
+) =
+	case state == "prefix" && operator == "-":
+		evalExpression(tokens, "prefix", nextPosition, [operandStack, "NEG"]
+		
+	
+
+
 start Start -->
 	print(tokenized)

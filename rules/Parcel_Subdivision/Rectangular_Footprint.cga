@@ -1,0 +1,38 @@
+extension Footprint --> Footprint.
+
+@Order(1)
+@Percent
+attr Offset_X = 0.3
+
+@Order(2)
+@Percent
+attr Size_X = 0.3
+
+@Order(3)
+@Percent
+attr Offset_Z = 0.3
+
+@Order(4)
+@Percent
+attr Size_Z = 0.3
+
+@Order(5)
+@Angle
+attr Rotation = 0
+
+start Start -->
+	rotateScope(0, Rotation, 0)
+	split(x){
+		'Offset_X: NIL |
+		'Size_X: 
+			Strip
+	}
+	
+	
+Strip -->
+	rotateScope(0, 180, 0)
+	split(z){
+		'Offset_Z: NIL |
+		'Size_Z: 
+			Footprint
+	}
