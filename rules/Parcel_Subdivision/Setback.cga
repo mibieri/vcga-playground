@@ -48,7 +48,8 @@ getShapeSetbacks() =
 	comp(fe){ 
 		front: Setback_Front |
 		back: Setback_Rear |
-		side: Setback_Side
+		left: Setback_Side |
+		right: Setback_Side
 	}	
 
 
