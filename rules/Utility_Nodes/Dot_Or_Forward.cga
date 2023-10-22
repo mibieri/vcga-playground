@@ -1,0 +1,17 @@
+extension Forwarded --> NIL
+
+attr Dot = true
+attr Forward = true
+
+@Color
+attr Color = "#FF0000"
+
+start Start -->
+	[
+	case Dot: color(Color) Start.
+	else: NIL
+	]
+	[
+	case Forward: Forwarded
+	else: NIL
+	]

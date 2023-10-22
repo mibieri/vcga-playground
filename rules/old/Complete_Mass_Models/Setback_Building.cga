@@ -1,7 +1,7 @@
 extension LowerPartFloorMass --> LowerPartFloorMass.
 extension UpperPartFloorMass --> UpperPartFloorMass.
 
-import edgeVisualisation:"rules/edge-visualisation.cga"
+import edgeVisualisation: "old/edge-visualisation.cga" 
 
 @Group("Footprint", 10)
 @Order(10)

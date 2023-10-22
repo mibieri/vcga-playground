@@ -1,0 +1,193 @@
+extension Surroundings --> color("#CCFFCC") Surroundings.
+extension Footprint1 --> Footprint1.
+extension Footprint2 --> Footprint2.
+extension Footprint3 --> Footprint3.
+extension Footprint4 --> Footprint4.
+
+
+@Group("General", 0)
+@Order(0)
+@Enum(valuesAttr=_enum_edgeSelection)
+attr Edges = labelEdge_all
+
+@Order(1)
+@Enum(valuesAttr=_enum_fillPattern)
+attr FillPattern = labelPattern_absolute
+
+@Order(2)
+@Percent
+attr StartPosition = 0.0
+
+@Order(3)
+@Percent
+attr PatternLength = 1.0
+
+import Footprint_1 : "Imports/Perimeter_Footprint_Parameters.cga"(Length=30, Width=15)
+import Footprint_2 : "Imports/Perimeter_Footprint_Parameters.cga"(Length=20, Width=20)
+import Footprint_3 : "Imports/Perimeter_Footprint_Parameters.cga" 
+import Footprint_4 : "Imports/Perimeter_Footprint_Parameters.cga" 
+
+const labelEdge_all = "All Edges"
+const labelEdge_first = "First Edge"
+const labelEdge_longest = "Longest Edge"
+const labelEdge_setbackFront = "Setback: Front of Setback Face"
+const labelEdge_setbackBack = "Setback: Back of Setback Face"
+const labelEdge_parcelFront = "Shape: Front"
+const labelEdge_parcelBack = "Shape: Back"
+const labelEdge_parcelRight = "Shape: Right"
+const labelEdge_parcelLeft = "Shape: Left"
+const labelEdge_orientationFront = "Edge Attribute: Front"
+const labelEdge_orientationRear = "Edge Attribute: Rear"
+const labelEdge_orientationSide = "Edge Attribute: Side"
+
+const labelPattern_absolute = "No Fill"
+const labelPattern_absoluteRepeat = "Repeat"
+const labelPattern_relative = "Strech to Fill"
+
+
+@Hidden
+attr _enum_edgeSelection = [
+	labelEdge_all,
+	labelEdge_first,
+	labelEdge_longest,
+	labelEdge_setbackFront,
+	labelEdge_setbackBack,
+	labelEdge_parcelFront,
+	labelEdge_parcelBack,
+	labelEdge_parcelRight,
+	labelEdge_parcelLeft,
+	labelEdge_orientationFront,
+	labelEdge_orientationRear,
+	labelEdge_orientationSide
+]
+
+@Hidden
+attr _enum_fillPattern = [
+	labelPattern_absolute,
+	labelPattern_absoluteRepeat,
+	labelPattern_relative
+]
+
+const widths = [
+	Footprint_1.Width, Footprint_2.Width, Footprint_3.Width, Footprint_4.Width
+]
+
+const insets = [
+	Footprint_1.Inset, Footprint_2.Inset, Footprint_3.Inset, Footprint_4.Inset
+]
+
+const maxSetback with(
+	setbacks := insets .+ widths
+) = setbacks[sortIndices(setbacks)[size(setbacks) - 1]]
+
+markLargest(inputArray) = markLargestRecursive(inputArray, sortIndices(inputArray)[size(inputArray) - 1], boolArray())
+markLargestRecursive(inputArray, largestIndex, resultArray) =
+	case size(resultArray) == size(inputArray): 
+		resultArray
+	else: 
+		markLargestRecursive(
+			inputArray, largestIndex, 
+			[resultArray, case size(resultArray) == largestIndex: true else: false]
+		)
+		
+getSetbackFrontMask() = comp(fe){isTagged("setback.front"): true | all: false}
+
+getEdgeMask() = 
+	case Edges == labelEdge_all:
+		comp(fe){all: true}
+	case Edges == labelEdge_first:
+		comp(fe){0: true | all: false}
+	case Edges == labelEdge_longest:
+		markLargest(comp(fe){all: geometry.boundaryLength})
+	case Edges == labelEdge_setbackFront:
+		getSetbackFrontMask() 
+	case Edges == labelEdge_setbackBack:
+		comp(fe){isTagged("setback.back"): true | all: false}
+	case Edges == labelEdge_parcelFront:
+		comp(fe){front: true | all: false}
+	case Edges == labelEdge_parcelRight:
+		comp(fe){right: true | all: false}
+	case Edges == labelEdge_parcelLeft:
+		comp(fe){left: true | all: false}
+	case Edges == labelEdge_parcelBack:
+		comp(fe){back: true | all: false}
+	case Edges == labelEdge_orientationFront:
+		comp(fe){all: edgeAttr.getString("orientations") == "front"}
+	case Edges == labelEdge_orientationRear:
+		comp(fe){all: edgeAttr.getString("orientations") == "rear"}
+	case Edges == labelEdge_orientationSide:
+		comp(fe){all: edgeAttr.getString("orientations") == "side"}
+	else:
+		comp(fe){all: true}
+		
+getStartOfTrueEdges(mask) = getStartOfTrueEdgesRecursive(mask, 0, 0)
+getStartOfTrueEdgesRecursive(mask, candidate, recursionCount) = 
+	case recursionCount >= size(mask): 
+		candidate
+	case !mask[recursionCount]:
+		getStartOfTrueEdgesRecursive(mask, (recursionCount + 1) % size(mask), recursionCount + 1)
+	else:
+		getStartOfTrueEdgesRecursive(mask, candidate, recursionCount + 1)
+
+start Start -->
+	splitAndSetbackPerimeter(0, 0, getEdgeMask()){
+		'StartPosition: 0 : Surroundings |
+		'PatternLength: maxSetback : Pattern
+	}{remainder: Surroundings}
+	
+f() = print(comp(fe){all: str(geometry.tags("setback"))})
+
+Pattern with(
+	setbackFrontMask := getSetbackFrontMask()
+	firstFrontEdge := print(getStartOfTrueEdges(print(setbackFrontMask)))
+)-->
+	case FillPattern == labelPattern_absolute:
+		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
+			Footprint_1.Length - Footprint_1.GapLength : Footprint_1.Width + Footprint_1.Inset : Inset(1) |
+			Footprint_1.GapLength : 0 : Surroundings |
+			Footprint_2.Length - Footprint_2.GapLength : Footprint_2.Width + Footprint_2.Inset : Inset(2) |
+			Footprint_2.GapLength : 0 : Surroundings |
+			Footprint_3.Length - Footprint_3.GapLength : Footprint_3.Width + Footprint_3.Inset : Inset(3) |
+			Footprint_3.GapLength : 0 : Surroundings |
+			Footprint_4.Length - Footprint_4.GapLength : Footprint_4.Width + Footprint_4.Inset : Inset(4) |
+			Footprint_4.GapLength : 0 : Surroundings
+		}{remainder: Surroundings}
+	case FillPattern == labelPattern_absoluteRepeat:
+		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
+			Footprint_1.Length - Footprint_1.GapLength : Footprint_1.Width + Footprint_1.Inset : Inset(1) |
+			Footprint_1.GapLength : 0 : Surroundings |
+			Footprint_2.Length - Footprint_2.GapLength : Footprint_2.Width + Footprint_2.Inset : Inset(2) |
+			Footprint_2.GapLength : 0 : Surroundings |
+			Footprint_3.Length - Footprint_3.GapLength : Footprint_3.Width + Footprint_3.Inset : Inset(3) |
+			Footprint_3.GapLength : 0 : Surroundings |
+			Footprint_4.Length - Footprint_4.GapLength : Footprint_4.Width + Footprint_4.Inset : Inset(4) |
+			Footprint_4.GapLength : 0 : Surroundings
+		}*{remainder: Surroundings}
+	case FillPattern == labelPattern_relative:
+		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
+			~Footprint_1.Length - Footprint_1.GapLength : Footprint_1.Width + Footprint_1.Inset : Inset(1) |
+			~Footprint_1.GapLength : 0 : Surroundings |
+			~Footprint_2.Length - Footprint_2.GapLength : Footprint_2.Width + Footprint_2.Inset : Inset(2) |
+			~Footprint_2.GapLength : 0 : Surroundings |
+			~Footprint_3.Length - Footprint_3.GapLength : Footprint_3.Width + Footprint_3.Inset : Inset(3) |
+			~Footprint_3.GapLength : 0 : Surroundings |
+			~Footprint_4.Length - Footprint_4.GapLength : Footprint_4.Width + Footprint_4.Inset : Inset(4) |
+			~Footprint_4.GapLength : 0 : Surroundings
+		}{remainder: NIL}
+	else:
+		NIL
+
+Inset(elementIndex) -->
+	setback(comp(fe){isTagged("setback.front"): insets[elementIndex - 1]}){
+		all: NIL | remainder: Footprint(elementIndex)
+	}
+
+
+Footprint(elementIndex) -->
+	case elementIndex == 1: Footprint1
+	case elementIndex == 2: Footprint2
+	case elementIndex == 3: Footprint3
+	case elementIndex == 4: Footprint4
+	else: NIL
+
+	

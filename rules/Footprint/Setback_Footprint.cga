@@ -1,4 +1,5 @@
-extension Footprint --> Footprint.
+extension Setback --> SetbackFace.
+extension Remainder --> color("#CCFFCC") Remainder.
 
 @Order(1)
 @Enum(valuesAttr=_referenceEnum)
@@ -22,9 +23,10 @@ attr Setback_Side = 0.0
 attr Setback_Rear = 0.0
 
 @Hidden
-attr _referenceEnum = [label_edgeAttr, label_shape]
+attr _referenceEnum = [label_edgeAttr, label_shape, label_setback]
 const label_edgeAttr = "Edge Attributes"
 const label_shape = "Edge Selectors"
+const label_setback = "Setback"
 
 
 getSetbacks() =
@@ -32,6 +34,8 @@ getSetbacks() =
 		getEdgeAttrSetbacks()
 	case Reference == label_shape:
 		getShapeSetbacks()
+	case Reference == label_setback:
+		getSetbackSetbacks()
 	else:
 		floatArray()
 		
@@ -51,11 +55,20 @@ getShapeSetbacks() =
 		left: Setback_Side |
 		right: Setback_Side
 	}	
+	
+getSetbackSetbacks() =
+	comp(fe){
+		isTagged("setback.front"): Setback_Front |
+		isTagged("setback.back"): Setback_Rear |
+		isTagged("setback.side"): Setback_Side |
+		all: 0
+	}
 
 
 start Start -->
+	print(comp(f){all: str(geometry.tags("setback"))})
 	setback(getSetbacks() .+ Setback_All){
-		all: NIL |
-		remainder: Footprint
+		all: Setback |
+		remainder: Remainder
 	}
 	

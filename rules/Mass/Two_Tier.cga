@@ -1,0 +1,57 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension LowerTierRoof --> NIL
+extension UpperTierRoof --> NIL
+
+import Upper_Tier_Setback : "Footprint/Setback_Footprint.cga"(
+	Setback --> LowerTierRoof,
+	Remainder --> UpperTier
+)
+
+@Group("Lower Tier", 10)
+@Order(10)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(11)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(12)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors = 5
+
+
+@Group("Upper Tier", 20)
+@Order(20)
+@Range(min=1, max=10, stepsize=1)
+attr Upper_Tier_N_Floors = 1
+
+@Order(21)
+@Range(min=1, max=10)
+attr Upper_Tier_Floor_Height = 2.6
+
+_getLowerTierHeight() = Floor_Height * (N_Floors - 1) + Ground_Floor_Height
+
+
+start Start -->
+	LowerTier
+	Upper_Tier_Setback.start
+
+
+LowerTier -->
+	extrude(_getLowerTierHeight())
+	split(y){
+		~Ground_Floor_Height: GroundFloorMass |
+		{~Floor_Height: LowerTierFLoorMass} *
+	}
+
+
+UpperTier -->
+	t(0, _getLowerTierHeight(), 0)
+	extrude(Upper_Tier_Floor_Height * Upper_Tier_N_Floors)
+	split(y){
+		~Upper_Tier_Floor_Height: UpperTierFloorMass
+	}*
+	comp(f){top: UpperTierRoof}

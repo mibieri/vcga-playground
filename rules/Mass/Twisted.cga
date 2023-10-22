@@ -1,5 +1,5 @@
 extension FloorMass --> FloorMass.
-
+extension TopFootprint --> NIL
 
 @Order(0)
 @Enum(valuesAttr=_footprintShapes)
@@ -117,5 +117,12 @@ Floor(absoluteTwist, floorIndex) -->
 	)
 	r(scopeCenter, 0, absoluteTwist, 0)
 	extrude(Floor_Height)
+	CreatTopFootprint(floorIndex)
 	FloorMass
-edge
+
+
+CreatTopFootprint(floorIndex) -->
+	case floorIndex == N_Floors - 1:
+		comp(f){top: TopFootprint}
+	else:
+		NIL

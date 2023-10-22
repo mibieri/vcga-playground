@@ -1,0 +1,16 @@
+@Handle(shape=Start, type=selector)
+@Enum("A", "B", "C", "D")
+attr Choice = "A"
+
+extension A --> A.
+extension B --> NIL
+extension C --> NIL
+extension D --> NIL
+
+start Start -->
+	case Choice == "A": A
+	case Choice == "B": B
+	case Choice == "C": C
+	case Choice == "D": D
+	else: NIL
+	

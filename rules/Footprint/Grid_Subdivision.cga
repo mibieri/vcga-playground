@@ -1,4 +1,5 @@
 extension Parcels --> Parcels.
+extension Surroundings --> color("#CCFFCC") Surroundings.
 
 @Order(1)
 @Range(min=1, max=100, stepsize=0.1, restricted=false)
@@ -57,6 +58,6 @@ Cell(splitIndexX, splitIndexZ) -->
 	case inside(intra, "parcel_volume"):
 		set(cellIndexX, splitIndexX)
 		set(cellIndexZ, splitIndexZ)
-		setback(Cell_Setback){all: NIL | remainder: Parcels}
+		setback(Cell_Setback){all: Surroundings | remainder: Parcels}
 	else:
 		NIL

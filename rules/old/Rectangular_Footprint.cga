@@ -1,4 +1,5 @@
-extension Footprint --> Footprint.
+extension Rectangle --> Rectangle.
+extension Surroundings --> color("#CCFFCC") Surroundings.
 
 @Order(1)
 @Percent
@@ -23,16 +24,16 @@ attr Rotation = 0
 start Start -->
 	rotateScope(0, Rotation, 0)
 	split(x){
-		'Offset_X: NIL |
-		'Size_X: 
-			Strip
+		'Offset_X: Surroundings |
+		'Size_X: Strip |
+		'(1 - Offset_X - Size_X): Surroundings
 	}
 	
 	
 Strip -->
 	rotateScope(0, 180, 0)
 	split(z){
-		'Offset_Z: NIL |
-		'Size_Z: 
-			Footprint
+		'Offset_Z: Surroundings |
+		'Size_Z:  Rectangle |
+		'(1 - Offset_X - Size_X): Surroundings
 	}
