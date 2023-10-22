@@ -1,0 +1,59 @@
+extension Parcels --> Parcels.
+extension Surroundings --> color("#CCFFCC") Surroundings.
+
+@Order(1)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_X = 30
+
+@Order(2)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_Z = 20
+
+@Order(3)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Offset_X = 30
+
+@Order(4)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Offset_Z = 20
+
+@Order(5)
+@Angle
+attr Grid_Rotation = 0
+
+@Order(6)
+attr Interleaved = false
+
+
+getRowIndex() = floor(0.5 + (-scope.tz - Offset_X) / Cell_Size_X)
+getColIndex() = floor(0.5 + (scope.tx - Offset_Z) / Cell_Size_Z)
+
+	
+start Start -->
+	rotateScope(0, Grid_Rotation, 0)
+	SplitIntoCols
+	
+SplitIntoCols -->
+	split(z, noAdjust){
+		(Offset_Z + 1000 * Cell_Size_Z) % Cell_Size_Z: SplitIntoRows |
+		{ Cell_Size_Z: SplitIntoRows } * |
+		~1: SplitIntoRows
+	}
+
+SplitIntoRows -->
+	case !Interleaved || (split.index % 2 == 0):
+		split(x, noAdjust){
+			(Offset_X + 1000 * Cell_Size_X) % Cell_Size_X: GridCell |
+			{ Cell_Size_X: GridCell }* |
+			~1: GridCell
+		}
+	else:
+		split(x, noAdjust){
+			~1: GridCell |
+			{ Cell_Size_X: GridCell }* |
+			(Offset_X + 1000 * Cell_Size_X) % Cell_Size_X: GridCell
+		}
+	
+GridCell -->
+	Parcels
+		

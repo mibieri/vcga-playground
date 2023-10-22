@@ -1,0 +1,89 @@
+extension Surroundings --> NIL
+extension Footprint --> Footprint.
+
+
+@Order(0)
+@Enum(valuesAttr=_footprintShapes)
+attr Shape = label_shape_rectangle
+
+@Order(0)
+@Percent
+@Range(min=0, max=3)
+attr ScaleX = 1.0
+
+@Order(0)
+@Percent
+@Range(min=0, max=3)
+attr ScaleZ = 1.0
+
+@Order(3)
+@Angle
+attr Rotation = 0
+
+@Order(4)
+@Range(min=0, max=30, stepsize=0.1, restricted=false)
+attr SlabThickness = 15
+
+
+const label_shape_rectangle = "Rectangle"
+const label_shape_ellipse = "Ellipse"
+const label_shape_cross = "Cross"
+const label_shape_amoeba = "Amoeba"
+const label_shape_silos = "Silos"
+
+@Hidden
+attr _footprintShapes = [
+	label_shape_rectangle, label_shape_ellipse, label_shape_cross, label_shape_amoeba, label_shape_silos
+]
+
+
+start Start -->
+	innerRectangle(edge){
+		shape: InnerRectangle |
+		remainder: Surroundings
+	}
+
+
+InnerRectangle -->
+	s('ScaleX, '1, 'ScaleZ)
+	center(xz)
+	r(scopeCenter, 0, Rotation, 0)
+	FootprintBoundingBox
+	
+	
+FootprintBoundingBox -->
+	case Shape == label_shape_rectangle:
+		Footprint
+	case Shape == label_shape_ellipse:
+		primitiveDisk(64)
+		Footprint
+	case Shape == label_shape_cross:
+		CrossFootprint
+	case Shape == label_shape_amoeba:
+		AssetFootprint("footprint_amoeba.glb")
+	case Shape == label_shape_silos:
+		AssetFootprint("footprint_silo.glb")
+	else:
+		NIL
+
+
+CrossFootprint -->
+	split(x, noAdjust){
+		~1: CrossFootprint_Rows |
+		SlabThickness: Footprint |
+		~1: CrossFootprint_Rows
+	}
+
+
+CrossFootprint_Rows -->
+	split(z, noAdjust){
+		~1: Surroundings |
+		SlabThickness: Footprint |
+		~1: Surroundings
+	}
+	
+
+AssetFootprint(assetFileName) -->
+	i(assetFileName)
+	cleanupGeometry(all, 0.1)
+	Footprint
