@@ -37,25 +37,33 @@ start Start -->
 	SplitIntoCols
 	
 SplitIntoCols -->
-	split(z, noAdjust){
-		(Offset_Z + 1000 * Cell_Size_Z) % Cell_Size_Z: SplitIntoRows |
-		{ Cell_Size_Z: SplitIntoRows } * |
-		~1: SplitIntoRows
-	}
-
-SplitIntoRows -->
-	case !Interleaved || (split.index % 2 == 0):
-		split(x, noAdjust){
-			(Offset_X + 1000 * Cell_Size_X) % Cell_Size_X: GridCell |
-			{ Cell_Size_X: GridCell }* |
-			~1: GridCell
+	case Exact_Cell_Size:
+		split(z, noAdjust){
+			(Offset_Z + 1000 * Cell_Size_Z) % Cell_Size_Z: SplitIntoRows |
+			{ Cell_Size_Z: SplitIntoRows } * |
+			~1: SplitIntoRows
 		}
 	else:
+		split(z, noAdjust){ 
+			~Cell_Size_Z: SplitIntoRows 
+		}*
+
+SplitIntoRows with(
+	forward := !Interleaved || (split.index % 2 == 0)
+) -->
+	case Exact_Cell_Size:
 		split(x, noAdjust){
-			~1: GridCell |
+			~(case !forward: 1 else: 0): GridCell |
+			(case forward: (Offset_X + 1000 * Cell_Size_X) % Cell_Size_X else: 0): GridCell |
 			{ Cell_Size_X: GridCell }* |
-			(Offset_X + 1000 * Cell_Size_X) % Cell_Size_X: GridCell
+			~(case forward: 1 else: 0): GridCell |
+			(case !forward: (Offset_X + 1000 * Cell_Size_X) % Cell_Size_X else: 0): GridCell
 		}
+	else:
+		split(x, noAdjust){ 
+			~Cell_Size_X: GridCell
+		}*
+
 	
 GridCell -->
 	Parcels
