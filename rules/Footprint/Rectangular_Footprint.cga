@@ -1,0 +1,32 @@
+extension Rectangle --> Rectangle.
+extension Surroundings --> color("#CCFFCC") Surroundings.
+
+@Order(1)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Size_X = 20
+
+@Order(2)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Size_Z = 15
+
+
+@Order(3)
+@Percent
+attr Offset_X = 0.5
+
+@Order(4)
+@Percent
+attr Offset_Z = 0.5
+
+@Order(5)
+@Angle
+attr Rotation = 0
+
+start Start -->
+	Surroundings
+	t('Offset_X, 0, 'Offset_Z)
+	primitiveQuad()
+	s(Size_X, 0, Size_Z)
+	t(-Size_X / 2, 0, -Size_Z / 2)
+	r(scopeCenter, 0, Rotation, 0)
+	Rectangle

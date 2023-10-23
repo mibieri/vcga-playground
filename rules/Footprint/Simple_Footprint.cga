@@ -3,6 +3,7 @@ extension Footprint --> Footprint.
 
 
 @Order(0)
+@Handle(type=selector)
 @Enum(valuesAttr=_footprintShapes)
 attr Shape = label_shape_rectangle
 

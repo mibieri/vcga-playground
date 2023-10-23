@@ -30,11 +30,24 @@ attr Group_Inner_Distance = 30
 attr Group_Border_Distance = 15
 
 @Order(8)
+attr Exact_Distances = false
+
+@Order(9)
 @Angle
 attr Grid_Rotation = 0
 
+isRectangular() = geometry.area >= (scope.sx * scope.sz - 0.1)
 
-	
+exactRowInnerDistance() = case Exact_Distances: Row_Inner_Distance else: 0
+floatingRowInnerDistance() = case !Exact_Distances: Row_Inner_Distance else: 0
+exactRowBorderDistance() = case !Exact_Distances: Row_Border_Distance else: 0
+floatingRowBorderDistance() = case Exact_Distances: Row_Border_Distance else: 0
+
+exactGroupInnerDistance() = case Exact_Distances: Group_Inner_Distance else: 0
+floatingGroupInnerDistance() = case !Exact_Distances: Group_Inner_Distance else: 0
+exactGroupBorderDistance() = case !Exact_Distances: Group_Border_Distance else: 0
+floatingGroupBorderDistance() = case Exact_Distances: Group_Border_Distance else: 0
+
 start Start -->
 	rotateScope(0, Grid_Rotation, 0)
 	SplitIntoRows
@@ -42,25 +55,38 @@ start Start -->
 
 SplitIntoRows-->
 	split(z, noAdjust){
-		Row_Border_Distance: NIL |
-		{ Footprint_Size_Z: SplitRowIntoParcels |  ~Row_Inner_Distance: NIL} * |
-		Footprint_Size_Z: SplitRowIntoParcels |
-		Row_Border_Distance: NIL
+		Row_Border_Distance: Surroundings |
+		{ 
+			Footprint_Size_Z: SplitRowIntoGroups |  
+			exactRowInnerDistance(): Surroundings | 
+			~floatingRowInnerDistance(): Surroundings
+		} * |
+		Footprint_Size_Z: SplitRowIntoGroups |
+		exactRowBorderDistance(): Surroundings |
+		~floatingRowBorderDistance(): Surroundings
 	}
 
 
-SplitRowIntoParcels -->
+SplitRowIntoGroups -->
 	split(x, noAdjust){
-		Group_Border_Distance: NIL |
-		{ Footprint_Size_X * Parcels_Per_Group: SplitGroupsIntoParcels |  ~Group_Inner_Distance: NIL} * |
-		Footprint_Size_X * Parcels_Per_Group: SplitGroupsIntoParcels |
-		Group_Border_Distance: NIL
+		Group_Border_Distance: Surroundings |
+		{ 
+			Footprint_Size_X * Parcels_Per_Group: Group |  
+			exactGroupInnerDistance(): Surroundings |
+			~floatingGroupInnerDistance(): Surroundings
+			
+		} * |
+		Footprint_Size_X * Parcels_Per_Group: Group |
+		~floatingGroupBorderDistance(): Surroundings |
+		exactGroupBorderDistance(): Surroundings
 	}
-
 
 	
-SplitGroupsIntoParcels -->
-	split(x){
-		~Footprint_Size_X: Parcels
-	}*
+Group -->
+	case isRectangular():
+		split(x){
+			~Footprint_Size_X: Parcels
+		}*
+	else:
+		Surroundings
 		

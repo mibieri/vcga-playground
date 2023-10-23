@@ -24,6 +24,9 @@ attr Grid_Rotation = 0
 @Order(6)
 attr Interleaved = false
 
+@Order(7)
+attr Exact_Cell_Size = true
+
 
 getRowIndex() = floor(0.5 + (-scope.tz - Offset_X) / Cell_Size_X)
 getColIndex() = floor(0.5 + (scope.tx - Offset_Z) / Cell_Size_Z)
