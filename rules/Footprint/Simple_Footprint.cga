@@ -3,27 +3,33 @@ extension Footprint --> Footprint.
 
 
 @Order(0)
-@Handle(type=selector)
+@Handle(Shape=FootprintBoundingBox, type=selector)
 @Enum(valuesAttr=_footprintShapes)
 attr Shape = label_shape_rectangle
 
-@Order(0)
-@Percent
-@Range(min=0, max=3)
-attr ScaleX = 1.0
+@Order(1)
+@Range(min=0, max=100, restricted=false)
+attr SizeX = 20
 
-@Order(0)
-@Percent
-@Range(min=0, max=3)
-attr ScaleZ = 1.0
+@Order(2)
+@Range(min=0, max=100, restricted=false)
+attr SizeZ = 20
 
 @Order(3)
 @Angle
 attr Rotation = 0
 
 @Order(4)
+@Percent
+attr PositionX = 0.5
+
+@Order(5)
+@Percent
+attr PositionZ = 0.5
+
+@Order(6)
 @Range(min=0, max=30, stepsize=0.1, restricted=false)
-attr SlabThickness = 15
+attr SlabThickness = 10
 
 
 const label_shape_rectangle = "Rectangle"
@@ -39,15 +45,11 @@ attr _footprintShapes = [
 
 
 start Start -->
-	innerRectangle(edge){
-		shape: InnerRectangle |
-		remainder: Surroundings
-	}
-
-
-InnerRectangle -->
-	s('ScaleX, '1, 'ScaleZ)
-	center(xz)
+	Surroundings
+	primitiveQuad()
+	t(scope.sx * PositionX, 0, scope.sz * PositionZ)
+	t(-SizeX / 2, 0, -SizeZ / 2)
+	s(SizeX, 0, SizeZ)
 	r(scopeCenter, 0, Rotation, 0)
 	FootprintBoundingBox
 	

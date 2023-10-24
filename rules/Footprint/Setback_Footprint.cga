@@ -66,7 +66,7 @@ getSetbackSetbacks() =
 
 
 start Start -->
-	print(comp(f){all: str(geometry.tags("setback"))})
+	print(comp(fe){all: str(geometry.tags("setback"))})
 	setback(getSetbacks() .+ Setback_All){
 		all: Setback |
 		remainder: Remainder

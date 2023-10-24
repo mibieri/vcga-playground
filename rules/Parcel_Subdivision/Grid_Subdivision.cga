@@ -27,6 +27,10 @@ attr Interleaved = false
 @Order(7)
 attr Exact_Cell_Size = true
 
+@Order(8)
+@Percent
+attr Minimal_Cell_Area = 1.0
+
 
 getRowIndex() = floor(0.5 + (-scope.tz - Offset_X) / Cell_Size_X)
 getColIndex() = floor(0.5 + (scope.tx - Offset_Z) / Cell_Size_Z)
@@ -60,11 +64,16 @@ SplitIntoRows with(
 			(case !forward: (Offset_X + 1000 * Cell_Size_X) % Cell_Size_X else: 0): GridCell
 		}
 	else:
-		split(x, noAdjust){ 
-			~Cell_Size_X: GridCell
-		}*
+		split(x, noAdjust){
+			(case forward: Offset_X else: 0): GridCell |
+			{~Cell_Size_X: GridCell}* |
+			(case !forward: Offset_X else: 0): GridCell
+		}
 
 	
 GridCell -->
-	Parcels
+	case scope.sx * scope.sz + 0.1 < Minimal_Cell_Area * Cell_Size_X * Cell_Size_Z:
+		Surroundings
+	else:
+		Parcels
 		

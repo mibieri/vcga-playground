@@ -3,7 +3,7 @@ extension LowerTierFLoorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
 extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
-
+import edge_visualisation:"old/edge-visualisation.cga"
 import Upper_Tier_Setback : "Footprint/Setback_Footprint.cga"(
 	Setback --> LowerTierRoof,
 	Remainder --> UpperTier
@@ -20,7 +20,7 @@ attr Floor_Height = 3.0
 
 @Order(12)
 @Range(min=1, max=10, stepsize=1)
-attr N_Floors = 5
+attr N_Floors = 2
 
 
 @Group("Upper Tier", 20)
@@ -37,6 +37,7 @@ _getLowerTierHeight() = Floor_Height * (N_Floors - 1) + Ground_Floor_Height
 
 start Start -->
 	LowerTier
+	edge_visualisation.ShowAutoTags
 	Upper_Tier_Setback.start
 
 

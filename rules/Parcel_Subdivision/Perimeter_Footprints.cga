@@ -1,9 +1,15 @@
-extension Surroundings --> color("#CCFFCC") Surroundings.
-extension Footprint1 --> Footprint1.
-extension Footprint2 --> Footprint2.
-extension Footprint3 --> Footprint3.
-extension Footprint4 --> Footprint4.
+extension Surroundings --> NIL
+extension Footprints --> Footprint.
+extension Footprint1 --> NIL
+extension Footprint2 --> NIL
+extension Footprint3 --> NIL
+extension Footprint4 --> NIL
+extension Footprint5 --> NIL
+extension Footprint6 --> NIL
+extension Footprint7 --> NIL
+extension Footprint8 --> NIL
 
+import edge_visualisation : "old/edge-visualisation.cga"
 
 @Group("General", 0)
 @Order(0)
@@ -12,7 +18,7 @@ attr Edges = labelEdge_all
 
 @Order(1)
 @Enum(valuesAttr=_enum_fillPattern)
-attr FillPattern = labelPattern_absolute
+attr FillPattern = labelPattern_absoluteRepeat
 
 @Order(2)
 @Percent
@@ -23,9 +29,13 @@ attr StartPosition = 0.0
 attr PatternLength = 1.0
 
 import Footprint_1 : "Imports/Perimeter_Footprint_Parameters.cga"(Length=30, Width=15)
-import Footprint_2 : "Imports/Perimeter_Footprint_Parameters.cga"(Length=20, Width=20)
+import Footprint_2 : "Imports/Perimeter_Footprint_Parameters.cga"
 import Footprint_3 : "Imports/Perimeter_Footprint_Parameters.cga" 
 import Footprint_4 : "Imports/Perimeter_Footprint_Parameters.cga" 
+import Footprint_5 : "Imports/Perimeter_Footprint_Parameters.cga"
+import Footprint_6 : "Imports/Perimeter_Footprint_Parameters.cga"
+import Footprint_7 : "Imports/Perimeter_Footprint_Parameters.cga" 
+import Footprint_8 : "Imports/Perimeter_Footprint_Parameters.cga" 
 
 const labelEdge_all = "All Edges"
 const labelEdge_first = "First Edge"
@@ -150,7 +160,15 @@ Pattern with(
 			Footprint_3.Length - Footprint_3.GapLength : Footprint_3.Width + Footprint_3.Inset : Inset(3) |
 			Footprint_3.GapLength : 0 : Surroundings |
 			Footprint_4.Length - Footprint_4.GapLength : Footprint_4.Width + Footprint_4.Inset : Inset(4) |
-			Footprint_4.GapLength : 0 : Surroundings
+			Footprint_4.GapLength : 0 : Surroundings |
+			Footprint_5.Length - Footprint_5.GapLength : Footprint_5.Width + Footprint_5.Inset : Inset(5) |
+			Footprint_5.GapLength : 0 : Surroundings |
+			Footprint_6.Length - Footprint_6.GapLength : Footprint_6.Width + Footprint_6.Inset : Inset(6) |
+			Footprint_6.GapLength : 0 : Surroundings |
+			Footprint_7.Length - Footprint_7.GapLength : Footprint_7.Width + Footprint_7.Inset : Inset(7) |
+			Footprint_7.GapLength : 0 : Surroundings |
+			Footprint_8.Length - Footprint_8.GapLength : Footprint_8.Width + Footprint_8.Inset : Inset(8) |
+			Footprint_8.GapLength : 0 : Surroundings
 		}{remainder: Surroundings}
 	case FillPattern == labelPattern_absoluteRepeat:
 		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
@@ -161,7 +179,15 @@ Pattern with(
 			Footprint_3.Length - Footprint_3.GapLength : Footprint_3.Width + Footprint_3.Inset : Inset(3) |
 			Footprint_3.GapLength : 0 : Surroundings |
 			Footprint_4.Length - Footprint_4.GapLength : Footprint_4.Width + Footprint_4.Inset : Inset(4) |
-			Footprint_4.GapLength : 0 : Surroundings
+			Footprint_4.GapLength : 0 : Surroundings |
+			Footprint_5.Length - Footprint_5.GapLength : Footprint_5.Width + Footprint_5.Inset : Inset(5) |
+			Footprint_5.GapLength : 0 : Surroundings |
+			Footprint_6.Length - Footprint_6.GapLength : Footprint_6.Width + Footprint_6.Inset : Inset(6) |
+			Footprint_6.GapLength : 0 : Surroundings |
+			Footprint_7.Length - Footprint_7.GapLength : Footprint_7.Width + Footprint_7.Inset : Inset(7) |
+			Footprint_7.GapLength : 0 : Surroundings |
+			Footprint_8.Length - Footprint_8.GapLength : Footprint_8.Width + Footprint_8.Inset : Inset(8) |
+			Footprint_8.GapLength : 0 : Surroundings
 		}*{remainder: Surroundings}
 	case FillPattern == labelPattern_relative:
 		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
@@ -172,22 +198,45 @@ Pattern with(
 			~Footprint_3.Length - Footprint_3.GapLength : Footprint_3.Width + Footprint_3.Inset : Inset(3) |
 			~Footprint_3.GapLength : 0 : Surroundings |
 			~Footprint_4.Length - Footprint_4.GapLength : Footprint_4.Width + Footprint_4.Inset : Inset(4) |
-			~Footprint_4.GapLength : 0 : Surroundings
+			~Footprint_4.GapLength : 0 : Surroundings |
+			~Footprint_5.Length - Footprint_5.GapLength : Footprint_5.Width + Footprint_5.Inset : Inset(5) |
+			~Footprint_5.GapLength : 0 : Surroundings |
+			~Footprint_6.Length - Footprint_6.GapLength : Footprint_6.Width + Footprint_6.Inset : Inset(6) |
+			~Footprint_6.GapLength : 0 : Surroundings |
+			~Footprint_7.Length - Footprint_7.GapLength : Footprint_7.Width + Footprint_7.Inset : Inset(7) |
+			~Footprint_7.GapLength : 0 : Surroundings |
+			~Footprint_8.Length - Footprint_8.GapLength : Footprint_8.Width + Footprint_8.Inset : Inset(8) |
+			~Footprint_8.GapLength : 0 : Surroundings
 		}{remainder: NIL}
 	else:
 		NIL
 
-Inset(elementIndex) -->
-	setback(comp(fe){isTagged("setback.front"): insets[elementIndex - 1]}){
-		all: NIL | remainder: Footprint(elementIndex)
-	}
-
+Inset(elementIndex) with(
+	inset := insets[elementIndex - 1]
+) -->
+	case inset == 0:
+		Footprint(elementIndex)
+	else:
+		setback(comp(fe){isTagged("setback.front"): inset}){
+			all: NIL | 
+			remainder: 
+				setback(comp(fe){isTagged("setback.back"): 1000}){
+					all: NIL | remainder: Footprint(elementIndex)
+			}
+		}
 
 Footprint(elementIndex) -->
+	Footprints
+	[
 	case elementIndex == 1: Footprint1
 	case elementIndex == 2: Footprint2
 	case elementIndex == 3: Footprint3
 	case elementIndex == 4: Footprint4
+	case elementIndex == 5: Footprint5
+	case elementIndex == 6: Footprint6
+	case elementIndex == 7: Footprint7
+	case elementIndex == 8: Footprint8
 	else: NIL
+	]
 
 	
