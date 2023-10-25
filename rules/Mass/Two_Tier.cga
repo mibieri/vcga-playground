@@ -4,9 +4,16 @@ extension UpperTierFloorMass --> UpperTierFloorMass.
 extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
 import edge_visualisation:"old/edge-visualisation.cga"
+
+@Hidden
 import Upper_Tier_Setback : "Footprint/Setback_Footprint.cga"(
 	Setback --> LowerTierRoof,
-	Remainder --> UpperTier
+	Remainder --> UpperTier,
+	Reference = Stepback_Reference,
+	Setback_All = Stepback_All,
+	Setback_Front = Stepback_Front,
+	Setback_Side = Stepback_Side,
+	Setback_Rear = Stepback_Rear
 )
 
 @Group("Lower Tier", 10)
@@ -31,6 +38,31 @@ attr Upper_Tier_N_Floors = 1
 @Order(21)
 @Range(min=1, max=10)
 attr Upper_Tier_Floor_Height = 2.6
+
+
+@Group("Upper Tier Stepbacks", 30)
+@Order(30)
+@Enum(valuesAttr=_upperTierSetback_referenceEnum)
+attr Stepback_Reference = Upper_Tier_Setback.label_shape
+
+@Order(31)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_All = 0.0
+
+@Order(32)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Front = 0.0
+
+@Order(33)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Side = 0.0
+
+@Order(34)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Rear = 0.0
+
+@Hidden
+attr _upperTierSetback_referenceEnum = Upper_Tier_Setback._referenceEnum
 
 _getLowerTierHeight() = Floor_Height * (N_Floors - 1) + Ground_Floor_Height
 

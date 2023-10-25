@@ -4,7 +4,7 @@ extension Footprint --> Footprint.
 
 @Order(0)
 @Handle(Shape=FootprintBoundingBox, type=selector)
-@Enum(valuesAttr=_footprintShapes)
+@Enum(valuesAttr=footprintShapes)
 attr Shape = label_shape_rectangle
 
 @Order(1)
@@ -39,7 +39,7 @@ const label_shape_amoeba = "Amoeba"
 const label_shape_silos = "Silos"
 
 @Hidden
-attr _footprintShapes = [
+attr footprintShapes = [
 	label_shape_rectangle, label_shape_ellipse, label_shape_cross, label_shape_amoeba, label_shape_silos
 ]
 

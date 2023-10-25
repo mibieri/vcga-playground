@@ -32,13 +32,21 @@ attr Exact_Cell_Size = true
 attr Minimal_Cell_Area = 1.0
 
 
+@Order(9)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Border_Margin = 0
+
+
 getRowIndex() = floor(0.5 + (-scope.tz - Offset_X) / Cell_Size_X)
 getColIndex() = floor(0.5 + (scope.tx - Offset_Z) / Cell_Size_Z)
 
 	
 start Start -->
 	rotateScope(0, Grid_Rotation, 0)
-	SplitIntoCols
+	setback(Border_Margin){
+		all: Surroundings |
+		remainder: SplitIntoCols
+	}
 	
 SplitIntoCols -->
 	case Exact_Cell_Size:
@@ -72,7 +80,7 @@ SplitIntoRows with(
 
 	
 GridCell -->
-	case scope.sx * scope.sz + 0.1 < Minimal_Cell_Area * Cell_Size_X * Cell_Size_Z:
+	case geometry.area + 0.1 < Minimal_Cell_Area * Cell_Size_X * Cell_Size_Z:
 		Surroundings
 	else:
 		Parcels
