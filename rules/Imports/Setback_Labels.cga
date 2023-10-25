@@ -1,0 +1,7 @@
+version "2023.1"
+
+@Hidden
+attr labels = [edgeAttr, shape, setbackTags]
+const edgeAttr = "Edge Attributes"
+const shape = "Edge Selectors"
+const setbackTags = "Setback"

@@ -8,7 +8,7 @@ import Grid_Subdivision : "Parcel_Subdivision/Grid_Subdivision.cga"(
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,
 	Offset_X = Cell_Size_X / 2,
-	Border_Margin = max(SizeX / 2, SizeZ / 2),
+	Minimal_Cell_Area = 0.6,
 	Interleaved = true
 )
 
@@ -36,6 +36,10 @@ attr Cell_Size_Z = 40
 @Angle
 attr Grid_Rotation = 0
 
+@Order(13)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Border_Margin = 0
+
 
 @Group("Building Footprint",20)
 @Order(20)
@@ -45,7 +49,7 @@ attr Shape = footprintShapes[0]
 
 @Order(21)
 @Range(min=0, max=100, restricted=false)
-attr SizeX = 20
+attr SizeX = 30
 
 @Order(22)
 @Range(min=0, max=100, restricted=false)

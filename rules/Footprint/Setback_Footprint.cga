@@ -1,10 +1,12 @@
 extension Setback --> SetbackFace.
 extension Remainder --> color("#CCFFCC") Remainder.
 
-@Order(1)
-@Enum(valuesAttr=_referenceEnum)
-attr Reference = label_shape
+@Hidden
+import Setback_Labels : "Imports/Setback_Labels.cga"
 
+@Order(1)
+@Enum(valuesAttr=Setback_Labels.labels)
+attr Reference = Setback_Labels.labels[0]
 
 @Order(2)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
@@ -16,25 +18,24 @@ attr Setback_Front = 0.0
 
 @Order(4)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Setback_Side = 0.0
+attr Setback_Left = 0.0
 
 @Order(5)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Right = 0.0
+
+@Order(6)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Setback_Rear = 0.0
 
-@Hidden
-attr _referenceEnum = [label_edgeAttr, label_shape, label_setback]
-const label_edgeAttr = "Edge Attributes"
-const label_shape = "Edge Selectors"
-const label_setback = "Setback"
 
 
 getSetbacks() =
-	case Reference == label_edgeAttr:
+	case Reference == Setback_Labels.edgeAttr:
 		getEdgeAttrSetbacks()
-	case Reference == label_shape:
+	case Reference == Setback_Labels.shape:
 		getShapeSetbacks()
-	case Reference == label_setback:
+	case Reference == Setback_Labels.setbackTags:
 		getSetbackSetbacks()
 	else:
 		floatArray()
@@ -44,7 +45,7 @@ getEdgeAttrSetbacks() =
 	comp(fe){ all: 
 		case edgeAttr.getString("orientations") == "front": Setback_Front
 		case edgeAttr.getString("orientations") == "rear": Setback_Rear
-		case edgeAttr.getString("orientations") == "side": Setback_Side
+		case edgeAttr.getString("orientations") == "side": max(Setback_Left, Setback_Right)
 		else: 0
 	}
 
@@ -52,15 +53,15 @@ getShapeSetbacks() =
 	comp(fe){ 
 		front: Setback_Front |
 		back: Setback_Rear |
-		left: Setback_Side |
-		right: Setback_Side
+		left: Setback_Left |
+		right: Setback_Right
 	}	
 	
 getSetbackSetbacks() =
 	comp(fe){
 		isTagged("setback.front"): Setback_Front |
 		isTagged("setback.back"): Setback_Rear |
-		isTagged("setback.side"): Setback_Side |
+		isTagged("setback.side"): max(Setback_Left, Setback_Right) |
 		all: 0
 	}
 

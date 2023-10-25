@@ -1,0 +1,117 @@
+extension Surroundings --> NIL
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension LowerTierRoof --> NIL
+extension UpperTierRoof --> NIL
+
+import Setback_Labels : "Imports/Setback_Labels.cga"
+
+import Setback_Footprint : "Footprint/Setback_Footprint.cga"(
+	Setback --> Surroundings,
+	Remainder --> Footprint
+)
+
+import Two_Tier : "Mass/Two_Tier.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	Stepback_Reference = Setback_Labels.setbackTags
+)
+
+
+@Group("Setbacks", 10)
+@Order(11)
+@Enum(valuesAttr=Setback_Labels.labels)
+attr Reference = Setback_Labels.labels[0]
+
+@Order(12)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_All = 0.0
+
+@Order(13)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Front = 0.0
+
+@Order(14)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Left = 0.0
+
+@Order(15)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Right = 0.0
+
+@Order(16)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Rear = 0.0
+
+
+@Group("Footprint", 20)
+@Order(21)
+@Percent
+attr StartPosition = 0.0
+
+@Order(22)
+@Percent
+attr Length = 0.95
+
+@Order(23)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Width = 15
+
+
+@Group("Building Mass", 30)
+@Order(30)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(31)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(32)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors = 4
+
+@Order(33)
+@Range(min=1, max=10, stepsize=1)
+attr Upper_Tier_N_Floors = 1
+
+@Order(34)
+@Range(min=1, max=10)
+attr Upper_Tier_Floor_Height = 2.6
+
+
+@Group("Upper Tier Stepbacks", 40)
+@Order(41)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_All = 0.0
+
+@Order(42)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Front = 5.0
+
+@Order(43)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Left = 30.0
+
+@Order(44)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Right = 30.0
+
+@Order(45)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Stepback_Rear = 0.0
+
+
+start Start -->
+	Setback_Footprint.start
+
+
+Footprint -->
+	splitAndSetbackPerimeter('StartPosition){
+		~Length : Width : Two_Tier.start |
+		~(1 - Length): 0 : NIL
+	}{remainder: Surroundings}

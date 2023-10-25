@@ -1,0 +1,40 @@
+const edge_all = "All Edges"
+const edge_first = "First Edge"
+const edge_longest = "Longest Edge"
+const edge_setbackFront = "Setback: Front of Setback Face"
+const edge_setbackBack = "Setback: Back of Setback Face"
+const edge_parcelFront = "Shape: Front"
+const edge_parcelBack = "Shape: Back"
+const edge_parcelRight = "Shape: Right"
+const edge_parcelLeft = "Shape: Left"
+const edge_orientationFront = "Edge Attribute: Front"
+const edge_orientationRear = "Edge Attribute: Rear"
+const edge_orientationSide = "Edge Attribute: Side"
+
+const pattern_absolute = "No Fill"
+const pattern_absoluteRepeat = "Repeat"
+const pattern_relative = "Strech to Fill"
+
+
+@Hidden
+attr edge_labels = [
+	edge_all,
+	edge_first,
+	edge_longest,
+	edge_setbackFront,
+	edge_setbackBack,
+	edge_parcelFront,
+	edge_parcelBack,
+	edge_parcelRight,
+	edge_parcelLeft,
+	edge_orientationFront,
+	edge_orientationRear,
+	edge_orientationSide
+]
+
+@Hidden
+attr pattern_labels = [
+	pattern_absolute,
+	pattern_absoluteRepeat,
+	pattern_relative
+]
