@@ -1,0 +1,68 @@
+version "2023.1"
+
+
+@Order(10)
+@Percent
+attr Peak = 0.5
+
+@Order(11)
+@Percent
+attr Uniformness = 0.5
+
+@Order(12)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Minimum = 10
+
+@Order(13)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Maximum = 40
+
+
+const PI = 3.1415
+
+getPseudoGauss(minimum, maximum, peak, deviation) with(
+	span := maximum - minimum
+	value := rand(minimum, maximum)
+	absolutePeak := minimum + (maximum - minimum) * peak
+	absoluteDeviation := (maximum - minimum) * deviation
+	#probability := (1 / (absoluteDeviation * sqrt(2 * PI))) * exp(-0.5 * pow((value - absolutePeak) / absoluteDeviation, 2))
+	probability := (1 - 3 * deviation * (abs(value - absolutePeak) / (0.5 * span)))
+) = 
+	case deviation == 1.0: absolutePeak
+	case (value > maximum) || (value < minimum): getPseudoGauss(minimum, maximum, peak, deviation)
+	case rand(0, 1) < probability: value
+	else: getPseudoGauss(minimum, maximum, peak, deviation)
+
+
+const nBins = 100
+const nExperiments = 4000
+
+zeros(nEntries) = zerosRecursive(nEntries, floatArray())
+zerosRecursive(nEntries, result) =
+	case size(result) == nEntries: result
+	else: zerosRecursive(nEntries, [result, 0])
+
+fillBins(minimum, maximum, peak, deviation) = fillBinsRercursive(minimum, maximum, peak, deviation, zeros(nBins), 0)
+fillBinsRercursive(minimum, maximum, peak, deviation, result, recursionCount) with(
+	value := getPseudoGauss(minimum, maximum, peak, deviation)
+	binIndex := print(floor(value))
+) =
+	case recursionCount >= nExperiments:
+		result
+	else:
+		fillBinsRercursive(
+			minimum, maximum, peak, deviation, 
+			setElems(result, binIndex, result[binIndex] + 1),
+			recursionCount + 1
+		)
+		
+	
+start Start with(
+	bins := print(fillBins(Minimum, Maximum, Peak, Uniformness))
+) -->
+	s('0.2, '1, '1)
+	center(xz)
+	split(z){
+		'(1/nBins): extrude(bins[split.index]) X.
+	}*
+	

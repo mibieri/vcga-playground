@@ -6,7 +6,7 @@ extension UpperTierRoof --> NIL
 
 import Setback_Labels : "Imports/Setback_Labels.cga"
 
-@Hidden
+
 import _Upper_Tier_Setback : "Zoning/Setback.cga" (
 	Setback --> LowerTierRoof,
 	Remainder --> UpperTier,
@@ -44,8 +44,8 @@ attr Upper_Tier_Floor_Height = 2.6
 
 @Group("Upper Tier Stepbacks", 30)
 @Order(30)
-@Enum(valuesAttr=_upperTierSetback_referenceEnum)
-attr Stepback_Reference = Setback_Labels.shape
+@Enum(valuesAttr=Setback_Labels.labels)
+attr Stepback_Reference = Setback_Labels.setbackTags
 
 @Order(31)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
@@ -53,21 +53,21 @@ attr Stepback_All = 0.0
 
 @Order(32)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Front = 0.0
+attr Stepback_Front = 2.0
 
 @Order(33)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Left = 0.0
+attr Stepback_Left = 1.0
 
 @Order(34)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Right = 0.0
+attr Stepback_Right = 1.0
 
 @Order(35)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Rear = 0.0
+attr Stepback_Rear = 1.0
 
-_getLowerTierHeight() = Floor_Height * (N_Floors - 1) + Ground_Floor_Height
+_getLowerTierHeight() = Floor_Height * (N_Floors - Upper_Tier_N_Floors - 1) + Ground_Floor_Height
 
 
 start Start -->

@@ -1,5 +1,5 @@
-extension Setback --> SetbackFace.
-extension Remainder --> color("#CCFFCC") Remainder.
+extension Setback --> NIL
+extension Remainder --> NIL
 
 @Hidden
 import Setback_Labels : "Imports/Setback_Labels.cga"

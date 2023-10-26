@@ -10,7 +10,7 @@ extension Footprint7 --> NIL
 extension Footprint8 --> NIL
 
 import Perimeter_Labels : "Imports/Perimeter_Labels.cga"
-
+import edge_visualisation:"edge-visualisation.cga"
 @Group("General", 0)
 @Order(0)
 @Enum(valuesAttr=Perimeter_Labels.edge_labels)
@@ -313,11 +313,12 @@ Inset(elementIndex) with(
 	case inset == 0:
 		Footprint(elementIndex)
 	else:
+		#edge_visualisation.ShowAutoTags
 		setback(comp(fe){isTagged("setback.front"): inset}){
 			all: NIL | 
-			remainder: 
+			remainder: #edge_visualisation.ShowAutoTags
 				setback(comp(fe){isTagged("setback.back"): 1000}){
-					all: NIL | remainder: Footprint(elementIndex)
+					all: Footprint(elementIndex) | remainder: Surroundings
 			}
 		}
 
