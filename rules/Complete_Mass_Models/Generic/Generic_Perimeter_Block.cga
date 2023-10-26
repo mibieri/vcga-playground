@@ -6,7 +6,7 @@ extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
 
 
-import Perimeter_Footprints : "Parcel_Subdivision/Perimeter_Footprints.cga"(
+import Perimeter_Footprints : "Footprint/Generic/Perimeter_Footprints.cga" (
 	Footprints --> Two_Tier.start,
 	Surroundings --> Surroundings
 )

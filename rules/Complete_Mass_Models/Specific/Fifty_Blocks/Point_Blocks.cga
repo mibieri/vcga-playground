@@ -3,7 +3,7 @@ extension FloorMass --> FloorMass.
 extension GroundFloorMass --> GroundFloorMass.
 extension TopFootprint --> NIL
 
-import Grid_Subdivision : "Parcel_Subdivision/Grid_Subdivision.cga"(
+import Grid_Subdivision : "Footprint/Generic/Grid_Subdivision.cga" (
 	Parcels --> X. Simple_Footprint.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,
@@ -12,7 +12,7 @@ import Grid_Subdivision : "Parcel_Subdivision/Grid_Subdivision.cga"(
 	Interleaved = true
 )
 
-import Simple_Footprint : "Footprint/Simple_Footprint.cga"(
+import Simple_Footprint : "Footprint/Generic/Simple_Footprint.cga" (
 	Surroundings --> Surroundings,
 	Footprint --> Extrude.start
 )

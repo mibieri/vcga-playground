@@ -7,7 +7,7 @@ extension UpperTierRoof --> NIL
 
 import Setback_Labels : "Imports/Setback_Labels.cga"
 
-import Setback_Footprint : "Footprint/Setback_Footprint.cga"(
+import Setback_Footprint : "Zoning/Setback_Footprint.cga" (
 	Setback --> Surroundings,
 	Remainder --> Footprint
 )

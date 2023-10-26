@@ -6,7 +6,7 @@ extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
 
 
-import Rowhouse_Footprints : "Parcel_Subdivision/Rowhouse_Footprints.cga"(
+import Rowhouse_Footprints : "Footprint/Generic/Rowhouse_Footprints.cga" (
 	Parcels --> Two_Tier.start,
 	Surroundings --> Surroundings
 )
