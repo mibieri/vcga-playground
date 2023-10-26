@@ -14,18 +14,13 @@ attr Floor_Height = 3.0
 
 @Order(12)
 @Range(min=1, max=10, stepsize=1)
-attr N_Floors = _getNFloors()
+attr N_Floors = 5
 
-@Order(13)
-@Handle(shape=HeightHandle, axis=y)
-@Range(min=1, max=100, stepsize=0.1)
-attr Building_Height = 25.0
-
-_getNFloors() = 1 + (Building_Height - Ground_Floor_Height) / Floor_Height
+getBuildingHeight() = (N_Floors - 1) * Floor_Height + Ground_Floor_Height
 
 start Start -->
 	CreateTopFootprint
-	extrude(Building_Height)
+	extrude(getBuildingHeight())
 	HeightHandle
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
@@ -34,7 +29,7 @@ start Start -->
 
 
 CreateTopFootprint -->
-	t(0, Building_Height, 0)
+	t(0, getBuildingHeight(), 0)
 	TopFootprint
 	
 	

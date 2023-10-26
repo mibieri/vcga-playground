@@ -1,0 +1,31 @@
+extension Parcels --> Parcels.
+extension Surroundings --> NIL
+
+import Grid_Subdivision : "Footprint/Generic/Grid_Subdivision_Footprints.cga" (
+	Parcels --> Parcels,
+	Surroundings --> Surroundings,
+	Exact_Cell_Size = false,
+	Offset_X = Cell_Size_X / 2,
+	Minimal_Cell_Area = 0.6,
+	Interleaved = true
+)
+
+@Order(10)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_X = 60
+
+@Order(11)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_Z = 40
+
+@Order(12)
+@Angle
+attr Grid_Rotation = 0
+
+@Order(13)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Border_Margin = 0
+
+
+start Start -->
+	Grid_Subdivision.start

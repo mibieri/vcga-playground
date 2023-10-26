@@ -1,0 +1,21 @@
+extension Footprint --> Footprint
+extension Surroundings --> NIL
+
+
+@Order(21)
+@Percent
+attr StartPosition = 0.0
+
+@Order(22)
+@Percent
+attr Length = 0.95
+
+@Order(23)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Width = 15
+
+start Start -->
+	splitAndSetbackPerimeter('StartPosition){
+		~Length : Width : Footprint |
+		~(1 - Length): 0 : NIL
+	}{remainder: Surroundings}

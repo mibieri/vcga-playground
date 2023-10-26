@@ -4,7 +4,7 @@ extension UpperTierFloorMass --> UpperTierFloorMass.
 extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
 
-import Simple_Footprint : "Footprint/Generic/Simple_Footprint.cga" (
+import Simple_Footprint : "Footprint/Generic/Single_Footprint.cga" (
 	Surroundings --> NIL,
 	Footprint --> Two_Tier.start
 )

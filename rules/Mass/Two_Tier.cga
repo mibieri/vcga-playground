@@ -7,7 +7,7 @@ extension UpperTierRoof --> NIL
 import Setback_Labels : "Imports/Setback_Labels.cga"
 
 @Hidden
-import _Upper_Tier_Setback : "Zoning/Setback_Footprint.cga" (
+import _Upper_Tier_Setback : "Zoning/Setback.cga" (
 	Setback --> LowerTierRoof,
 	Remainder --> UpperTier,
 	Reference = Stepback_Reference,
