@@ -29,7 +29,7 @@ attr Floor_Height = 3.0
 
 @Order(12)
 @Range(min=1, max=10, stepsize=1)
-attr N_Floors = 2
+attr N_Floors = 5
 
 
 @Group("Upper Tier", 20)
