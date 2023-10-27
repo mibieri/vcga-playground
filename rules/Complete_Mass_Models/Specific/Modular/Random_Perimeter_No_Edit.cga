@@ -1,0 +1,93 @@
+extension Surroundings --> NIL
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension LowerTierRoof --> NIL
+extension UpperTierRoof --> NIL
+
+@Group("Block Length", 10)
+@Order(11)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockLength_Min = 30
+
+@Order(12)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockLength_Max = 60
+
+@Order(13)
+@Percent
+attr BlockLength_Peak = 0.5
+
+@Order(14)
+@Percent
+attr BlockLength_Uniformness = 0.5
+
+
+@Group("Block Gap", 20)
+@Order(21)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockGapLength_Min = 0
+
+@Order(22)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockGapLength_Max = 30
+
+@Order(23)
+@Percent
+attr BlockGapLength_Peak = 0.1
+
+@Order(24)
+@Percent
+attr BlockGapLength_Uniformness = 0.5
+
+
+@Group("Block Width", 30)
+@Order(31)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockWidth_Min = 10
+
+@Order(32)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockWidth_Max = 30
+
+@Order(33)
+@Percent
+attr BlockWidth_Peak = 0.3
+
+@Order(34)
+@Percent
+attr BlockWidth_Uniformness = 0.3
+
+
+@Group("Block Inset", 40)
+@Order(41)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockInset_Min = 0
+
+@Order(42)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr BlockInset_Max = 0
+
+@Order(43)
+@Percent
+attr BlockInset_Peak = 0.1
+
+@Order(44)
+@Percent
+attr BlockInset_Uniformness = 0.3
+
+import Random_Two_Tier : "Mass/Random_Two_Tier.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof
+)
+
+import Perimeter_Footprints : "Footprint/Quick/Random_Perimeter_Footprints.cga" (
+	Footprints --> Random_Two_Tier.start,
+	Surroundings --> Surroundings
+)
+
+start Start -->
+	Perimeter_Footprints.start

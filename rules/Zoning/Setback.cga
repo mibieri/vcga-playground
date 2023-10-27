@@ -28,7 +28,7 @@ attr Setback_Right = 0.0
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Setback_Rear = 0.0
 
-
+import edge_visualisation:"edge-visualisation.cga"
 
 getSetbacks() =
 	case Reference == Setback_Labels.edgeAttr:
@@ -37,6 +37,10 @@ getSetbacks() =
 		getShapeSetbacks()
 	case Reference == Setback_Labels.setbackTags:
 		getSetbackSetbacks()
+	case Reference == Setback_Labels.auto: (
+		case geometry.hasTags("setback"): getSetbackSetbacks()
+		else: getShapeSetbacks()
+	)
 	else:
 		floatArray()
 		

@@ -1,9 +1,13 @@
 extension Surroundings --> NIL
-extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
-extension LowerTierRoof --> NIL
-extension UpperTierRoof --> NIL
+extension Footprints --> Footprints.
+extension Footprint1 --> NIL
+extension Footprint2 --> NIL
+extension Footprint3 --> NIL
+extension Footprint4 --> NIL
+extension Footprint5 --> NIL
+extension Footprint6 --> NIL
+extension Footprint7 --> NIL
+extension Footprint8 --> NIL
 
 @Group("Block Length", 10)
 @Order(11)
@@ -79,17 +83,17 @@ attr BlockInset_Uniformness = 0.3
 
 import Random:"Imports/Random.cga"
 
-import Random_Two_Tier : "Mass/Random_Two_Tier.cga"(
-	GroundFloorMass --> GroundFloorMass,
-	LowerTierFLoorMass --> LowerTierFLoorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
-	LowerTierRoof --> LowerTierRoof,
-	UpperTierRoof --> UpperTierRoof
-)
-
 import Perimeter_Footprints : "Footprint/Generic/Perimeter_Footprints.cga" (
-	Footprints --> Random_Two_Tier.start,
 	Surroundings --> Surroundings,
+	Footprints --> Footprints,
+	Footprint1 --> Footprint1,
+	Footprint2 --> Footprint2,
+	Footprint3 --> Footprint3,
+	Footprint4 --> Footprint4,
+	Footprint5 --> Footprint5,
+	Footprint6 --> Footprint6,
+	Footprint7 --> Footprint7,
+	Footprint8 --> Footprint8,
 	
 	Footprint1_Length = getBlockLength(),
 	Footprint2_Length = getBlockLength(),
@@ -133,7 +137,6 @@ getBlockLength() = Random.getPseudoGauss(BlockLength_Min, BlockLength_Max, Block
 getBlockGapLength() = Random.getPseudoGauss(BlockGapLength_Min, BlockGapLength_Max, BlockGapLength_Peak, BlockGapLength_Uniformness)
 getBlockWidth() = Random.getPseudoGauss(BlockWidth_Min, BlockWidth_Max, BlockWidth_Peak, BlockWidth_Uniformness)
 getBlockInset() = Random.getPseudoGauss(BlockInset_Min, BlockInset_Max, BlockInset_Peak, BlockInset_Uniformness)
-
 
 start Start -->
 	Perimeter_Footprints.start

@@ -1,0 +1,191 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension LowerTierRoof --> NIL
+extension UpperTierRoof --> NIL
+
+import Random:"Imports/Random.cga"
+
+import Two_Tier1 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier2 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier3 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier4 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier5 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier6 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier7 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier8 : "Mass/Two_Tier_Local_Edit.cga"(
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFLoorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	LowerTierRoof --> LowerTierRoof,
+	UpperTierRoof --> UpperTierRoof,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+@Group("Number of Floors", 10)
+@Order(11)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr N_Floors_Min = 1
+
+@Order(12)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr N_Floors_Max = 20
+
+@Order(13)
+@Percent
+attr N_Floors_Peak = 0.3
+
+@Order(14)
+@Percent
+attr N_Floors_Uniformness = 0.5
+
+
+@Group("Upper Tier Number of Floors", 20)
+@Order(21)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_N_Floors_Min = 0
+
+@Order(22)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_N_Floors_Max = 2
+
+@Order(23)
+@Percent
+attr Upper_Tier_N_Floors_Peak = 0.5
+
+@Order(24)
+@Percent
+attr Upper_Tier_N_Floors_Uniformness = 0.3
+
+
+@Group("Upper Tier Stepbacks", 30)
+@Order(31)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Min = 0
+
+@Order(32)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Max = 10
+
+@Order(33)
+@Percent
+attr Upper_Tier_Stepback_Peak = 0.3
+
+@Order(34)
+@Percent
+attr Upper_Tier_Stepback_Uniformness = 0.5
+
+
+@Group("Upper Tier Stepback Front", 40)
+@Order(41)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Front_Min = 0
+
+@Order(42)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Front_Max = 0
+
+@Order(43)
+@Percent
+attr Upper_Tier_Stepback_Front_Peak = 0.5
+
+@Order(44)
+@Percent
+attr Upper_Tier_Stepback_Front_Uniformness = 0.5
+
+
+getNFloors() = Random.getPseudoGauss(N_Floors_Min, N_Floors_Max, N_Floors_Peak, N_Floors_Uniformness)
+getUpperTierNFloors() = Random.getPseudoGauss(Upper_Tier_N_Floors_Min, Upper_Tier_N_Floors_Max, Upper_Tier_N_Floors_Peak, Upper_Tier_N_Floors_Uniformness)
+getUpperTierStepback() = Random.getPseudoGauss(Upper_Tier_Stepback_Min, Upper_Tier_Stepback_Max, Upper_Tier_Stepback_Peak, Upper_Tier_Stepback_Uniformness)
+getUpperTierStepbackFront() = Random.getPseudoGauss(Upper_Tier_Stepback_Front_Min, Upper_Tier_Stepback_Front_Max, Upper_Tier_Stepback_Front_Peak, Upper_Tier_Stepback_Front_Uniformness)
+
+start Start(parcelIndex) -->
+	case parcelIndex == 1: Two_Tier1.start
+	case parcelIndex == 2: Two_Tier2.start
+	case parcelIndex == 3: Two_Tier3.start
+	case parcelIndex == 4: Two_Tier4.start
+	case parcelIndex == 5: Two_Tier5.start
+	case parcelIndex == 6: Two_Tier6.start
+	case parcelIndex == 7: Two_Tier7.start
+	case parcelIndex == 8: Two_Tier8.start
+	else: NIL
