@@ -1,0 +1,55 @@
+version "2023.1"
+
+extension Surroundings --> NIL
+extension SlabGroundFloorMass --> SlabGroundFloorMass.
+extension SlabLowerTierFLoorMass --> SlabLowerTierFLoorMass.
+extension SlabUpperTierFloorMass --> SlabUpperTierFloorMass.
+extension SlabLowerTierRoof --> NIL
+extension SlabUpperTierRoof --> NIL
+extension TowerGroundFloorMass --> TowerGroundFloorMass.
+extension TowerLowerTierFLoorMass --> TowerLowerTierFLoorMass.
+extension TowerUpperTierFloorMass --> TowerUpperTierFloorMass.
+extension TowerLowerTierRoof --> NIL
+extension TowerUpperTierRoof --> NIL
+
+import Setback : "Zoning/Setback.cga"(
+	Setback --> Surroundings,
+	Remainder --> Footprints.start
+)
+
+import Tower_Mass : "Mass/Two_Tier.cga"(
+	GroundFloorMass --> TowerGroundFloorMass,
+	LowerTierFLoorMass --> TowerLowerTierFLoorMass,
+	UpperTierFloorMass --> TowerUpperTierFloorMass,
+	LowerTierRoof --> NIL,
+	UpperTierRoof --> NIL,
+	N_Floors = Tower_N_Floors
+)
+
+import Slab_Mass : "Mass/Two_Tier.cga"(
+	GroundFloorMass --> SlabGroundFloorMass,
+	LowerTierFLoorMass --> SlabLowerTierFLoorMass,
+	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	LowerTierRoof --> NIL,
+	UpperTierRoof --> NIL,
+	N_Floors = Slab_N_Floors
+)
+
+import Footprints : "Footprint/Quick/Tower_And_Perimeter_Slab_Footprints.cga"(
+	SlabFootprint --> Slab_Mass.start,
+	TowerFootprint --> Tower_Mass.start
+)
+
+@Order(10)
+@Range(min=1, max=100, stepsize=1)
+attr Tower_N_Floors = 18
+
+@Order(11)
+@Range(min=1, max=100, stepsize=1)
+attr Slab_N_Floors = 5
+
+
+
+start Start -->
+	Setback.start
+	
