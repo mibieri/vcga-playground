@@ -1,0 +1,54 @@
+import Perimeter_Labels : "Perimeter_Labels.cga"
+
+		
+getSetbackFrontMask() = comp(fe){isTagged("setback.front"): true | all: false}
+getFirstSetbackFrontEdge() = _getStartOfTrueEdges(getSetbackFrontMask())
+
+getEdgeMask(selector) = 
+	case selector == Perimeter_Labels.edge_all:
+		comp(fe){all: true}
+	case selector == Perimeter_Labels.edge_first:
+		comp(fe){0: true | all: false}
+	case selector == Perimeter_Labels.edge_longest:
+		_markLargest(comp(fe){all: geometry.boundaryLength})
+	case selector == Perimeter_Labels.edge_setbackFront:
+		getSetbackFrontMask() 
+	case selector == Perimeter_Labels.edge_setbackBack:
+		comp(fe){isTagged("setback.back"): true | all: false}
+	case selector == Perimeter_Labels.edge_parcelFront:
+		comp(fe){front: true | all: false}
+	case selector == Perimeter_Labels.edge_parcelRight:
+		comp(fe){right: true | all: false}
+	case selector == Perimeter_Labels.edge_parcelLeft:
+		comp(fe){left: true | all: false}
+	case selector == Perimeter_Labels.edge_parcelBack:
+		comp(fe){back: true | all: false}
+	case selector == Perimeter_Labels.edge_orientationFront:
+		comp(fe){all: edgeAttr.getString("orientations") == "front"}
+	case selector == Perimeter_Labels.edge_orientationRear:
+		comp(fe){all: edgeAttr.getString("orientations") == "rear"}
+	case selector == Perimeter_Labels.edge_orientationSide:
+		comp(fe){all: edgeAttr.getString("orientations") == "side"}
+	else:
+		comp(fe){all: true}
+		
+getFirstSelectedEdge(selector) = _getStartOfTrueEdges(getEdgeMask(selector))
+
+_markLargest(inputArray) = _markLargestRecursive(inputArray, sortIndices(inputArray)[size(inputArray) - 1], boolArray())
+_markLargestRecursive(inputArray, largestIndex, resultArray) =
+	case size(resultArray) == size(inputArray): 
+		resultArray
+	else: 
+		_markLargestRecursive(
+			inputArray, largestIndex, 
+			[resultArray, case size(resultArray) == largestIndex: true else: false]
+		)
+
+_getStartOfTrueEdges(mask) = _getStartOfTrueEdgesRecursive(mask, 0, 0)
+_getStartOfTrueEdgesRecursive(mask, candidate, recursionCount) = 
+	case recursionCount >= size(mask): 
+		candidate
+	case !mask[recursionCount]:
+		_getStartOfTrueEdgesRecursive(mask, (recursionCount + 1) % size(mask), recursionCount + 1)
+	else:
+		_getStartOfTrueEdgesRecursive(mask, candidate, recursionCount + 1)

@@ -1,0 +1,58 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension FloorMass --> FloorMass.
+extension TopFootprint --> NIL
+
+@Order(10)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(11)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(12)
+@Range(min=1, max=10, stepsize=1)
+attr N_Layers = 5
+
+@Order(13)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors_Per_Layer = 2
+
+@Order(14)
+@Range(min=1, max=50, stepsize=0.1)
+attr Block_Width = 30
+
+@Order(15)
+@Range(min=1, max=50, stepsize=0.1)
+attr Block_Length = 30
+
+@Order(16)
+@Range(min=1, max=50, stepsize=0.1)
+attr Gap_Length = 10
+
+@Order(17)
+@Percent
+attr Shortening_Per_Layer = 0.3
+
+@Order(18)
+@Percent
+attr Start_Position = 10
+
+import Perimeter_Edge_Selection : "Imports/Perimeter_Edge_Selection.cga"
+
+start Start -->
+	setback(Block_Width){
+		all: Layer(0) |
+		remainder: NIL
+	}
+
+Layer(layerIndex) with(
+	edgeMask := Perimeter_Edge_Selection.getSetbackFrontMask()
+	firstEdge := Perimeter_Edge_Selection.getFirstSetbackFrontEdge()
+) -->
+	case layerIndex >= N_Layers:
+		NIL
+	else:
+		splitAndSetbackPerimeter('Start_Position, firstEdge, edgeMask){
+			
+		}

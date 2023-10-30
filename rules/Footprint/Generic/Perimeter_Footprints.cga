@@ -10,6 +10,8 @@ extension Footprint7 --> NIL
 extension Footprint8 --> NIL
 
 import Perimeter_Labels : "Imports/Perimeter_Labels.cga"
+import Perimeter_Edge_Selection : "Imports/Perimeter_Edge_Selection.cga"
+
 import edge_visualisation:"edge-visualisation.cga"
 @Group("General", 0)
 @Order(0)
@@ -186,57 +188,9 @@ const maxSetback with(
 	setbacks := insets .+ widths
 ) = setbacks[sortIndices(setbacks)[size(setbacks) - 1]]
 
-markLargest(inputArray) = markLargestRecursive(inputArray, sortIndices(inputArray)[size(inputArray) - 1], boolArray())
-markLargestRecursive(inputArray, largestIndex, resultArray) =
-	case size(resultArray) == size(inputArray): 
-		resultArray
-	else: 
-		markLargestRecursive(
-			inputArray, largestIndex, 
-			[resultArray, case size(resultArray) == largestIndex: true else: false]
-		)
-		
-getSetbackFrontMask() = comp(fe){isTagged("setback.front"): true | all: false}
-
-getEdgeMask() = 
-	case Edges == Perimeter_Labels.edge_all:
-		comp(fe){all: true}
-	case Edges == Perimeter_Labels.edge_first:
-		comp(fe){0: true | all: false}
-	case Edges == Perimeter_Labels.edge_longest:
-		markLargest(comp(fe){all: geometry.boundaryLength})
-	case Edges == Perimeter_Labels.edge_setbackFront:
-		getSetbackFrontMask() 
-	case Edges == Perimeter_Labels.edge_setbackBack:
-		comp(fe){isTagged("setback.back"): true | all: false}
-	case Edges == Perimeter_Labels.edge_parcelFront:
-		comp(fe){front: true | all: false}
-	case Edges == Perimeter_Labels.edge_parcelRight:
-		comp(fe){right: true | all: false}
-	case Edges == Perimeter_Labels.edge_parcelLeft:
-		comp(fe){left: true | all: false}
-	case Edges == Perimeter_Labels.edge_parcelBack:
-		comp(fe){back: true | all: false}
-	case Edges == Perimeter_Labels.edge_orientationFront:
-		comp(fe){all: edgeAttr.getString("orientations") == "front"}
-	case Edges == Perimeter_Labels.edge_orientationRear:
-		comp(fe){all: edgeAttr.getString("orientations") == "rear"}
-	case Edges == Perimeter_Labels.edge_orientationSide:
-		comp(fe){all: edgeAttr.getString("orientations") == "side"}
-	else:
-		comp(fe){all: true}
-		
-getStartOfTrueEdges(mask) = getStartOfTrueEdgesRecursive(mask, 0, 0)
-getStartOfTrueEdgesRecursive(mask, candidate, recursionCount) = 
-	case recursionCount >= size(mask): 
-		candidate
-	case !mask[recursionCount]:
-		getStartOfTrueEdgesRecursive(mask, (recursionCount + 1) % size(mask), recursionCount + 1)
-	else:
-		getStartOfTrueEdgesRecursive(mask, candidate, recursionCount + 1)
 
 start Start -->
-	splitAndSetbackPerimeter(0, 0, getEdgeMask()){
+	splitAndSetbackPerimeter(0, 0, Perimeter_Edge_Selection.getEdgeMask(Edges)){
 		'StartPosition: 0 : Surroundings |
 		'PatternLength: maxSetback : Pattern
 	}{remainder: Surroundings}
@@ -244,8 +198,8 @@ start Start -->
 f() = print(comp(fe){all: str(geometry.tags("setback"))})
 
 Pattern with(
-	setbackFrontMask := getSetbackFrontMask()
-	firstFrontEdge := print(getStartOfTrueEdges(print(setbackFrontMask)))
+	setbackFrontMask := Perimeter_Edge_Selection.getSetbackFrontMask()
+	firstFrontEdge := print(Perimeter_Edge_Selection.getFirstSetbackFrontEdge())
 )-->
 	case FillPattern == Perimeter_Labels.pattern_absolute:
 		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
