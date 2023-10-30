@@ -1,0 +1,10 @@
+
+
+
+start Start -->
+	comp(f){
+		front: color("#FF0000") F. |
+		left: color("#00FF00") F. |
+		right: color("#0000FF") F. |
+		back: color("#FF00FF") F.
+	}

@@ -1,0 +1,138 @@
+version "2023.1"
+
+extension SlabFootprint --> SlabFootprint.
+extension TowerFootprint --> TowerFootprint.
+extension Surroundings --> NIL
+
+
+@Order(9)
+@Percent
+attr StartPosition = 0.0
+
+@Order(10)
+@Percent
+attr Slab_Length = 0.4
+
+@Order(11)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Slab_Width = 15
+
+@Order(12)
+attr Tower_Enabled = true 
+
+@Order(13)
+@Percent
+attr Tower_Length = 0.1
+
+@Order(14)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Tower_Width = 25
+
+@Order(15)
+@Percent
+attr Gap_Length = 0.0
+
+@Order(16)
+attr Reverse = false
+
+@Order(17)
+attr Duplicate = false 
+
+getTowerLength() = case Tower_Enabled: Tower_Length else: 0
+forDuplicate(value) = case Duplicate: value else: 0
+
+start Start -->
+	splitAndSetbackPerimeter('StartPosition){
+		~(case Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint |
+		~(case Reverse: Gap_Length else: 0): 0: NIL |
+		~Slab_Length : Slab_Width : SlabFootprint |
+		~(case !Reverse: Gap_Length else: 0): 0: NIL |
+		~(case !Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint |
+		~(1 - Slab_Length - Tower_Length): 0 : NIL |
+		
+		~forDuplicate(case Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint |
+		~forDuplicate(case Reverse: Gap_Length else: 0): 0: NIL |
+		~forDuplicate(Slab_Length) : Slab_Width : SlabFootprint |
+		~forDuplicate(case !Reverse: Gap_Length else: 0): 0: NIL |
+		~forDuplicate(case !Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint |
+		~forDuplicate(1 - Slab_Length - Tower_Length): 0 : NIL
+		
+	}{remainder: Surroundings}
+
+
+style SlabAndTower
+attr StartPosition = 0.0
+attr Slab_Length = 0.4
+attr Slab_Width = 15
+attr Tower_Enabled = true 
+attr Tower_Length = 0.1
+attr Tower_Width = 25
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = false
+
+style TwiceSlabAndTower
+attr StartPosition = 0.0
+attr Slab_Length = 0.75
+attr Slab_Width = 15
+attr Tower_Enabled = true 
+attr Tower_Length = 0.1
+attr Tower_Width = 25
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = true
+
+style TwiceAndDenseSlabAndTower
+attr StartPosition = 0.40
+attr Slab_Length = 0.80
+attr Slab_Width = 35
+attr Tower_Enabled = true 
+attr Tower_Length = 0.2
+attr Tower_Width = 40
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = true
+
+style OneSlab
+attr StartPosition = 0.12
+attr Slab_Length = 0.5
+attr Slab_Width = 15
+attr Tower_Enabled = false 
+attr Tower_Length = 0.1
+attr Tower_Width = 25
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = false 
+
+style TwoSlabs
+attr StartPosition = 0.42
+attr Slab_Length = 0.72
+attr Slab_Width = 15
+attr Tower_Enabled = false 
+attr Tower_Length = 0.1
+attr Tower_Width = 25
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = true
+
+style ClosedPerimeterSlab
+attr StartPosition = 0.0
+attr Slab_Length = 1.0
+attr Slab_Width = 15
+attr Tower_Enabled = false 
+attr Tower_Length = 0.1
+attr Tower_Width = 25
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = false
+
+style ClosedPerimeterFourSlabs
+attr StartPosition = 0.45
+attr Slab_Length = 0.7
+attr Slab_Width = 15
+attr Tower_Enabled = true 
+attr Tower_Length = 0.3
+attr Tower_Width = 15
+attr Gap_Length = 0.0
+attr Reverse = false
+attr Duplicate = true 

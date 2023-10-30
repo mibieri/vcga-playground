@@ -42,6 +42,7 @@ getColIndex() = floor(0.5 + (scope.tx - Offset_Z) / Cell_Size_Z)
 
 	
 start Start -->
+	print(Cell_Size_X)
 	rotateScope(0, Grid_Rotation, 0)
 	setback(Border_Margin){
 		all: Surroundings |

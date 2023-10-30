@@ -1,0 +1,47 @@
+extension SlabFootprint --> SlabFootprint.
+extension RowhouseFootprints --> RowhouseFootprints.
+extension Surroundings --> NIL
+
+import Slab_Footprint : "Footprint/Quick/Perimeter_Slab_Footprint.cga"(
+	Footprint --> SlabFootprint,
+	Surroundings --> Rowhouse_Setback.start,
+	StartPosition = SlabStartPosition,
+	Length = SlabLength,
+	Width = SlabWidth
+)
+
+import Rowhouse_Setback:"Zoning/Setback.cga"(
+	Remainder --> Rowhouse_Footprints.start,
+	Setback_Rear = SlabRowhouseDistance
+)
+
+import Rowhouse_Footprints:"Footprint/Generic/Rowhouse_Footprints.cga"(
+	Parcels --> RowhouseFootprints,
+	Row_Inner_Distance = 15,
+	Row_Border_Distance = 10,
+	Parcels_Per_Group = 1,
+	Group_Inner_Distance = 0,
+	Group_Border_Distance = 0
+)
+
+@Group("Perimeter Slab", 10)
+@Order(11)
+@Percent
+attr SlabStartPosition = 0.0
+
+@Order(12)
+@Percent
+attr SlabLength = 0.5
+
+@Order(13)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr SlabWidth = 15
+
+
+@Group("Rowhouses", 20)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr SlabRowhouseDistance = 10
+
+@StartRule
+start Rule --> 
+	Slab_Footprint.start

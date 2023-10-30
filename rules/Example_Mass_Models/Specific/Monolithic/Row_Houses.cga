@@ -1,0 +1,61 @@
+extension Surroundings --> Surroundings
+extension GroundFloorMass --> GroundFloorMass.
+extension FloorMass --> FloorMass.
+
+
+import Rowhouse_Footprints : "Footprint/Generic/Rowhouse_Footprints.cga" (
+	Parcels --> Extrude.start,
+	Surroundings --> Surroundings,
+	Footprint_Size_X = Footprint_Size,
+	Footprint_Size_Z = Footprint_Size,
+	Row_Inner_Distance = Row_Distance,
+	Row_Border_Distance = Row_Distance / 2,
+	Group_Inner_Distance = Group_Distance,
+	Group_Border_Distance = Group_Distance / 2
+)
+
+
+import Extrude : "Mass/Extrude.cga"(
+	FloorMass --> FloorMass,
+	GroundFloorMass --> GroundFloorMass,
+	N_Floors = N_Floors
+)
+
+@Group("Footprints", 10)
+@Order(11)
+@Range(min=1, max=40, stepsize=0.1, restricted=false)
+attr Footprint_Size = 12
+
+@Order(11)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Row_Distance = 30
+
+@Order(12)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Group_Distance = 30
+
+@Order(13)
+@Range(min=1, max=10, stepsize=1, restricted=false)
+attr Parcels_Per_Group = 2
+
+@Order(14)
+@Angle
+attr Grid_Rotation = 0
+
+
+@Group("Building Floors", 20)
+@Order(20)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(21)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(22)
+@Range(min=1, max=10, stepsize=1)
+attr N_Floors = 3
+
+
+start Start -->
+	Rowhouse_Footprints.start
