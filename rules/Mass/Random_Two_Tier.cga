@@ -1,5 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension LowerTierFloorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
 extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
@@ -8,7 +8,7 @@ import Random:"Imports/Random.cga"
 
 import Two_Tier : "Mass/Two_Tier.cga"(
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFLoorMass --> LowerTierFLoorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
 	LowerTierRoof --> LowerTierRoof,
 	UpperTierRoof --> UpperTierRoof

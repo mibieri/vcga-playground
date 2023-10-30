@@ -1,5 +1,5 @@
 extension Parcels --> Parcels.
-extension Surroundings --> color("#CCFFCC") Surroundings.
+extension Surroundings --> NIL
 
 @Order(1)
 @Range(min=1, max=100, stepsize=0.1, restricted=false)

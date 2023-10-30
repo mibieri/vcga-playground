@@ -102,10 +102,13 @@ import Two_Tier8 : "Mass/Two_Tier_Local_Edit.cga"(
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
+@Order(0)
+attr ShowHandles = true
+
 @Group("Number of Floors", 10)
 @Order(11)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr N_Floors_Min = 1
+attr N_Floors_Min = 3
 
 @Order(12)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)

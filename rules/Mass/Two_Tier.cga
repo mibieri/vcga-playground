@@ -1,5 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension LowerTierFloorMass --> LowerTierFloorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
 extension LowerTierRoof --> NIL
 extension UpperTierRoof --> NIL
@@ -79,7 +79,7 @@ LowerTier -->
 	extrude(_getLowerTierHeight())
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
-		{~Floor_Height: LowerTierFLoorMass} *
+		{~Floor_Height: LowerTierFloorMass} *
 	}
 
 
