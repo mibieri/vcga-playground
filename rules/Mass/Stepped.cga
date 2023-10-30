@@ -1,0 +1,95 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension FloorMass --> FloorMass.
+extension TopFootprint --> NIL
+
+@Order(10)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(11)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(12)
+@Range(min=1, max=20, stepsize=1)
+attr N_Floors = 5
+
+@Order(13)
+@Range(min=1, max=10, stepsize=0.1)
+attr Stepback_Per_Floor = 3
+
+@Order(13)
+@Range(min=1, max=10, stepsize=1)
+attr First_Stepback_Floor = 3
+
+@Order(14)
+@Enum(valuesAttr=labelsStepback)
+attr Stepback_Direction = labelsStepback[1]
+
+const label_stepback_all = "All Directions"
+const label_stepback_long_f = "Long Dimension"
+const label_stepback_long_r = "Long Dimension Reversed"
+const label_stepback_short_f = "Short Dimension"
+const label_stepback_short_r = "Short Dimension Reversed"
+const label_stepback_none = "Disable Stepback"
+
+@Hidden
+attr labelsStepback = [
+	label_stepback_all, label_stepback_long_f, label_stepback_long_r,
+	label_stepback_short_f, label_stepback_short_r, label_stepback_none
+]
+	
+
+getSetbacks(floorIndex) =
+	case floorIndex < First_Stepback_Floor:
+		0
+	else:
+		Stepback_Per_Floor
+
+start Start -->
+	CreateGroundFloor
+	t(0, Ground_Floor_Height, 0)
+	CreateStepback(1)
+	
+CreateGroundFloor -->
+	extrude(Ground_Floor_Height)
+	GroundFloorMass
+	
+CreateStepback(floorIndex) -->
+	case floorIndex >= N_Floors:
+		TopFootprint
+	else: [
+		case Stepback_Direction == label_stepback_all:
+			setback(Stepback_Per_Floor){
+				all: TopFootprint |
+				remainder: CreateSteppedFloor(floorIndex)
+			}
+		case Stepback_Direction == label_stepback_long_f:
+			split(x){
+				Stepback_Per_Floor: TopFootprint |
+				~1: CreateSteppedFloor(floorIndex)
+			}
+		case Stepback_Direction == label_stepback_long_r:
+			split(x){
+				~1: CreateSteppedFloor(floorIndex) |
+				Stepback_Per_Floor: TopFootprint 
+			}
+		case Stepback_Direction == label_stepback_short_f:
+			split(z){
+				Stepback_Per_Floor: TopFootprint |
+				~1: CreateSteppedFloor(floorIndex)
+			}
+		case Stepback_Direction == label_stepback_short_r:
+			split(z){
+				~1: CreateSteppedFloor(floorIndex) |
+				Stepback_Per_Floor: TopFootprint 
+			}
+		else:
+			CreateSteppedFloor(floorIndex)
+			
+	]	
+		
+CreateSteppedFloor(floorIndex) -->
+	[extrude(Floor_Height) FloorMass]
+	t(0, Floor_Height, 0)
+	CreateStepback(floorIndex + 1)
