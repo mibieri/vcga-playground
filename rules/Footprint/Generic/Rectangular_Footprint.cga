@@ -1,5 +1,5 @@
-extension Rectangle --> Rectangle.
-extension Surroundings --> color("#CCFFCC") Surroundings.
+extension Footprint --> Footprint.
+extension Surroundings --> NIL
 
 @Order(1)
 @Range(min=1, max=100, stepsize=0.1, restricted=false)
@@ -29,4 +29,4 @@ start Start -->
 	s(Size_X, 0, Size_Z)
 	t(-Size_X / 2, 0, -Size_Z / 2)
 	r(scopeCenter, 0, Rotation, 0)
-	Rectangle
+	Footprint

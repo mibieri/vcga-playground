@@ -1,4 +1,4 @@
-extension Parcels --> Parcels.
+extension Footprint --> Footprint.
 extension Surroundings --> NIL
 
 @Order(1)
@@ -84,5 +84,5 @@ GridCell -->
 	case geometry.area + 0.1 < Minimal_Cell_Area * Cell_Size_X * Cell_Size_Z:
 		Surroundings
 	else:
-		Parcels
+		Footprint
 		

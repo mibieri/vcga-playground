@@ -1,5 +1,6 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension FloorMass --> FloorMass.
+extension TopFloorMass --> TopFloorMass.
 
 @Order(10)
 @Range(min=1, max=10)
@@ -20,7 +21,8 @@ start Start -->
 	HeightHandle
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
-		{~Floor_Height: FloorMass} *
+		{~Floor_Height: FloorMass }* |
+		Floor_Height: TopFloorMass
 	}
 	
 

@@ -2,8 +2,7 @@ extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFloorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
-extension LowerTierRoof --> NIL
-extension UpperTierRoof --> NIL
+extension TopFloorMass --> TopFloorMass.
 
 @Group("Block Length", 10)
 @Order(11)
@@ -79,11 +78,19 @@ attr BlockInset_Uniformness = 0.3
 import Random_Two_Tier : "Mass/Random_Two_Tier.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass
 )
 
 import Random_Perimeter_Footprints : "Footprint/Quick/Random_Perimeter_Footprints.cga" (
-	Footprints --> Random_Two_Tier.start,
+	Footprint1 --> Random_Two_Tier.start,
+	Footprint2 --> Random_Two_Tier.start,
+	Footprint3 --> Random_Two_Tier.start,
+	Footprint4 --> Random_Two_Tier.start,
+	Footprint5 --> Random_Two_Tier.start,
+	Footprint6 --> Random_Two_Tier.start,
+	Footprint7 --> Random_Two_Tier.start,
+	Footprint8 --> Random_Two_Tier.start,
 	Surroundings --> Surroundings
 )
 

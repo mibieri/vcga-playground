@@ -1,5 +1,5 @@
 extension SlabFootprint --> SlabFootprint.
-extension RowhouseFootprints --> RowhouseFootprints.
+extension RowhouseFootprint --> RowhouseFootprint.
 extension Surroundings --> NIL
 
 import Slab_Footprint : "Footprint/Quick/Perimeter_Slab_Footprint.cga"(
@@ -16,7 +16,7 @@ import Rowhouse_Setback:"Zoning/Setback.cga"(
 )
 
 import Rowhouse_Footprints:"Footprint/Generic/Rowhouse_Footprints.cga"(
-	Parcels --> RowhouseFootprints,
+	Footprint --> RowhouseFootprint,
 	Row_Inner_Distance = 15,
 	Row_Border_Distance = 10,
 	Parcels_Per_Group = 1,

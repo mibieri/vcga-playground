@@ -1,6 +1,5 @@
 extension SlabFootprint --> SlabFootprint.
-extension PointBlockFootprints --> PointBlockFootprints.
-extension GridCells --> NIL
+extension PointBlockFootprint --> PointBlockFootprint.
 extension Surroundings --> NIL
 
 import Slab_Footprint : "Footprint/Quick/Perimeter_Slab_Footprint.cga"(
@@ -17,7 +16,7 @@ import Point_Block_Setback:"Zoning/Setback.cga"(
 )
 
 import Point_Block_Footprints : "Footprint/Generic/Grid_Subdivision_Footprints.cga" (
-	Parcels --> GridCells Footprint_Shape.start,
+	Footprint --> Footprint_Shape.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,
 	Offset_X = Cell_Size_X / 2,
@@ -26,6 +25,7 @@ import Point_Block_Footprints : "Footprint/Generic/Grid_Subdivision_Footprints.c
 )
 
 import Footprint_Shape : "Footprint/Quick/Single_Footprint.cga"(
+	Footprint --> PointBlockFootprint,
 	Shape = Shape,
 	SizeX = Footprint_SizeX,
 	SizeZ = Footprint_SizeZ

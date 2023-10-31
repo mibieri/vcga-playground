@@ -1,6 +1,7 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFloorMass --> LowerTierFloorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
+extension TopFloorMass --> TopFloorMass.
 
 import Random:"Imports/Random.cga"
 
@@ -8,6 +9,7 @@ import Two_Tier1 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -18,6 +20,7 @@ import Two_Tier2 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -28,6 +31,7 @@ import Two_Tier3 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -38,6 +42,7 @@ import Two_Tier4 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -48,6 +53,7 @@ import Two_Tier5 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -58,6 +64,7 @@ import Two_Tier6 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -68,6 +75,7 @@ import Two_Tier7 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
@@ -78,6 +86,7 @@ import Two_Tier8 : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
 	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),

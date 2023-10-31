@@ -1,6 +1,7 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFloorMass --> LowerTierFloorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
+extension TopFloorMass --> TopFloorMass.
 
 import Setback_Labels : "Imports/Setback_Labels.cga"
 
@@ -25,13 +26,13 @@ attr Ground_Floor_Height = 4.0
 attr Floor_Height = 3.0
 
 @Order(12)
-@Range(min=1, max=10, stepsize=1)
+@Range(min=1, max=50, stepsize=1)
 attr N_Floors = 5
 
 
 @Group("Upper Tier", 20)
 @Order(20)
-@Range(min=1, max=10, stepsize=1)
+@Range(min=1, max=50, stepsize=1)
 attr Upper_Tier_N_Floors = 1
 
 @Order(21)
@@ -76,7 +77,7 @@ LowerTier -->
 	extrude(_getLowerTierHeight())
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
-		{~Floor_Height: LowerTierFloorMass} *
+		{~Floor_Height: LowerTierFloorMass}*
 	}
 
 
@@ -84,6 +85,6 @@ UpperTier -->
 	t(0, _getLowerTierHeight(), 0)
 	extrude(Upper_Tier_Floor_Height * Upper_Tier_N_Floors)
 	split(y){
-		~Upper_Tier_Floor_Height: UpperTierFloorMass
-	}*
-	comp(f){top: UpperTierRoof}
+		{~Upper_Tier_Floor_Height: UpperTierFloorMass}* |
+		Upper_Tier_Floor_Height: TopFloorMass
+	}

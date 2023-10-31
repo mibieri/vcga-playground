@@ -1,8 +1,8 @@
-extension Parcels --> Parcels.
+extension Footprint --> Footprint.
 extension Surroundings --> NIL
 
 import Rowhouse_Footprints : "Footprint/Generic/Rowhouse_Footprints.cga" (
-	Parcels --> Parcels,
+	Footprint --> Footprint,
 	Surroundings --> Surroundings,
 	Footprint_Size_X = Footprint_Size,
 	Footprint_Size_Z = Footprint_Size,

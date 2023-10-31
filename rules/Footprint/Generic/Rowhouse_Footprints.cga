@@ -1,4 +1,4 @@
-extension Parcels --> Parcels.
+extension Footprint --> Footprint.
 extension Surroundings --> NIL
 
 @Order(1)
@@ -85,7 +85,7 @@ SplitRowIntoGroups -->
 Group -->
 	case isRectangular():
 		split(x){
-			~Footprint_Size_X: Parcels
+			~Footprint_Size_X: Footprint
 		}*
 	else:
 		Surroundings

@@ -1,4 +1,6 @@
 extension FloorMass --> FloorMass.
+extension GroundFloorMass --> GroundFloorMass.
+extension TopFloorMass --> TopFloorMass.
 
 @Order(0)
 @Enum(valuesAttr=_footprintShapes)
@@ -6,28 +8,32 @@ attr Footprint_Shape = label_parcel
 
 @Order(1)
 @Range(min=1, max=10, stepsize=0.1, restricted=false)
-attr Floor_Height = 3
+attr Ground_Floor_Height = 4.0
 
 @Order(2)
+@Range(min=1, max=10, stepsize=0.1, restricted=false)
+attr Floor_Height = 3
+
+@Order(3)
 @Range(min=1, max=10, stepsize=1)
 attr N_Floors = 20
 
-@Order(3)
+@Order(4)
 @Percent
 @Range(min=-1, max=1)
 attr Narrowing = 0.3
 
-@Order(4)
+@Order(5)
 @Percent
 @Range(min=0, max=1)
 attr Excentric = 0.0
 
-@Order(5)
+@Order(6)
 @Angle
 @Range(min=-180, max=180)
 attr Excentric_Azimuth = 0.0
 
-@Order(6)
+@Order(7)
 @Angle
 @Range(min=-180, max=180, stepsize=1)
 attr TwistAngle = 30
@@ -92,7 +98,7 @@ Building with(
 	FloorsRecursive(twistPerFloor, 0)
 	
 
-
+getFloorHeight(floorIndex) = case floorIndex == 0: Ground_Floor_Height else: Floor_Height
 getSizeOnFloor(maxNumFloors, floorIndex) =  (1 - Narrowing * sin(180 * (floorIndex / maxNumFloors)))
 getExcentricDistance(maxNumFloors, floorIndex) = Excentric * sin(180 * (floorIndex / maxNumFloors))
 	
@@ -105,7 +111,7 @@ FloorsRecursive(twistPerFloor, floorIndex) -->
 		Floor(floorIndex * twistPerFloor, floorIndex)
 		s(_startSX, '1, _startSZ)
 		center(xz)
-		t(0, Floor_Height, 0)
+		t(0, getFloorHeight(floorIndex), 0)
 		FloorsRecursive(twistPerFloor, floorIndex + 1)
 		
 Floor(absoluteTwist, floorIndex) -->
@@ -115,5 +121,9 @@ Floor(absoluteTwist, floorIndex) -->
 		sin(Excentric_Azimuth) * getExcentricDistance(N_Floors, floorIndex) * _startSZ
 	)
 	r(scopeCenter, 0, absoluteTwist, 0)
-	extrude(Floor_Height)
-	FloorMass
+	extrude(getFloorHeight(floorIndex))
+	[
+		case floorIndex == 0: GroundFloorMass
+		case floorIndex == N_Floors - 1: TopFloorMass
+		else: FloorMass
+	]

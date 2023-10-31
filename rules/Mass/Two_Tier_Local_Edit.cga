@@ -1,6 +1,7 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFloorMass --> LowerTierFloorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension TopFloorMass --> TopFloorMass.
 
 import Setback_Labels : "Imports/Setback_Labels.cga"
 
@@ -73,7 +74,7 @@ LowerTier -->
 	extrude(_getLowerTierHeight())
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
-		{~Floor_Height: LowerTierFLoorMass} *
+		{~Floor_Height: LowerTierFloorMass}*
 	}
 
 
@@ -81,9 +82,9 @@ UpperTier -->
 	t(0, _getLowerTierHeight(), 0)
 	extrude(Upper_Tier_Floor_Height * Upper_Tier_N_Floors)
 	split(y){
-		~Upper_Tier_Floor_Height: UpperTierFloorMass
-	}*
-	comp(f){top: UpperTierRoof}
+		{~Upper_Tier_Floor_Height: UpperTierFloorMass}* |
+		Upper_Tier_Floor_Height: TopFloorMass
+	}
 
 const handleWidth = 1
 
