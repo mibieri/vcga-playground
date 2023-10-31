@@ -2,21 +2,26 @@ extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFLoorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
-extension LowerTierRoof --> NIL
-extension UpperTierRoof --> NIL
+extension TopFloorMass --> TopFloorMass
 
 
 import Perimeter_Footprints : "Footprint/Generic/Perimeter_Footprints.cga" (
-	Footprints --> Two_Tier.start,
+	Footprint1 --> Two_Tier.start,
+	Footprint2 --> Two_Tier.start,
+	Footprint3 --> Two_Tier.start,
+	Footprint4 --> Two_Tier.start,
+	Footprint5 --> Two_Tier.start,
+	Footprint6 --> Two_Tier.start,
+	Footprint7 --> Two_Tier.start,
+	Footprint8 --> Two_Tier.start,
 	Surroundings --> Surroundings
 )
 
 import Two_Tier : "Mass/Two_Tier.cga"(
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFLoorMass --> LowerTierFLoorMass,
+	LowerTierFloorMass --> LowerTierFLoorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
-	LowerTierRoof --> LowerTierRoof,
-	UpperTierRoof --> UpperTierRoof
+	TopFloorMass --> TopFloorMass
 )
 
 start Start -->
