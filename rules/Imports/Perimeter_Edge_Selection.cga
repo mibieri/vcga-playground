@@ -3,6 +3,7 @@ import Perimeter_Labels : "Perimeter_Labels.cga"
 		
 getSetbackFrontMask() = comp(fe){isTagged("setback.front"): true | all: false}
 getFirstSetbackFrontEdge() = _getStartOfTrueEdges(getSetbackFrontMask())
+getSetbackFrontLength() = _getMarkedEdgesLength(getSetbackFrontMask())
 
 getEdgeMask(selector) = 
 	case selector == Perimeter_Labels.edge_all:
@@ -33,6 +34,18 @@ getEdgeMask(selector) =
 		comp(fe){all: true}
 		
 getFirstSelectedEdge(selector) = _getStartOfTrueEdges(getEdgeMask(selector))
+getSelectedEdgesLength(selector) = _getMarkedEdgesLength(getEdgeMask(selector))
+getSetback(setbackDistance, selector) with(
+	edgeMask := getEdgeMask(selector)
+) = getSetbackRecursive(setbackDistance, edgeMask, floatArray())
+
+getSetbackRecursive(setbackDistance, edgeMask, result) with(
+	recursionCount := size(result)
+) = 
+	case recursionCount >= size(edgeMask):
+		result
+	else:
+		getSetbackRecursive(setbackDistance, edgeMask, [result, case edgeMask[recursionCount]: setbackDistance else: 0])
 
 _markLargest(inputArray) = _markLargestRecursive(inputArray, sortIndices(inputArray)[size(inputArray) - 1], boolArray())
 _markLargestRecursive(inputArray, largestIndex, resultArray) =
@@ -52,3 +65,5 @@ _getStartOfTrueEdgesRecursive(mask, candidate, recursionCount) =
 		_getStartOfTrueEdgesRecursive(mask, (recursionCount + 1) % size(mask), recursionCount + 1)
 	else:
 		_getStartOfTrueEdgesRecursive(mask, candidate, recursionCount + 1)
+		
+_getMarkedEdgesLength(marked) = sum(comp(fe){all: case marked[comp.index]: scope.sx else: 0})

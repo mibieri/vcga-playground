@@ -1,6 +1,12 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension FloorMass --> FloorMass.
-extension TopFootprint --> NIL
+
+import Perimeter_Edge_Selection : "Imports/Perimeter_Edge_Selection.cga"
+import Perimeter_Labels : "Imports/Perimeter_Labels.cga"
+
+@Order(9)
+@Enum(valuesAttr=Perimeter_Labels.edge_labels)
+attr Edges = Perimeter_Labels.edge_all
 
 @Order(10)
 @Range(min=1, max=10)
@@ -20,28 +26,43 @@ attr N_Floors_Per_Layer = 2
 
 @Order(14)
 @Range(min=1, max=50, stepsize=0.1)
-attr Block_Width = 30
+attr Block_Width = 12
 
 @Order(15)
 @Range(min=1, max=50, stepsize=0.1)
-attr Block_Length = 30
+attr Block_Length = 25
 
 @Order(16)
 @Range(min=1, max=50, stepsize=0.1)
-attr Gap_Length = 10
-
-@Order(17)
-@Percent
-attr Shortening_Per_Layer = 0.3
+attr Gap_Length = 8
 
 @Order(18)
 @Percent
-attr Start_Position = 10
+@Range(min=-1.0, max=1.0)
+attr Start_Position = 0.0
 
-import Perimeter_Edge_Selection : "Imports/Perimeter_Edge_Selection.cga"
+@Order(17)
+@Range(min=0, max=10, stepsize=1)
+attr Block_Reduction_Per_Layer = 1
+
+@Order(17)
+@Range(min=0, max=10, stepsize=1)
+attr First_Reduced_Layer = 1
+
+getBlockHeight(layerIndex) = 
+	case layerIndex == 0:
+		Ground_Floor_Height + (N_Floors_Per_Layer - 1) * Floor_Height
+	else:
+		N_Floors_Per_Layer * Floor_Height
+
+getRelativeBlockShift(layerIndex) = 
+	case layerIndex % 2 > 0:
+		print(0.5 * (Block_Length + Gap_Length)  / Perimeter_Edge_Selection.getSetbackFrontLength())
+	else:
+		0
 
 start Start -->
-	setback(Block_Width){
+	setback(Perimeter_Edge_Selection.getSetback(Block_Width, Edges)){
 		all: Layer(0) |
 		remainder: NIL
 	}
@@ -53,6 +74,30 @@ Layer(layerIndex) with(
 	case layerIndex >= N_Layers:
 		NIL
 	else:
-		splitAndSetbackPerimeter('Start_Position, firstEdge, edgeMask){
-			
-		}
+		splitAndSetbackPerimeter('(Start_Position + getRelativeBlockShift(layerIndex)), firstEdge, edgeMask){
+			Block_Length: Block_Width: BlockFootprint(layerIndex) |
+			~Gap_Length: Block_Width: NIL
+		}*{remainder: NIL}
+		t(0, getBlockHeight(layerIndex), 0)
+		Layer(layerIndex + 1) 
+		
+
+BlockFootprint(layerIndex) with(
+	blockReduction := max(0, (layerIndex - First_Reduced_Layer + 1) * Block_Reduction_Per_Layer)
+) -->
+	case (
+		((split.index / 2) >= blockReduction)
+		&&
+		((split.index / 2) < ceil(split.total / 2) - blockReduction)
+	):
+		BlockMass(layerIndex)
+	else:
+		NIL
+		
+		
+BlockMass(layerIndex) -->
+	extrude(getBlockHeight(layerIndex))
+	split(y){
+		~(case layerIndex == 0: Ground_Floor_Height else: 0): GroundFloorMass |
+		~Floor_Height: FloorMass
+	}*
