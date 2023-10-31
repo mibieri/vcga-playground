@@ -1,8 +1,11 @@
 extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFloorMass --> LowerTierFLoorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
+
+@Order(0)
+attr ShowHandles = true
 
 @Group("Block Length", 10)
 @Order(11)
@@ -33,7 +36,7 @@ attr BlockGapLength_Max = 30
 
 @Order(23)
 @Percent
-attr BlockGapLength_Peak = 0.1
+attr BlockGapLength_Peak = 0.2
 
 @Order(24)
 @Percent
@@ -75,24 +78,25 @@ attr BlockInset_Peak = 0.1
 @Percent
 attr BlockInset_Uniformness = 0.3
 
-import Random_Two_Tier : "Mass/Random_Two_Tier.cga"(
+import Random_Two_Tiers : "Mass/Random_Two_Tier.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
+	LowerTierFloorMass --> LowerTierFLoorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
 	TopFloorMass --> TopFloorMass
 )
 
-import Random_Perimeter_Footprints : "Footprint/Quick/Random_Perimeter_Footprints.cga" (
-	Footprint1 --> Random_Two_Tier.start,
-	Footprint2 --> Random_Two_Tier.start,
-	Footprint3 --> Random_Two_Tier.start,
-	Footprint4 --> Random_Two_Tier.start,
-	Footprint5 --> Random_Two_Tier.start,
-	Footprint6 --> Random_Two_Tier.start,
-	Footprint7 --> Random_Two_Tier.start,
-	Footprint8 --> Random_Two_Tier.start,
-	Surroundings --> Surroundings
+
+import Perimeter_Footprints : "Footprint/Quick/Random_Perimeter_Footprints.cga" (
+	Surroundings --> Surroundings,
+	Footprint1 --> Random_Two_Tiers.start(1),
+	Footprint2 --> Random_Two_Tiers.start(2),
+	Footprint3 --> Random_Two_Tiers.start(3),
+	Footprint4 --> Random_Two_Tiers.start(4),
+	Footprint5 --> Random_Two_Tiers.start(5),
+	Footprint6 --> Random_Two_Tiers.start(6),
+	Footprint7 --> Random_Two_Tiers.start(7),
+	Footprint8 --> Random_Two_Tiers.start(8)
 )
 
 start Start -->
-	Random_Perimeter_Footprints.start
+	Perimeter_Footprints.start

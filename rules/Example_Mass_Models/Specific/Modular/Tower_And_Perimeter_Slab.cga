@@ -17,26 +17,22 @@ import Setback : "Zoning/Setback.cga"(
 	Remainder --> Footprints.start
 )
 
-import Footprints : "Perimeter_Slab_And_Tower_Footprint.cga" (
+import Footprints : "Footprint/Quick/Perimeter_Slab_And_Tower_Footprint.cga" (
 	SlabFootprint --> Slab_Mass.start,
 	TowerFootprint --> Tower_Mass.start
 )
 
 import Tower_Mass : "Mass/Two_Tier.cga"(
 	GroundFloorMass --> TowerGroundFloorMass,
-	LowerTierFLoorMass --> TowerLowerTierFLoorMass,
+	LowerTierFloorMass --> TowerLowerTierFLoorMass,
 	UpperTierFloorMass --> TowerUpperTierFloorMass,
-	LowerTierRoof --> NIL,
-	UpperTierRoof --> NIL,
 	N_Floors = Tower_N_Floors
 )
 
 import Slab_Mass : "Mass/Two_Tier.cga"(
-	GroundFloorMass --> Debug_Facade.start,# SlabGroundFloorMass,
-	LowerTierFLoorMass --> SlabLowerTierFLoorMass,
+	GroundFloorMass --> SlabGroundFloorMass,
+	LowerTierFloorMass --> SlabLowerTierFLoorMass,
 	UpperTierFloorMass --> SlabUpperTierFloorMass,
-	LowerTierRoof --> NIL,
-	UpperTierRoof --> NIL,
 	N_Floors = Slab_N_Floors
 )
 

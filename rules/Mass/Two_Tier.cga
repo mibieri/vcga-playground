@@ -16,6 +16,9 @@ import _Upper_Tier_Setback : "Zoning/Setback.cga" (
 	Setback_Rear = Stepback_Rear
 )
 
+@Order(0)
+attr ShowHandles = false
+
 @Group("Lower Tier", 10)
 @Order(10)
 @Range(min=1, max=10)
@@ -26,13 +29,15 @@ attr Ground_Floor_Height = 4.0
 attr Floor_Height = 3.0
 
 @Order(12)
-@Range(min=1, max=50, stepsize=1)
+@Handle(shape=Handle_N_Floors., axis=y, reference=center, slip=inside)
+@Range(min=1, max=10, stepsize=1)
 attr N_Floors = 5
 
 
 @Group("Upper Tier", 20)
 @Order(20)
-@Range(min=1, max=50, stepsize=1)
+@Handle(shape=Handle_N_Floors_Upper., axis=y, reference=center, slip=inside)
+@Range(min=1, max=10, stepsize=1)
 attr Upper_Tier_N_Floors = 1
 
 @Order(21)
@@ -46,12 +51,14 @@ attr Upper_Tier_Floor_Height = 2.6
 attr Stepback_Reference = Setback_Labels.setbackTags
 
 @Order(31)
+@Handle(shape=Handle_Stepback_All., axis=y, reference=center, slip=inside)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_All = 0.0
+attr Stepback_All = 1.0
 
 @Order(32)
+@Handle(shape=Handle_Stepback_Front., axis=z, reference=edge, slip=inside, occlusion=false)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Front = 2.0
+attr Stepback_Front = 3
 
 @Order(33)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
@@ -65,19 +72,25 @@ attr Stepback_Right = 1.0
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Stepback_Rear = 1.0
 
+
 _getLowerTierHeight() = Floor_Height * (N_Floors - Upper_Tier_N_Floors - 1) + Ground_Floor_Height
+_getBuildingHeight() = _getLowerTierHeight() + Upper_Tier_N_Floors * Upper_Tier_Floor_Height
+
 
 
 start Start -->
 	LowerTier
 	_Upper_Tier_Setback.start
+	t(0, _getBuildingHeight(), 0)
+	[case ShowHandles: Handles else: NIL]
 
 
 LowerTier -->
 	extrude(_getLowerTierHeight())
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
-		{~Floor_Height: LowerTierFloorMass}*
+		{~Floor_Height: LowerTierFloorMass}* |
+		(case Upper_Tier_N_Floors == 0: Floor_Height else: 0): TopFloorMass
 	}
 
 
@@ -88,3 +101,43 @@ UpperTier -->
 		{~Upper_Tier_Floor_Height: UpperTierFloorMass}* |
 		Upper_Tier_Floor_Height: TopFloorMass
 	}
+
+const handleWidth = 1
+
+
+Handles -->
+	set(material.opacity, 0.5)
+	s(handleWidth, handleWidth, handleWidth)
+	center(xz)
+	t(0, handleWidth, 0)
+	Handle_Stepback_All
+	Handle_Stepback_Front
+	Handle_N_Floors
+	Handle_N_Floors_Upper
+
+
+Handle_Stepback_All -->
+	s('1, Stepback_All, '1)
+	primitiveCube()
+	Handle_Stepback_All.
+	
+
+Handle_Stepback_Front -->
+	t(0, 0, handleWidth)
+	s('1, '1, Stepback_Front)
+	primitiveCube()
+	Handle_Stepback_Front.
+
+
+Handle_N_Floors -->
+	t(4 *  handleWidth, 0, 0)
+	s('1, N_Floors, '1)
+	primitiveCube()
+	Handle_N_Floors.
+	
+	
+Handle_N_Floors_Upper -->
+	t(6 *  handleWidth, 0, 0)
+	s('1, Upper_Tier_N_Floors, '1)
+	primitiveCube()
+	Handle_N_Floors_Upper.

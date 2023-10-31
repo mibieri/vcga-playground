@@ -1,21 +1,105 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFloorMass --> LowerTierFLoorMass.
+extension LowerTierFloorMass --> LowerTierFloorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 import Random:"Imports/Random.cga"
 
-import Two_Tier : "Mass/Two_Tier_Local_Edit.cga"(
+import Two_Tier1 : "Two_Tier.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
-	TopFloorMass --> TopFloorMass
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
 )
+
+import Two_Tier2 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier3 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier4 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier5 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier6 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier7 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+import Two_Tier8 : "Two_Tier.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass,
+	N_Floors = getNFloors(),
+	Upper_Tier_N_Floors = getUpperTierNFloors(),
+	Stepback_All = getUpperTierStepback(),
+	Stepback_Front = getUpperTierStepbackFront()
+)
+
+@Order(0)
+attr ShowHandles = true
 
 @Group("Number of Floors", 10)
 @Order(11)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr N_Floors_Min = 1
+attr N_Floors_Min = 3
 
 @Order(12)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
@@ -90,8 +174,15 @@ getUpperTierStepback() = Random.getPseudoGauss(Upper_Tier_Stepback_Min, Upper_Ti
 getUpperTierStepbackFront() = Random.getPseudoGauss(Upper_Tier_Stepback_Front_Min, Upper_Tier_Stepback_Front_Max, Upper_Tier_Stepback_Front_Peak, Upper_Tier_Stepback_Front_Uniformness)
 
 start Start -->
-	set(Two_Tier.N_Floors, getNFloors())
-	set(Two_Tier.Upper_Tier_N_Floors, getUpperTierNFloors())
-	set(Two_Tier.Stepback_All, getUpperTierStepback())
-	set(Two_Tier.Stepback_Front, getUpperTierStepbackFront())
-	Two_Tier.start
+	Start(0)
+
+start Start(parcelIndex) -->
+	case parcelIndex == 1: Two_Tier1.start
+	case parcelIndex == 2: Two_Tier2.start
+	case parcelIndex == 3: Two_Tier3.start
+	case parcelIndex == 4: Two_Tier4.start
+	case parcelIndex == 5: Two_Tier5.start
+	case parcelIndex == 6: Two_Tier6.start
+	case parcelIndex == 7: Two_Tier7.start
+	case parcelIndex == 8: Two_Tier8.start
+	else: NIL
