@@ -82,7 +82,7 @@ attr Block_Inset_Uniformness = 0.3
 
 import Random:"Imports/Random.cga"
 
-import Perimeter_Footprints : "Footprint/Quick/Perimeter_Footprints.cga" (
+import Perimeter_Footprints : "Footprint/Perimeter_Footprints_Generic.cga" (
 	Surroundings --> Surroundings,
 	Footprint1 --> Footprint1,
 	Footprint2 --> Footprint2,

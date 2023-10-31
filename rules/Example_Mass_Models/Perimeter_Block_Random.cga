@@ -1,0 +1,174 @@
+extension Surroundings --> NIL
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension TopFloorMass --> TopFloorMass.
+
+@Order(0)
+attr Show_Handles = true
+
+@Group("Footprints: Block Length", 10)
+@Order(11)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Length_Min = 30
+
+@Order(12)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Length_Max = 80
+
+@Order(13)
+@Percent
+attr Block_Length_Peak = 0.5
+
+@Order(14)
+@Percent
+attr Block_Length_Uniformness = 0.5
+
+
+@Group("Footprints: Block Gap", 20)
+@Order(21)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Gap_Length_Min = 0
+
+@Order(22)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Gap_Length_Max = 30
+
+@Order(23)
+@Percent
+attr Block_Gap_Length_Peak = 0.2
+
+@Order(24)
+@Percent
+attr Block_Gap_Length_Uniformness = 0.5
+
+
+@Group("Footprints: Block Width", 30)
+@Order(31)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Width_Min = 10
+
+@Order(32)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Width_Max = 30
+
+@Order(33)
+@Percent
+attr Block_Width_Peak = 0.3
+
+@Order(34)
+@Percent
+attr Block_Width_Uniformness = 0.3
+
+
+@Group("Footprints: Block Inset", 40)
+@Order(41)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Inset_Min = 0
+
+@Order(42)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Block_Inset_Max = 0
+
+@Order(43)
+@Percent
+attr Block_Inset_Peak = 0.1
+
+@Order(44)
+@Percent
+attr Block_Inset_Uniformness = 0.3
+
+
+@Group("Buildings: Number of Floors", 50)
+@Order(51)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr N_Floors_Min = 3
+
+@Order(52)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr N_Floors_Max = 20
+
+@Order(53)
+@Percent
+attr N_Floors_Peak = 0.3
+
+@Order(54)
+@Percent
+attr N_Floors_Uniformness = 0.5
+
+
+@Group("Buildings: Upper Tier Number of Floors", 60)
+@Order(61)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_N_Floors_Min = 0
+
+@Order(62)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_N_Floors_Max = 2
+
+@Order(63)
+@Percent
+attr Upper_Tier_N_Floors_Peak = 0.5
+
+@Order(64)
+@Percent
+attr Upper_Tier_N_Floors_Uniformness = 0.3
+
+
+@Group("Buildings: Upper Tier Stepbacks", 70)
+@Order(71)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Min = 0
+
+@Order(72)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Max = 10
+
+@Order(73)
+@Percent
+attr Upper_Tier_Stepback_Peak = 0.3
+
+@Order(74)
+@Percent
+attr Upper_Tier_Stepback_Uniformness = 0.5
+
+
+@Group("Buildings: Upper Tier Stepback Front", 80)
+@Order(81)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Front_Min = 0
+
+@Order(82)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Upper_Tier_Stepback_Front_Max = 0
+
+@Order(83)
+@Percent
+attr Upper_Tier_Stepback_Front_Peak = 0.5
+
+@Order(84)
+@Percent
+attr Upper_Tier_Stepback_Front_Uniformness = 0.5
+
+
+import Perimeter_Footprints : "Footprint/Perimeter_Footprints_Random.cga" (
+	Surroundings --> Surroundings,
+	Footprint1 --> Random_Two_Tiers.start(1),
+	Footprint2 --> Random_Two_Tiers.start(2),
+	Footprint3 --> Random_Two_Tiers.start(3),
+	Footprint4 --> Random_Two_Tiers.start(4),
+	Footprint5 --> Random_Two_Tiers.start(5),
+	Footprint6 --> Random_Two_Tiers.start(6),
+	Footprint7 --> Random_Two_Tiers.start(7),
+	Footprint8 --> Random_Two_Tiers.start(8)
+)
+
+import Random_Two_Tiers : "Mass/Two_Tier_Mass_Random.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass
+)
+
+start Start -->
+	Perimeter_Footprints.start

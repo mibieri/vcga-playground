@@ -94,7 +94,7 @@ import Two_Tier8 : "Two_Tier_Mass.cga" (
 )
 
 @Order(0)
-attr ShowHandles = true
+attr Show_Handles = true
 
 @Group("Number of Floors", 10)
 @Order(11)
