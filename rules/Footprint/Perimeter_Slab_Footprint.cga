@@ -4,7 +4,7 @@ extension Surroundings --> NIL
 
 @Order(21)
 @Percent
-attr StartPosition = 0.0
+attr Start_Position = 0.0
 
 @Order(22)
 @Percent
@@ -15,7 +15,7 @@ attr Length = 0.9
 attr Width = 15
 
 start Start -->
-	splitAndSetbackPerimeter('StartPosition){
+	splitAndSetbackPerimeter('Start_Position){
 		~Length : Width : Footprint |
 		~(1 - Length): 0 : NIL
 	}{remainder: Surroundings}

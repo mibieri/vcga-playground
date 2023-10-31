@@ -9,7 +9,7 @@ extension Surroundings --> NIL
 
 @Order(9)
 @Percent
-attr StartPosition = 0.0
+attr Start_Position = 0.0
 
 @Order(10)
 @Percent
@@ -44,7 +44,7 @@ getTowerLength() = case Tower_Enabled: Tower_Length else: 0
 forDuplicate(value) = case Duplicate: value else: 0
 
 start Start -->
-	splitAndSetbackPerimeter('StartPosition){
+	splitAndSetbackPerimeter('Start_Position){
 		~(case Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint |
 		~(case Reverse: Gap_Length else: 0): 0: NIL |
 		~Slab_Length : Slab_Width : SlabFootprint |
@@ -63,7 +63,7 @@ start Start -->
 
 
 style SlabAndTower
-attr StartPosition = 0.0
+attr Start_Position = 0.0
 attr Slab_Length = 0.4
 attr Slab_Width = 15
 attr Tower_Enabled = true 
@@ -74,7 +74,7 @@ attr Reverse = false
 attr Duplicate = false
 
 style TwiceSlabAndTower
-attr StartPosition = 0.0
+attr Start_Position = 0.0
 attr Slab_Length = 0.75
 attr Slab_Width = 15
 attr Tower_Enabled = true 
@@ -85,7 +85,7 @@ attr Reverse = false
 attr Duplicate = true
 
 style TwiceAndDenseSlabAndTower
-attr StartPosition = 0.40
+attr Start_Position = 0.40
 attr Slab_Length = 0.80
 attr Slab_Width = 35
 attr Tower_Enabled = true 
@@ -96,7 +96,7 @@ attr Reverse = false
 attr Duplicate = true
 
 style OneSlab
-attr StartPosition = 0.12
+attr Start_Position = 0.12
 attr Slab_Length = 0.5
 attr Slab_Width = 15
 attr Tower_Enabled = false 
@@ -107,7 +107,7 @@ attr Reverse = false
 attr Duplicate = false 
 
 style TwoSlabs
-attr StartPosition = 0.42
+attr Start_Position = 0.42
 attr Slab_Length = 0.72
 attr Slab_Width = 15
 attr Tower_Enabled = false 
@@ -118,7 +118,7 @@ attr Reverse = false
 attr Duplicate = true
 
 style ClosedPerimeterSlab
-attr StartPosition = 0.0
+attr Start_Position = 0.0
 attr Slab_Length = 1.0
 attr Slab_Width = 15
 attr Tower_Enabled = false 
@@ -129,7 +129,7 @@ attr Reverse = false
 attr Duplicate = false
 
 style ClosedPerimeterFourSlabs
-attr StartPosition = 0.45
+attr Start_Position = 0.45
 attr Slab_Length = 0.7
 attr Slab_Width = 15
 attr Tower_Enabled = true 

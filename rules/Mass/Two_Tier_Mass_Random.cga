@@ -5,7 +5,7 @@ extension TopFloorMass --> TopFloorMass.
 
 import Random:"Imports/Random.cga"
 
-import Two_Tier1 : "Two_Tier.cga" (
+import Two_Tier1 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -16,7 +16,7 @@ import Two_Tier1 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier2 : "Two_Tier.cga" (
+import Two_Tier2 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -27,7 +27,7 @@ import Two_Tier2 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier3 : "Two_Tier.cga" (
+import Two_Tier3 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -38,7 +38,7 @@ import Two_Tier3 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier4 : "Two_Tier.cga" (
+import Two_Tier4 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -49,7 +49,7 @@ import Two_Tier4 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier5 : "Two_Tier.cga" (
+import Two_Tier5 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -60,7 +60,7 @@ import Two_Tier5 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier6 : "Two_Tier.cga" (
+import Two_Tier6 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -71,7 +71,7 @@ import Two_Tier6 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier7 : "Two_Tier.cga" (
+import Two_Tier7 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,
@@ -82,7 +82,7 @@ import Two_Tier7 : "Two_Tier.cga" (
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier8 : "Two_Tier.cga" (
+import Two_Tier8 : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,

@@ -78,7 +78,7 @@ attr BlockInset_Peak = 0.1
 @Percent
 attr BlockInset_Uniformness = 0.3
 
-import Random_Two_Tiers : "Mass/Random_Two_Tier.cga" (
+import Random_Two_Tiers : "Two_Tier_Random.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFLoorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,

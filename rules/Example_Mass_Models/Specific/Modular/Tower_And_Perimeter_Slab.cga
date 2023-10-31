@@ -22,14 +22,14 @@ import Footprints : "Footprint/Quick/Perimeter_Slab_And_Tower_Footprint.cga" (
 	TowerFootprint --> Tower_Mass.start
 )
 
-import Tower_Mass : "Mass/Two_Tier.cga"(
+import Tower_Mass : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> TowerGroundFloorMass,
 	LowerTierFloorMass --> TowerLowerTierFLoorMass,
 	UpperTierFloorMass --> TowerUpperTierFloorMass,
 	N_Floors = Tower_N_Floors
 )
 
-import Slab_Mass : "Mass/Two_Tier.cga"(
+import Slab_Mass : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> SlabGroundFloorMass,
 	LowerTierFloorMass --> SlabLowerTierFLoorMass,
 	UpperTierFloorMass --> SlabUpperTierFloorMass,

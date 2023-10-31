@@ -5,7 +5,7 @@ extension Surroundings --> NIL
 import Slab_Footprint : "Footprint/Quick/Perimeter_Slab_Footprint.cga"(
 	Footprint --> SlabFootprint,
 	Surroundings --> Point_Block_Setback.start,
-	StartPosition = SlabStartPosition,
+	Start_Position = Slab_Start_Position,
 	Length = SlabLength,
 	Width = SlabWidth
 )
@@ -34,21 +34,21 @@ import Footprint_Shape : "Footprint/Quick/Single_Footprint.cga"(
 @Group("Perimeter Slab", 10)
 @Order(11)
 @Percent
-attr SlabStartPosition = 0.25
+attr Slab_Start_Position = 0.25
 
 @Order(12)
 @Percent
-attr SlabLength = 0.25
+attr Slab_Length = 0.25
 
 @Order(13)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr SlabWidth = 18
+attr Slab_Width = 18
 
 
 @Group("Blocks", 20)
 @Order(21)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr SlabBlockDistance = 4
+attr Slab_Block_Distance = 4
 
 @Order(22)
 @Range(min=1, max=100, stepsize=0.1, restricted=false)

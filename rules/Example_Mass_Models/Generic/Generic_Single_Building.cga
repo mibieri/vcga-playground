@@ -8,7 +8,7 @@ import Simple_Footprint : "Footprint/Quick/Single_Footprint.cga" (
 	Footprint --> Two_Tier.start
 )
 
-import Two_Tier:"Mass/Two_Tier.cga"(
+import Two_Tier: "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFLoorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,

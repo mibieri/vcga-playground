@@ -29,7 +29,7 @@ attr PositionZ = 0.5
 
 @Order(6)
 @Range(min=0, max=30, stepsize=0.1, restricted=false)
-attr SlabThickness = 10
+attr Slab_Thickness = 10
 
 
 const label_shape_rectangle = "Rectangle"
@@ -73,7 +73,7 @@ FootprintBoundingBox -->
 CrossFootprint -->
 	split(x, noAdjust){
 		~1: CrossFootprint_Rows |
-		SlabThickness: Footprint |
+		Slab_Thickness: Footprint |
 		~1: CrossFootprint_Rows
 	}
 
@@ -81,7 +81,7 @@ CrossFootprint -->
 CrossFootprint_Rows -->
 	split(z, noAdjust){
 		~1: Surroundings |
-		SlabThickness: Footprint |
+		Slab_Thickness: Footprint |
 		~1: Surroundings
 	}
 	

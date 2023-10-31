@@ -11,73 +11,73 @@ extension Footprint8 --> Footprint8.
 @Group("Block Length", 10)
 @Order(11)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockLength_Min = 30
+attr Block_Length_Min = 30
 
 @Order(12)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockLength_Max = 60
+attr Block_Length_Max = 60
 
 @Order(13)
 @Percent
-attr BlockLength_Peak = 0.5
+attr Block_Length_Peak = 0.5
 
 @Order(14)
 @Percent
-attr BlockLength_Uniformness = 0.5
+attr Block_Length_Uniformness = 0.5
 
 
 @Group("Block Gap", 20)
 @Order(21)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockGapLength_Min = 0
+attr Block_Gap_Length_Min = 0
 
 @Order(22)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockGapLength_Max = 30
+attr Block_Gap_Length_Max = 30
 
 @Order(23)
 @Percent
-attr BlockGapLength_Peak = 0.1
+attr Block_Gap_Length_Peak = 0.1
 
 @Order(24)
 @Percent
-attr BlockGapLength_Uniformness = 0.5
+attr Block_Gap_Length_Uniformness = 0.5
 
 
 @Group("Block Width", 30)
 @Order(31)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockWidth_Min = 10
+attr Block_Width_Min = 10
 
 @Order(32)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockWidth_Max = 30
+attr Block_Width_Max = 30
 
 @Order(33)
 @Percent
-attr BlockWidth_Peak = 0.3
+attr Block_Width_Peak = 0.3
 
 @Order(34)
 @Percent
-attr BlockWidth_Uniformness = 0.3
+attr Block_Width_Uniformness = 0.3
 
 
 @Group("Block Inset", 40)
 @Order(41)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockInset_Min = 0
+attr Block_Inset_Min = 0
 
 @Order(42)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr BlockInset_Max = 0
+attr Block_Inset_Max = 0
 
 @Order(43)
 @Percent
-attr BlockInset_Peak = 0.1
+attr Block_Inset_Peak = 0.1
 
 @Order(44)
 @Percent
-attr BlockInset_Uniformness = 0.3
+attr Block_Inset_Uniformness = 0.3
 
 
 import Random:"Imports/Random.cga"
@@ -131,10 +131,10 @@ import Perimeter_Footprints : "Footprint/Quick/Perimeter_Footprints.cga" (
 )
 
 
-getBlockLength() = Random.getPseudoGauss(BlockLength_Min, BlockLength_Max, BlockLength_Peak, BlockLength_Uniformness)
-getBlockGapLength() = Random.getPseudoGauss(BlockGapLength_Min, BlockGapLength_Max, BlockGapLength_Peak, BlockGapLength_Uniformness)
-getBlockWidth() = Random.getPseudoGauss(BlockWidth_Min, BlockWidth_Max, BlockWidth_Peak, BlockWidth_Uniformness)
-getBlockInset() = Random.getPseudoGauss(BlockInset_Min, BlockInset_Max, BlockInset_Peak, BlockInset_Uniformness)
+getBlockLength() = Random.getPseudoGauss(Block_Length_Min, Block_Length_Max, Block_Length_Peak, Block_Length_Uniformness)
+getBlockGapLength() = Random.getPseudoGauss(Block_Gap_Length_Min, Block_Gap_Length_Max, Block_Gap_Length_Peak, Block_Gap_Length_Uniformness)
+getBlockWidth() = Random.getPseudoGauss(Block_Width_Min, Block_Width_Max, Block_Width_Peak, Block_Width_Uniformness)
+getBlockInset() = Random.getPseudoGauss(Block_Inset_Min, Block_Inset_Max, Block_Inset_Peak, Block_Inset_Uniformness)
 
 start Start -->
 	Perimeter_Footprints.start

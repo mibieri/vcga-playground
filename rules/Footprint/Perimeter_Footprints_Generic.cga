@@ -11,7 +11,6 @@ extension Footprint8 --> Footprint8
 import Perimeter_Labels : "Imports/Perimeter_Labels.cga"
 import Perimeter_Edge_Selection : "Imports/Perimeter_Edge_Selection.cga"
 
-import edge_visualisation:"edge-visualisation.cga"
 @Group("General", 0)
 @Order(0)
 @Enum(valuesAttr=Perimeter_Labels.edge_labels)
@@ -19,15 +18,15 @@ attr Edges = Perimeter_Labels.edge_labels[0]
 
 @Order(1)
 @Enum(valuesAttr=Perimeter_Labels.pattern_labels)
-attr FillPattern = Perimeter_Labels.pattern_labels[0]
+attr Fill_Pattern = Perimeter_Labels.pattern_labels[0]
 
 @Order(2)
 @Percent
-attr StartPosition = 0.0
+attr Start_Position = 0.0
 
 @Order(3)
 @Percent
-attr PatternLength = 1.0
+attr Pattern_Length = 1.0
 
 
 @Group("Footprint 1", 100)
@@ -190,8 +189,8 @@ const maxSetback with(
 
 start Start -->
 	splitAndSetbackPerimeter(0, 0, Perimeter_Edge_Selection.getEdgeMask(Edges)){
-		'StartPosition: 0 : Surroundings |
-		'PatternLength: maxSetback : Pattern
+		'Start_Position: 0 : Surroundings |
+		'Pattern_Length: maxSetback : Pattern
 	}{remainder: Surroundings}
 	
 f() = print(comp(fe){all: str(geometry.tags("setback"))})
@@ -200,7 +199,7 @@ Pattern with(
 	setbackFrontMask := Perimeter_Edge_Selection.getSetbackFrontMask()
 	firstFrontEdge := print(Perimeter_Edge_Selection.getFirstSetbackFrontEdge())
 )-->
-	case FillPattern == Perimeter_Labels.pattern_absolute:
+	case Fill_Pattern == Perimeter_Labels.pattern_absolute:
 		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
 			Footprint1_Length - Footprint1_GapLength : Footprint1_Width + Footprint1_Inset : Inset(1) |
 			Footprint1_GapLength : 0 : Surroundings |
@@ -219,7 +218,7 @@ Pattern with(
 			Footprint8_Length - Footprint8_GapLength : Footprint8_Width + Footprint8_Inset : Inset(8) |
 			Footprint8_GapLength : 0 : Surroundings
 		}{remainder: Surroundings}
-	case FillPattern == Perimeter_Labels.pattern_absoluteRepeat:
+	case Fill_Pattern == Perimeter_Labels.pattern_absoluteRepeat:
 		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
 			Footprint1_Length - Footprint1_GapLength : Footprint1_Width + Footprint1_Inset : Inset(1) |
 			Footprint1_GapLength : 0 : Surroundings |
@@ -238,7 +237,7 @@ Pattern with(
 			Footprint8_Length - Footprint8_GapLength : Footprint8_Width + Footprint8_Inset : Inset(8) |
 			Footprint8_GapLength : 0 : Surroundings
 		}*{remainder: Surroundings}
-	case FillPattern == Perimeter_Labels.pattern_relative:
+	case Fill_Pattern == Perimeter_Labels.pattern_relative:
 		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
 			~Footprint1_Length - Footprint1_GapLength : Footprint1_Width + Footprint1_Inset : Inset(1) |
 			~Footprint1_GapLength : 0 : Surroundings |

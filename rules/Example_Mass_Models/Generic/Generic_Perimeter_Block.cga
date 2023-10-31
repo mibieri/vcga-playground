@@ -17,7 +17,7 @@ import Perimeter_Footprints : "Footprint/Quick/Perimeter_Footprints.cga" (
 	Surroundings --> Surroundings
 )
 
-import Two_Tier : "Mass/Two_Tier.cga"(
+import Two_Tier : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFLoorMass,
 	UpperTierFloorMass --> UpperTierFloorMass,

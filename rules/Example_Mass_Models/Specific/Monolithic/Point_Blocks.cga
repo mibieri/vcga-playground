@@ -17,7 +17,7 @@ import Simple_Footprint : "Footprint/Quick/Single_Footprint.cga" (
 	Footprint --> Extrude.start
 )
 
-import Extrude : "Mass/Extrude.cga"(
+import Extrude : "Extruded_Mass.cga" (
 	FloorMass --> FloorMass,
 	GroundFloorMass --> GroundFloorMass,
 	TopFloorMass --> TopFloorMass

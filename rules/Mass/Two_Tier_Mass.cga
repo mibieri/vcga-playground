@@ -17,7 +17,7 @@ import _Upper_Tier_Setback : "Zoning/Setback.cga" (
 )
 
 @Order(0)
-attr ShowHandles = false
+attr Show_Handles = false
 
 @Group("Lower Tier", 10)
 @Order(10)
@@ -82,7 +82,7 @@ start Start -->
 	LowerTier
 	_Upper_Tier_Setback.start
 	t(0, _getBuildingHeight(), 0)
-	[case ShowHandles: Handles else: NIL]
+	[case Show_Handles: Handles else: NIL]
 
 
 LowerTier -->
