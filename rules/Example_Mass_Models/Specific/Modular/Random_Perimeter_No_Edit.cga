@@ -79,9 +79,7 @@ attr BlockInset_Uniformness = 0.3
 import Random_Two_Tier : "Mass/Random_Two_Tier.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
-	LowerTierRoof --> LowerTierRoof,
-	UpperTierRoof --> UpperTierRoof
+	UpperTierFloorMass --> UpperTierFloorMass
 )
 
 import Random_Perimeter_Footprints : "Footprint/Quick/Random_Perimeter_Footprints.cga" (

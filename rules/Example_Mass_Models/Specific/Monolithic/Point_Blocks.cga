@@ -1,7 +1,6 @@
 extension Surroundings --> NIL
 extension FloorMass --> FloorMass.
 extension GroundFloorMass --> GroundFloorMass.
-extension TopFootprint --> NIL
 
 import Grid_Subdivision : "Footprint/Generic/Grid_Subdivision_Footprints.cga" (
 	Parcels --> Simple_Footprint.start,

@@ -1,17 +1,13 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFloorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
-extension LowerTierRoof --> NIL
-extension UpperTierRoof --> NIL
 
 import Random:"Imports/Random.cga"
 
-import Two_Tier : "Mass/Two_Tier.cga"(
+import Two_Tier : "Mass/Two_Tier_Local_Edit.cga"(
 	GroundFloorMass --> GroundFloorMass,
 	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
-	LowerTierRoof --> LowerTierRoof,
-	UpperTierRoof --> UpperTierRoof
+	UpperTierFloorMass --> UpperTierFloorMass
 )
 
 @Group("Number of Floors", 10)

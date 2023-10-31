@@ -1,14 +1,11 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension LowerTierFloorMass --> LowerTierFloorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
-extension LowerTierRoof --> NIL
-extension UpperTierRoof --> NIL
 
 import Setback_Labels : "Imports/Setback_Labels.cga"
 
 
 import _Upper_Tier_Setback : "Zoning/Setback.cga" (
-	Setback --> LowerTierRoof,
 	Remainder --> UpperTier,
 	Reference = Stepback_Reference,
 	Setback_All = Stepback_All,

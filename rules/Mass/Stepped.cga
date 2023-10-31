@@ -1,6 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension FloorMass --> FloorMass.
-extension TopFootprint --> NIL
 
 @Order(10)
 @Range(min=1, max=10)
@@ -57,32 +56,32 @@ CreateGroundFloor -->
 	
 CreateStepback(floorIndex) -->
 	case floorIndex >= N_Floors:
-		TopFootprint
+		NIL
 	else: [
 		case Stepback_Direction == label_stepback_all:
 			setback(Stepback_Per_Floor){
-				all: TopFootprint |
+				all: NIL |
 				remainder: CreateSteppedFloor(floorIndex)
 			}
 		case Stepback_Direction == label_stepback_long_f:
 			split(x){
-				Stepback_Per_Floor: TopFootprint |
+				Stepback_Per_Floor: NIL |
 				~1: CreateSteppedFloor(floorIndex)
 			}
 		case Stepback_Direction == label_stepback_long_r:
 			split(x){
 				~1: CreateSteppedFloor(floorIndex) |
-				Stepback_Per_Floor: TopFootprint 
+				Stepback_Per_Floor: NIL 
 			}
 		case Stepback_Direction == label_stepback_short_f:
 			split(z){
-				Stepback_Per_Floor: TopFootprint |
+				Stepback_Per_Floor: NIL |
 				~1: CreateSteppedFloor(floorIndex)
 			}
 		case Stepback_Direction == label_stepback_short_r:
 			split(z){
 				~1: CreateSteppedFloor(floorIndex) |
-				Stepback_Per_Floor: TopFootprint 
+				Stepback_Per_Floor: NIL 
 			}
 		else:
 			CreateSteppedFloor(floorIndex)

@@ -1,6 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
 extension FloorMass --> FloorMass.
-extension TopFootprint --> NIL
 
 @Order(10)
 @Range(min=1, max=10)
@@ -17,20 +16,14 @@ attr N_Floors = 5
 getBuildingHeight() = (N_Floors - 1) * Floor_Height + Ground_Floor_Height
 
 start Start -->
-	CreateTopFootprint
 	extrude(getBuildingHeight())
 	HeightHandle
 	split(y){
 		~Ground_Floor_Height: GroundFloorMass |
 		{~Floor_Height: FloorMass} *
 	}
-
-
-CreateTopFootprint -->
-	t(0, getBuildingHeight(), 0)
-	TopFootprint
 	
-	
+
 HeightHandle -->
 	s(1, '1, 1)
 	NIL
