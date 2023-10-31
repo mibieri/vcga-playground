@@ -5,7 +5,7 @@ extension UpperTierFloorMass --> UpperTierFloorMass.
 extension TopFloorMass --> TopFloorMass
 
 
-import Perimeter_Footprints : "Footprint/Generic/Perimeter_Footprints.cga" (
+import Perimeter_Footprints : "Footprint/Quick/Perimeter_Footprints.cga" (
 	Footprint1 --> Two_Tier.start,
 	Footprint2 --> Two_Tier.start,
 	Footprint3 --> Two_Tier.start,

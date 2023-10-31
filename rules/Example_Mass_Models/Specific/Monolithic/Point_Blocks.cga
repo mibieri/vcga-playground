@@ -3,7 +3,7 @@ extension FloorMass --> FloorMass.
 extension GroundFloorMass --> GroundFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
-import Grid_Subdivision : "Footprint/Generic/Grid_Subdivision_Footprints.cga" (
+import Grid_Subdivision : "Footprint/Grid_Subdivision_Footprints.cga" (
 	Footprint --> Simple_Footprint.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,

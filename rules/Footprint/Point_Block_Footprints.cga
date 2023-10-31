@@ -2,7 +2,7 @@ extension Footprint --> Footprint.
 extension Surroundings --> NIL
 extension GridCells --> NIL
 
-import Grid : "Footprint/Generic/Grid_Subdivision_Footprints.cga" (
+import Grid : "Footprint/Quick/Grid_Subdivision_Footprints.cga" (
 	Footprint --> Footprint_Shape.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,

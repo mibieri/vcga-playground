@@ -5,7 +5,7 @@ extension UpperTierFloorMass --> UpperTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 
-import Rowhouse_Footprints : "Footprint/Generic/Rowhouse_Footprints.cga" (
+import Rowhouse_Footprints : "Footprint/Quick/Rowhouse_Footprints.cga" (
 	Footprint --> Two_Tier.start,
 	Surroundings --> Surroundings
 )

@@ -4,7 +4,7 @@ extension FloorMass --> FloorMass.
 extension TopFloorMass --> TopFloorMass
 
 
-import Rowhouse_Footprints : "Footprint/Generic/Rowhouse_Footprints.cga" (
+import Rowhouse_Footprints : "Footprint/Quick/Rowhouse_Footprints.cga" (
 	Footprint --> Extrude.start,
 	Surroundings --> Surroundings,
 	Footprint_Size_X = Footprint_Size,

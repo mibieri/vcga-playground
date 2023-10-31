@@ -15,7 +15,7 @@ import Point_Block_Setback:"Zoning/Setback.cga"(
 	Setback_Rear = SlabBlockDistance
 )
 
-import Point_Block_Footprints : "Footprint/Generic/Grid_Subdivision_Footprints.cga" (
+import Point_Block_Footprints : "Footprint/Quick/Grid_Subdivision_Footprints.cga" (
 	Footprint --> Footprint_Shape.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,

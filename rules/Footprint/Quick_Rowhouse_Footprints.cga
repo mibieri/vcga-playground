@@ -1,7 +1,7 @@
 extension Footprint --> Footprint.
 extension Surroundings --> NIL
 
-import Rowhouse_Footprints : "Footprint/Generic/Rowhouse_Footprints.cga" (
+import Rowhouse_Footprints : "Footprint/Quick/Rowhouse_Footprints.cga" (
 	Footprint --> Footprint,
 	Surroundings --> Surroundings,
 	Footprint_Size_X = Footprint_Size,
