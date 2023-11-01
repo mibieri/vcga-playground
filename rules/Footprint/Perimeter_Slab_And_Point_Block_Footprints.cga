@@ -2,20 +2,20 @@ extension SlabFootprint --> SlabFootprint.
 extension PointBlockFootprint --> PointBlockFootprint.
 extension Surroundings --> NIL
 
-import Slab_Footprint : "Footprint/Quick/Perimeter_Slab_Footprint.cga"(
+import Slab_Footprint : "Footprint/Perimeter_Slab_Footprint.cga"(
 	Footprint --> SlabFootprint,
 	Surroundings --> Point_Block_Setback.start,
 	Start_Position = Slab_Start_Position,
-	Length = SlabLength,
-	Width = SlabWidth
+	Length = Slab_Length,
+	Width = Slab_Width
 )
 
 import Point_Block_Setback:"Zoning/Setback.cga"(
 	Remainder --> Point_Block_Footprints.start,
-	Setback_Rear = SlabBlockDistance
+	Setback_Rear = Slab_Block_Distance
 )
 
-import Point_Block_Footprints : "Footprint/Quick/Grid_Subdivision_Footprints.cga" (
+import Point_Block_Footprints : "Footprint/Grid_Subdivision_Footprints.cga" (
 	Footprint --> Footprint_Shape.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,
@@ -24,7 +24,7 @@ import Point_Block_Footprints : "Footprint/Quick/Grid_Subdivision_Footprints.cga
 	Interleaved = true
 )
 
-import Footprint_Shape : "Footprint/Quick/Single_Footprint.cga"(
+import Footprint_Shape : "Footprint/Single_Footprint.cga"(
 	Footprint --> PointBlockFootprint,
 	Shape = Shape,
 	SizeX = Footprint_SizeX,

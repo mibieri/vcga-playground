@@ -1,0 +1,19 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension TopFloorMass --> TopFloorMass.
+
+import Simple_Footprint : "Footprint/Single_Footprint.cga" (
+	Surroundings --> NIL,
+	Footprint --> Two_Tier.start
+)
+
+import Two_Tier: "Mass/Two_Tier_Mass.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFLoorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass	
+)
+
+start Start -->
+	Simple_Footprint.start

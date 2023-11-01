@@ -1,8 +1,9 @@
 version "2023.1"
 
 @Hidden
-attr labels = [auto, edgeAttr, shape, setbackTags]
+attr labels = [auto, edgeAttr, shape, setbackTags, disabled]
 const edgeAttr = "Edge Attributes"
 const shape = "Shape Orientation"
 const setbackTags = "Setback Tags"
 const auto = "Automatic"
+const disabled = "No Stepbacks"

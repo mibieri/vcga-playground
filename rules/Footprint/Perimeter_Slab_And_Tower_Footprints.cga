@@ -2,8 +2,8 @@ version "2023.1"
 
 extension SlabFootprint --> SlabFootprint.
 extension TowerFootprint --> TowerFootprint.
-extension SlabFootprint2 --> SlabFootprint2.
-extension TowerFootprint2 --> TowerFootprint2.
+extension Slab2Footprint --> Slab2Footprint.
+extension Tower2Footprint --> Tower2Footprint.
 extension Surroundings --> NIL
 
 
@@ -52,11 +52,11 @@ start Start -->
 		~(case !Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint |
 		~(1 - Slab_Length - Tower_Length): 0 : NIL |
 		
-		~forDuplicate(case Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint2 |
+		~forDuplicate(case Reverse: getTowerLength() else: 0): Tower_Width: Tower2Footprint |
 		~forDuplicate(case Reverse: Gap_Length else: 0): 0: NIL |
-		~forDuplicate(Slab_Length) : Slab_Width : SlabFootprint2 |
+		~forDuplicate(Slab_Length) : Slab_Width : Slab2Footprint |
 		~forDuplicate(case !Reverse: Gap_Length else: 0): 0: NIL |
-		~forDuplicate(case !Reverse: getTowerLength() else: 0): Tower_Width: TowerFootprint2 |
+		~forDuplicate(case !Reverse: getTowerLength() else: 0): Tower_Width: Tower2Footprint |
 		~forDuplicate(1 - Slab_Length - Tower_Length): 0 : NIL
 		
 	}{remainder: Surroundings}

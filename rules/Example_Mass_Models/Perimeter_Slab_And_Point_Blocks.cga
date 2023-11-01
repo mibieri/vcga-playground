@@ -1,0 +1,64 @@
+extension PointBlockGroundFloorMass --> PointBlockGroundFloorMass.
+extension PointBlockLowerTierFloorMass --> PointBlockLowerTierFloorMass.
+extension PointBlockUpperTierFloorMass --> PointBlockUpperTierFloorMass.
+extension PointBlockTopFloorMass --> PointBlockTopFloorMass.
+
+extension SlabGroundFloorMass --> SlabGroundFloorMass.
+extension SlabLowerTierFloorMass --> SlabLowerTierFloorMass.
+extension SlabUpperTierFloorMass --> SlabUpperTierFloorMass.
+extension SlabTopFloorMass --> SlabTopFloorMass.
+
+extension Surroundings --> NIL
+
+import Footprints : "Footprint/Perimeter_Slab_And_Point_Block_Footprints.cga"(
+	SlabFootprint --> Slab.start,
+	PointBlockFootprint --> Point_Block.start,
+	Surroundings --> NIL
+)
+
+import Slab : "Mass/Two_Tier_Mass.cga"(
+	GroundFloorMass --> SlabGroundFloorMass,
+	LowerTierFloorMass --> SlabLowerTierFloorMass,
+	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	TopFloorMass --> SlabTopFloorMass,
+	N_Floors = Slab_N_Floors
+)
+
+import Point_Block : "Mass/Two_Tier_Mass.cga"(
+	GroundFloorMass --> PointBlockGroundFloorMass,
+	LowerTierFloorMass --> PointBlockLowerTierFloorMass,
+	UpperTierFloorMass --> PointBlockUpperTierFloorMass,
+	TopFloorMass --> PointBlockTopFloorMass,
+	N_Floors = Point_Blocks_N_Floors
+)
+
+@Group("Perimeter Slab", 10)
+@Order(11)
+@Percent
+attr Slab_Start_Position = 0.25
+
+@Order(12)
+@Percent
+attr Slab_Length = 0.25
+
+@Order(13)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Slab_Width = 18
+
+@Order(14)
+@Range(min=1, max=10, stepsize=1)
+attr Slab_N_Floors = 5
+
+
+@Group("Point Blocks", 20)
+@Enum(valuesAttr=Footprints.Footprint_Shape.footprintShapes)
+attr Shape = Footprints.Footprint_Shape.label_shape_rectangle
+
+@Order(22)
+@Range(min=1, max=10, stepsize=1)
+attr Point_Blocks_N_Floors = 5
+
+
+
+start Start -->
+	Footprints.start

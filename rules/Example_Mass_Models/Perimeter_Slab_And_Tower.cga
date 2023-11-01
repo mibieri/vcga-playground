@@ -1,0 +1,64 @@
+version "2023.1"
+
+extension Surroundings --> NIL
+
+extension SlabGroundFloorMass --> SlabGroundFloorMass.
+extension SlabLowerTierFLoorMass --> SlabLowerTierFLoorMass.
+extension SlabUpperTierFloorMass --> SlabUpperTierFloorMass.
+extension SlabTopTierFloorMass --> SlabTopTierFloorMass.
+
+extension Slab2GroundFloorMass --> Slab2GroundFloorMass.
+extension Slab2LowerTierFLoorMass --> Slab2LowerTierFLoorMass.
+extension Slab2UpperTierFloorMass --> Slab2UpperTierFloorMass.
+extension Slab2TopTierFloorMass --> Slab2TopTierFloorMass.
+
+extension TowerGroundFloorMass --> TowerGroundFloorMass.
+extension TowerLowerTierFLoorMass --> TowerLowerTierFLoorMass.
+extension TowerUpperTierFloorMass --> TowerUpperTierFloorMass.
+extension TowerTopTierFloorMass --> TowerTopTierFloorMass.
+
+extension Tower2GroundFloorMass --> TowerGroundFloorMass.
+extension Tower2LowerTierFLoorMass --> TowerLowerTierFLoorMass.
+extension Tower2UpperTierFloorMass --> TowerUpperTierFloorMass.
+extension Tower2TopTierFloorMass --> TowerTop2TierFloorMass.
+
+import Setback : "Zoning/Setback.cga"(
+	Setback --> Surroundings,
+	Remainder --> Footprints.start
+)
+
+import Footprints : "Footprint/Perimeter_Slab_And_Tower_Footprints.cga" (
+	SlabFootprint --> Slab_Mass.start,
+	TowerFootprint --> Tower_Mass.start,
+	Slab2Footprint --> Slab_Mass.start,
+	Tower2Footprint --> Tower_Mass.start
+)
+
+import Tower_Mass : "Mass/Two_Tier_Mass.cga" (
+	GroundFloorMass --> TowerGroundFloorMass,
+	LowerTierFloorMass --> TowerLowerTierFLoorMass,
+	UpperTierFloorMass --> TowerUpperTierFloorMass,
+	N_Floors = Tower_N_Floors
+)
+
+import Slab_Mass : "Mass/Two_Tier_Mass.cga" (
+	GroundFloorMass --> SlabGroundFloorMass,
+	LowerTierFloorMass --> SlabLowerTierFLoorMass,
+	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	N_Floors = Slab_N_Floors
+)
+
+import Debug_Facade : "Facade/Debug_Facade.cga"
+
+@Order(10)
+@Range(min=1, max=100, stepsize=1)
+attr Tower_N_Floors = 18
+
+@Order(11)
+@Range(min=1, max=100, stepsize=1)
+attr Slab_N_Floors = 5
+
+
+
+start Start -->
+	Setback.start

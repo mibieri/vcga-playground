@@ -8,6 +8,7 @@ import Setback_Labels : "Imports/Setback_Labels.cga"
 
 import _Upper_Tier_Setback : "Zoning/Setback.cga" (
 	Remainder --> UpperTier,
+	Enabled = Stepback_Enabled,
 	Reference = Stepback_Reference,
 	Setback_All = Stepback_All,
 	Setback_Front = Stepback_Front,
@@ -30,14 +31,14 @@ attr Floor_Height = 3.0
 
 @Order(12)
 @Handle(shape=Handle_N_Floors., axis=y, reference=center, slip=inside)
-@Range(min=1, max=10, stepsize=1)
+@Range(min=1, max=40, stepsize=1)
 attr N_Floors = 5
 
 
 @Group("Upper Tier", 20)
 @Order(20)
 @Handle(shape=Handle_N_Floors_Upper., axis=y, reference=center, slip=inside)
-@Range(min=1, max=10, stepsize=1)
+@Range(min=1, max=40, stepsize=1)
 attr Upper_Tier_N_Floors = 1
 
 @Order(21)
@@ -47,28 +48,31 @@ attr Upper_Tier_Floor_Height = 2.6
 
 @Group("Upper Tier Stepbacks", 30)
 @Order(30)
+attr Stepback_Enabled = true
+
+@Order(31)
 @Enum(valuesAttr=Setback_Labels.labels)
 attr Stepback_Reference = Setback_Labels.setbackTags
 
-@Order(31)
+@Order(32)
 @Handle(shape=Handle_Stepback_All., axis=y, reference=center, slip=inside)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Stepback_All = 1.0
 
-@Order(32)
+@Order(33)
 @Handle(shape=Handle_Stepback_Front., axis=z, reference=edge, slip=inside, occlusion=false)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Stepback_Front = 3
 
-@Order(33)
+@Order(34)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Stepback_Left = 1.0
 
-@Order(34)
+@Order(35)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Stepback_Right = 1.0
 
-@Order(35)
+@Order(36)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
 attr Stepback_Rear = 1.0
 
