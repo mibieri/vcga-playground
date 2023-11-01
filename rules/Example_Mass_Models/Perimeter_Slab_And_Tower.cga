@@ -17,10 +17,10 @@ extension TowerLowerTierFLoorMass --> TowerLowerTierFLoorMass.
 extension TowerUpperTierFloorMass --> TowerUpperTierFloorMass.
 extension TowerTopTierFloorMass --> TowerTopTierFloorMass.
 
-extension Tower2GroundFloorMass --> TowerGroundFloorMass.
-extension Tower2LowerTierFLoorMass --> TowerLowerTierFLoorMass.
-extension Tower2UpperTierFloorMass --> TowerUpperTierFloorMass.
-extension Tower2TopTierFloorMass --> TowerTop2TierFloorMass.
+extension Tower2GroundFloorMass --> Tower2GroundFloorMass.
+extension Tower2LowerTierFLoorMass --> Tower2LowerTierFLoorMass.
+extension Tower2UpperTierFloorMass --> Tower2UpperTierFloorMass.
+extension Tower2TopTierFloorMass --> Tower2TopTierFloorMass.
 
 import Setback : "Zoning/Setback.cga"(
 	Setback --> Surroundings,
@@ -45,6 +45,20 @@ import Slab_Mass : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> SlabGroundFloorMass,
 	LowerTierFloorMass --> SlabLowerTierFLoorMass,
 	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	N_Floors = Slab_N_Floors
+)
+
+import Tower2_Mass : "Mass/Two_Tier_Mass.cga" (
+	GroundFloorMass --> Tower2GroundFloorMass,
+	LowerTierFloorMass --> Tower2LowerTierFLoorMass,
+	UpperTierFloorMass --> Tower2UpperTierFloorMass,
+	N_Floors = Tower_N_Floors
+)
+
+import Slab2_Mass : "Mass/Two_Tier_Mass.cga" (
+	GroundFloorMass --> Slab2GroundFloorMass,
+	LowerTierFloorMass --> Slab2LowerTierFLoorMass,
+	UpperTierFloorMass --> Slab2UpperTierFloorMass,
 	N_Floors = Slab_N_Floors
 )
 
