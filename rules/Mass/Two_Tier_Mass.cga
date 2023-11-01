@@ -66,15 +66,15 @@ attr Stepback_Front = 3
 
 @Order(34)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Left = 1.0
+attr Stepback_Left = 0.0
 
 @Order(35)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Right = 1.0
+attr Stepback_Right = 0.0
 
 @Order(36)
 @Range(min=0, max=50, stepsize=0.1, restricted=false)
-attr Stepback_Rear = 1.0
+attr Stepback_Rear = 0.0
 
 
 _getLowerTierHeight() = Floor_Height * (N_Floors - Upper_Tier_N_Floors - 1) + Ground_Floor_Height
