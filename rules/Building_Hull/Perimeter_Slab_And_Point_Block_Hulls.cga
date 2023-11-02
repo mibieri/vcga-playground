@@ -1,0 +1,66 @@
+extension SlabHull --> SlabHull.
+extension PointBlockHull --> PointBlockHull.
+extension Surroundings --> NIL
+
+import Slab_Footprint : "Building_Hull/Perimeter_Slab_Hull.cga"(
+	Hull --> SlabHull,
+	Surroundings --> Point_Block_Setback.start,
+	Start_Position = Slab_Start_Position,
+	Length = Slab_Length,
+	Width = Slab_Width
+)
+
+import Point_Block_Setback:"Zoning/Setback.cga"(
+	Remainder --> Point_Block_Hulls.start,
+	Setback_Rear = Slab_Block_Distance
+)
+
+import Point_Block_Hulls : "Building_Hull/Point_Block_Hulls.cga" (
+	Hull --> PointBlockHull,
+	Surroundings --> Surroundings
+)
+
+@Group("Perimeter Slab", 10)
+@Order(11)
+@Percent
+attr Slab_Start_Position = 0.25
+
+@Order(12)
+@Percent
+attr Slab_Length = 0.25
+
+@Order(13)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Slab_Width = 18
+
+
+@Group("Blocks", 20)
+@Order(21)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Slab_Block_Distance = 4
+
+@Order(22)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_X = 60
+
+@Order(23)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_Z = 40
+
+@Order(24)
+@Handle(Shape=FootprintBoundingBox, type=selector)
+@Enum(valuesAttr=Point_Block_Hulls.Footprint_Shape.footprintShapes)
+attr Shape = Point_Block_Hulls.Footprint_Shape.label_shape_rectangle
+
+@Order(25)
+@Range(min=0, max=100, restricted=false)
+attr Footprint_SizeX = 30
+
+@Order(26)
+@Range(min=0, max=100, restricted=false)
+attr Footprint_SizeZ = 20
+
+
+@StartRule
+start Rule --> 
+	Slab_Footprint.start

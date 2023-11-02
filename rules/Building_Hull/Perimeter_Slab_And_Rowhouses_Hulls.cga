@@ -1,0 +1,53 @@
+extension SlabHull --> SlabHull.
+extension RowhouseHull --> RowhouseFootprint.
+extension Surroundings --> NIL
+
+import Slab_Hull : "Building_Hull/Perimeter_Slab_Hull.cga"(
+	Hull --> SlabHull,
+	Surroundings --> Rowhouse_Setback.start,
+	Start_Position = Slab_Start_Position,
+	Length = Slab_Length,
+	Width = Slab_Width
+)
+
+import Rowhouse_Setback:"Zoning/Setback.cga"(
+	Remainder --> Rowhouse_Hulls.start,
+	Setback_Rear = Slab_Rowhouse_Distance
+)
+
+import Rowhouse_Hulls: "Building_Hull/Rowhouse_Hulls_Generic.cga" (
+	Hull --> RowhouseHull,
+	Row_Inner_Distance = Rowhouse_Distance,
+	Row_Border_Distance = 10,
+	Parcels_Per_Group = 1,
+	Group_Inner_Distance = 0,
+	Group_Border_Distance = 0,
+	Exact_Distances = true
+)
+
+@Group("Perimeter Slab", 10)
+@Order(11)
+@Percent
+attr Slab_Start_Position = 0.0
+
+@Order(12)
+@Percent
+attr Slab_Length = 0.5
+
+@Order(13)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Slab_Width = 15
+
+
+@Group("Rowhouses", 20)
+@Order(20)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Slab_Rowhouse_Distance = 10
+
+@Order(21)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Rowhouse_Distance = 15
+
+@StartRule
+start Rule --> 
+	Slab_Hull.start
