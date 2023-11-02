@@ -31,7 +31,7 @@ attr Pattern_Length = 1.0
 
 @Group("Footprint 1", 100)
 @Order(100)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint1_Length = 0
 
 @Order(110)
@@ -49,7 +49,7 @@ attr Footprint1_Inset = 0
 
 @Group("Footprint 2", 200)
 @Order(200)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint2_Length = 0
 
 @Order(210)
@@ -67,7 +67,7 @@ attr Footprint2_Inset = 0
 
 @Group("Footprint 3", 300)
 @Order(300)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint3_Length = 0
 
 @Order(310)
@@ -85,7 +85,7 @@ attr Footprint3_Inset = 0
 
 @Group("Footprint 4", 400)
 @Order(400)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint4_Length = 0
 
 @Order(410)
@@ -103,7 +103,7 @@ attr Footprint4_Inset = 0
 
 @Group("Footprint 5", 500)
 @Order(500)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint5_Length = 0
 
 @Order(510)
@@ -121,7 +121,7 @@ attr Footprint5_Inset = 0
 
 @Group("Footprint 6", 600)
 @Order(600)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint6_Length = 0
 
 @Order(610)
@@ -139,7 +139,7 @@ attr Footprint6_Inset = 0
 
 @Group("Footprint 7", 700)
 @Order(700)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint7_Length = 0
 
 @Order(710)
@@ -157,7 +157,7 @@ attr Footprint7_Inset = 0
 
 @Group("Footprint 8", 800)
 @Order(800)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
 attr Footprint8_Length = 0
 
 @Order(810)

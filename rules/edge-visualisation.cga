@@ -4,6 +4,7 @@ start ShowAutoTags -->
 		| isTagged("setback.side")  : Yellow
 		| isTagged("setback.back")  : Red
 		| isTagged("setback.remainder") : Green
+		| all: Black
 	 }  
 	  
 	  
@@ -13,5 +14,6 @@ Blue   --> color(0,0,1) ShowEdge
 Yellow --> color(1,1,0) ShowEdge
 Red    --> color(1,0,0)	ShowEdge
 Green  --> color(0,1,0) ShowEdge
+Black  --> color(0,0,0) ShowEdge
 
 ShowEdge --> s('1, 2, 2) center(yz) primitiveCube 

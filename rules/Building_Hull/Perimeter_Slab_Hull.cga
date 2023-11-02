@@ -1,0 +1,31 @@
+extension Hull --> Hull.
+extension Surroundings --> NIL
+
+
+@Order(21)
+@Percent
+attr Start_Position = 0.0
+
+@Order(22)
+@Percent
+attr Length = 0.9
+
+@Order(23)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Width = 15
+
+@Order(24)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Height = 22
+
+
+start Start -->
+	splitAndSetbackPerimeter('Start_Position){
+		~Length : Width : Extrude_Hull |
+		~(1 - Length): 0 : NIL
+	}{remainder: Surroundings}
+	
+
+Extrude_Hull -->
+	extrude(Height)
+	Hull

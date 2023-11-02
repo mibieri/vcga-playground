@@ -1,0 +1,87 @@
+extension Setback --> NIL
+extension Remainder --> NIL
+
+@Hidden
+import Setback_Labels : "Imports/Setback_Labels.cga"
+
+@Order(0)
+attr Enabled = true
+
+@Order(1)
+@Enum(valuesAttr=Setback_Labels.labels)
+attr Reference = Setback_Labels.labels[0]
+
+@Order(2)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_All = 0.0
+
+@Order(3)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Front = 0.0
+
+@Order(4)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Left = 0.0
+
+@Order(5)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Right = 0.0
+
+@Order(6)
+@Range(min=0, max=50, stepsize=0.1, restricted=false)
+attr Setback_Rear = 0.0
+
+import edge_visualisation:"edge-visualisation.cga"
+
+getSetbacks() =
+	case Reference == Setback_Labels.edgeAttr:
+		getEdgeAttrSetbacks()
+	case Reference == Setback_Labels.shape:
+		getShapeSetbacks()
+	case Reference == Setback_Labels.setbackTags:
+		getSetbackSetbacks()
+	case Reference == Setback_Labels.auto: (
+		case geometry.hasTags("setback"): getSetbackSetbacks()
+		else: getShapeSetbacks()
+	)
+	else:
+		floatArray()
+		
+
+getEdgeAttrSetbacks() = 
+	comp(fe){ all: 
+		case edgeAttr.getString("orientations") == "front": Setback_Front
+		case edgeAttr.getString("orientations") == "rear": Setback_Rear
+		case edgeAttr.getString("orientations") == "side": max(Setback_Left, Setback_Right)
+		else: 0
+	}
+
+getShapeSetbacks() = 
+	comp(fe){ 
+		front: Setback_Front |
+		back: Setback_Rear |
+		left: Setback_Left |
+		right: Setback_Right
+	}	
+	
+getSetbackSetbacks() =
+	comp(fe){
+		isTagged("setback.front"): Setback_Front |
+		isTagged("setback.back"): Setback_Rear |
+		isTagged("setback.side"): max(Setback_Left, Setback_Right) |
+		all: 0
+	}
+
+
+start Start -->
+	print(comp(fe){all: str(geometry.tags("setback"))})
+	[
+		case Enabled:
+			setback(getSetbacks() .+ Setback_All){
+				all: Setback |
+				remainder: Remainder
+			}
+		else:
+			Remainder
+	]
+	

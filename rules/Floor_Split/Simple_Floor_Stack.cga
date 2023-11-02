@@ -1,0 +1,32 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension FloorMass --> FloorMass.
+extension TopFloorMass --> TopFloorMass.
+
+@Order(10)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(11)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+start Start with(
+	hullHeight := scope.sy
+	nRegularFloors := 1 + floor((hullHeight - Ground_Floor_Height) / Floor_Height)
+	buildingHeight := Ground_Floor_Height + nRegularFloors * Floor_Height
+) -->
+	t(0, -hullHeight, 0)
+	comp(f){
+		top: 
+			ExtrudeAndSplit(buildingHeight) 
+	}
+
+ExtrudeAndSplit(buildingHeight) -->
+	extrude(buildingHeight)
+	split(y){
+		Ground_Floor_Height: GroundFloorMass |
+		{
+			Floor_Height: FloorMass
+		}* |
+		Floor_Height: TopFloorMass
+	}

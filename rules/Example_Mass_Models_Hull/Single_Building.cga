@@ -1,0 +1,19 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension LowerTierFloorMass --> LowerTierFloorMass.
+extension UpperTierFloorMass --> UpperTierFloorMass.
+extension TopFloorMass --> TopFloorMass.
+
+import Building_Hull : "Building_Hull/Single_Hull.cga" (
+	Surroundings --> NIL,
+	Hull --> Two_Tier.start
+)
+
+import Two_Tier: "Floor_Split/Two_Tier_Stack.cga" (
+	GroundFloorMass --> GroundFloorMass,
+	LowerTierFloorMass --> LowerTierFloorMass,
+	UpperTierFloorMass --> UpperTierFloorMass,
+	TopFloorMass --> TopFloorMass
+)
+
+start Start -->
+	Building_Hull.start
