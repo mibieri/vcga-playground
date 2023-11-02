@@ -1,0 +1,40 @@
+version "2023.1"
+
+extension Surroundings --> NIL
+
+extension SlabGroundFloorMass --> SlabGroundFloorMass.
+extension SlabLowerTierFLoorMass --> SlabLowerTierFLoorMass.
+extension SlabUpperTierFloorMass --> SlabUpperTierFloorMass.
+extension SlabTopFloorMass --> SlabTopFloorMass.
+
+extension TowerGroundFloorMass --> TowerGroundFloorMass.
+extension TowerLowerTierFLoorMass --> TowerLowerTierFLoorMass.
+extension TowerUpperTierFloorMass --> TowerUpperTierFloorMass.
+extension TowerTopFloorMass --> TowerTopFloorMass.
+
+import Setback : "Zoning/Setback.cga"(
+	Setback --> Surroundings,
+	Remainder --> Footprints.start
+)
+
+import Footprints : "Building_Hull/Perimeter_Slab_And_Tower_Hulls.cga" (
+	SlabHull --> Slab_Floors.start,
+	TowerHull --> Tower_Floors.start
+)
+
+import Tower_Floors : "Floor_Split/Two_Tier_Stack.cga" (
+	GroundFloorMass --> TowerGroundFloorMass,
+	LowerTierFloorMass --> TowerLowerTierFLoorMass,
+	UpperTierFloorMass --> TowerUpperTierFloorMass,
+	TopFloorMass --> TowerTopFloorMass
+)
+
+import Slab_Floors : "Floor_Split/Two_Tier_Stack.cga" (
+	GroundFloorMass --> SlabGroundFloorMass,
+	LowerTierFloorMass --> SlabLowerTierFLoorMass,
+	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	TopFloorMass --> SlabTopFloorMass
+)
+
+start Start -->
+	Setback.start

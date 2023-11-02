@@ -1,0 +1,55 @@
+extension Hull --> Hull.
+extension Surroundings --> NIL
+extension GridCells --> NIL
+
+import Grid : "Footprint/Grid_Subdivision_Footprints.cga" (
+	Footprint --> Footprint_Shape.start,
+	Surroundings --> Surroundings,
+	Exact_Cell_Size = false,
+	Offset_X = Cell_Size_X / 2,
+	Minimal_Cell_Area = 0.6,
+	Interleaved = true
+)
+
+import Footprint_Shape : "Building_Hull/Single_Hull.cga"(
+	Hull --> Hull,
+	Shape = Shape,
+	SizeX = Footprint_SizeX,
+	SizeZ = Footprint_SizeZ
+)
+
+@Order(10)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_X = 60
+
+@Order(11)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_Z = 40
+
+@Order(12)
+@Angle
+attr Grid_Rotation = 0
+
+@Order(13)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Border_Margin = 0
+
+@Order(14)
+@Handle(Shape=FootprintBoundingBox, type=selector)
+@Enum(valuesAttr=Footprint_Shape.footprintShapes)
+attr Shape = Footprint_Shape.label_shape_rectangle
+
+@Order(15)
+@Range(min=0, max=100, restricted=false)
+attr Footprint_SizeX = 30
+
+@Order(16)
+@Range(min=0, max=100, restricted=false)
+attr Footprint_SizeZ = 20
+
+@Order(17)
+@Range(min=0, max=100, restricted=false)
+attr Height = 30
+
+start Start -->
+	Grid.start

@@ -1,0 +1,58 @@
+extension Surroundings --> NIL
+extension FloorMass --> FloorMass.
+extension GroundFloorMass --> GroundFloorMass.
+extension TopFloorMass --> TopFloorMass.
+
+
+import Point_Block_Hulls : "Building_Hull/Point_Block_Hulls.cga" (
+	Hull --> Extrude.start,
+	Surroundings --> Surroundings
+)
+
+import Extrude : "Floor_Split/Simple_Floor_Stack.cga" (
+	FloorMass --> FloorMass,
+	GroundFloorMass --> GroundFloorMass,
+	TopFloorMass --> TopFloorMass
+)
+
+
+@Group("Building Distribution", 10)
+@Order(10)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_X = 60
+
+@Order(11)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Cell_Size_Z = 40
+
+@Order(12)
+@Angle
+attr Grid_Rotation = 0
+
+@Order(13)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Border_Margin = 0
+
+
+@Group("Building Footprint",20)
+@Order(20)
+@Enum(valuesAttr=Point_Block_Hulls.Footprint_Shape.footprintShapes)
+attr Shape = Point_Block_Hulls.Footprint_Shape.footprintShapes[0]
+
+
+@Group("Building Floors",20)
+@Order(10)
+@Range(min=1, max=100, stepsize=0.1, restricted=false)
+attr Height = 30
+
+@Order(11)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(12)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+
+start Start -->
+	Point_Block_Hulls.start
