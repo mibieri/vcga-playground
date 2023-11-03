@@ -1,4 +1,4 @@
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 
 @Group("General", 0)
 @Order(1)
@@ -91,7 +91,7 @@ start Start -->
 Building(nFloors) -->
 	extrude(nFloors * Floor_Height)
 	split(y){
-		~Floor_Height: FloorMass
+		~Floor_Height: RegularFloorMass
 	}*
 	
 	

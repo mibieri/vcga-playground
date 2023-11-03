@@ -1,7 +1,7 @@
 extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 
@@ -13,8 +13,8 @@ import Rowhouse_Footprints : "Footprint/Quick/Rowhouse_Footprints.cga" (
 
 import Two_Tier : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass.,
-	LowerTierFloorMass --> LowerTierFLoorMass.,
-	UpperTierFloorMass --> UpperTierFloorMass.,
+	RegularFloorMass --> RegularFloorMass.,
+	SecondTierFloorMass --> SecondTierFloorMass.,
 	TopFloorMass --> TopFloorMass,
 	N_Floors = 3
 )

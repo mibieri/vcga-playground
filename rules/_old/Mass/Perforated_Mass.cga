@@ -1,5 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 import Perimeter_Edge_Selection : "Imports/Perimeter_Edge_Selection.cga"
@@ -100,6 +100,6 @@ BlockMass(layerIndex) -->
 	extrude(getBlockHeight(layerIndex))
 	split(y){
 		~(case layerIndex == 0: Ground_Floor_Height else: 0): GroundFloorMass |
-		{~Floor_Height: FloorMass}* |
+		{~Floor_Height: RegularFloorMass}* |
 		(case layerIndex == N_Layers - 1: Floor_Height else: 0): TopFloorMass
 	}

@@ -1,5 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 @Order(10)
@@ -90,6 +90,6 @@ CreateStepback(floorIndex) -->
 	]	
 		
 CreateSteppedFloor(floorIndex) -->
-	[extrude(Floor_Height) [case floorIndex == N_Floors - 1: TopFloorMass else: FloorMass]]
+	[extrude(Floor_Height) [case floorIndex == N_Floors - 1: TopFloorMass else: RegularFloorMass]]
 	t(0, Floor_Height, 0)
 	CreateStepback(floorIndex + 1)

@@ -9,22 +9,22 @@ extension SlabTopFloorMass --> SlabTopFloorMass.
 
 extension Surroundings --> NIL
 
-import Hulls : "Building_Hull/Perimeter_Slab_And_Point_Block_Hulls.cga"(
+import Hul ls : "Building_Hull/Perimeter_Slab_And_Point_Block_Mass.cga"(
 	SlabHull --> Slab_Floors.start,
 	PointBlockHull --> Point_Block_Floors.start,
 	Surroundings --> NIL
 )
 
-import Slab_Floors : "Floor_Split/Two_Tier_Stack.cga"(
+import Slab_Floors : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga"(
 	GroundFloorMass --> SlabGroundFloorMass,
-	LowerTierFloorMass --> SlabLowerTierFloorMass,
-	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	RegularFloorMass --> SlabLowerTierFloorMass,
+	SecondTierFloorMass --> SlabUpperTierFloorMass,
 	TopFloorMass --> SlabTopFloorMass
 )
 
-import Point_Block_Floors : "Floor_Split/Simple_Floor_Stack.cga"(
+import Point_Block_Floors : "Floor_Splitter/Floor_Splitter_Extruded.cga"(
 	GroundFloorMass --> PointBlockGroundFloorMass,
-	FloorMass --> PointBlockFloorMass,
+	RegularFloorMass --> PointBlockFloorMass,
 	TopFloorMass --> PointBlockTopFloorMass
 )
 
@@ -44,4 +44,4 @@ attr Slab_Width = 18
 
 
 start Start -->
-	Hulls.start
+	Mass.start

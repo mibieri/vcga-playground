@@ -1,7 +1,7 @@
 extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 @Order(0)
@@ -80,8 +80,8 @@ attr BlockInset_Uniformness = 0.3
 
 import Random_Two_Tiers : "Two_Tier_Random.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFLoorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass
 )
 

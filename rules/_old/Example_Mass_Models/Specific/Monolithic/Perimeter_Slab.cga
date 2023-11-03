@@ -1,7 +1,7 @@
 extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 import Setback_Labels : "Imports/Setback_Labels.cga"
@@ -13,8 +13,8 @@ import Setback_Footprint : "Zoning/Setback.cga" (
 
 import Two_Tier : "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFLoorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
 	Stepback_Reference = Setback_Labels.setbackTags
 )

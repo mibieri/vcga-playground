@@ -18,16 +18,16 @@ import Footprints : "Footprint/Perimeter_Slab_And_Point_Block_Footprints.cga"(
 
 import Slab : "Mass/Two_Tier_Mass.cga"(
 	GroundFloorMass --> SlabGroundFloorMass,
-	LowerTierFloorMass --> SlabLowerTierFloorMass,
-	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	RegularFloorMass --> SlabLowerTierFloorMass,
+	SecondTierFloorMass --> SlabUpperTierFloorMass,
 	TopFloorMass --> SlabTopFloorMass,
 	N_Floors = Slab_N_Floors
 )
 
 import Point_Block : "Mass/Two_Tier_Mass.cga"(
 	GroundFloorMass --> PointBlockGroundFloorMass,
-	LowerTierFloorMass --> PointBlockLowerTierFloorMass,
-	UpperTierFloorMass --> PointBlockUpperTierFloorMass,
+	RegularFloorMass --> PointBlockLowerTierFloorMass,
+	SecondTierFloorMass --> PointBlockUpperTierFloorMass,
 	TopFloorMass --> PointBlockTopFloorMass,
 	N_Floors = Point_Blocks_N_Floors
 )

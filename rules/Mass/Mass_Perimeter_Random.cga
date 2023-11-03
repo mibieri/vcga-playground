@@ -1,12 +1,12 @@
 extension Surroundings --> NIL
-extension Hull1 --> Hull1.
-extension Hull2 --> Hull2.
-extension Hull3 --> Hull3.
-extension Hull4 --> Hull4.
-extension Hull5 --> Hull5.
-extension Hull6 --> Hull6.
-extension Hull7 --> Hull7.
-extension Hull8 --> Hull8.
+extension Mass1 --> Mass1.
+extension Mass2 --> Mass2.
+extension Mass3 --> Mass3.
+extension Mass4 --> Mass4.
+extension Mass5 --> Mass5.
+extension Mass6 --> Mass6.
+extension Mass7 --> Mass7.
+extension Mass8 --> Mass8.
 
 @Group("Block Length", 10)
 @Order(11)
@@ -87,74 +87,74 @@ attr Block_Height_Min = 0
 
 @Order(42)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr Block_Height_Max = 0
+attr Block_Height_Max = 80
 
 @Order(43)
 @Percent
-attr Block_Height_Peak = 0.1
+attr Block_Height_Peak = 0.3
 
 @Order(44)
 @Percent
 attr Block_Height_Uniformness = 0.3
 
 
-import Random:"Imports/Random.cga"
+import Random : "Utilities/Random.cga"
 
-import Perimeter_Hulls : "Building_Hull/Perimeter_Hulls_Generic.cga" (
+import Perimeter_Masses : "Mass/Mass_Perimeter_Generic.cga" (
 	Surroundings --> Surroundings,
-	Hull1 --> Hull1,
-	Hull2 --> Hull2,
-	Hull3 --> Hull3,
-	Hull4 --> Hull4,
-	Hull5 --> Hull5,
-	Hull6 --> Hull6,
-	Hull7 --> Hull7,
-	Hull8 --> Hull8,
+	Mass1 --> Mass1,
+	Mass2 --> Mass2,
+	Mass3 --> Mass3,
+	Mass4 --> Mass4,
+	Mass5 --> Mass5,
+	Mass6 --> Mass6,
+	Mass7 --> Mass7,
+	Mass8 --> Mass8,
 	
-	Hull1_Length = getBlockLength(),
-	Hull2_Length = getBlockLength(),
-	Hull3_Length = getBlockLength(),
-	Hull4_Length = getBlockLength(),
-	Hull5_Length = getBlockLength(),
-	Hull6_Length = getBlockLength(),
-	Hull7_Length = getBlockLength(),
-	Hull8_Length = getBlockLength(),
+	Mass1_Length = getBlockLength(),
+	Mass2_Length = getBlockLength(),
+	Mass3_Length = getBlockLength(),
+	Mass4_Length = getBlockLength(),
+	Mass5_Length = getBlockLength(),
+	Mass6_Length = getBlockLength(),
+	Mass7_Length = getBlockLength(),
+	Mass8_Length = getBlockLength(),
 	
-	Hull1_GapLength = getBlockGapLength(),
-	Hull2_GapLength = getBlockGapLength(),
-	Hull3_GapLength = getBlockGapLength(),
-	Hull4_GapLength = getBlockGapLength(),
-	Hull5_GapLength = getBlockGapLength(),
-	Hull6_GapLength = getBlockGapLength(),
-	Hull7_GapLength = getBlockGapLength(),
-	Hull8_GapLength = getBlockGapLength(),	
+	Mass1_GapLength = getBlockGapLength(),
+	Mass2_GapLength = getBlockGapLength(),
+	Mass3_GapLength = getBlockGapLength(),
+	Mass4_GapLength = getBlockGapLength(),
+	Mass5_GapLength = getBlockGapLength(),
+	Mass6_GapLength = getBlockGapLength(),
+	Mass7_GapLength = getBlockGapLength(),
+	Mass8_GapLength = getBlockGapLength(),	
 	
-	Hull1_Width = getBlockWidth(),
-	Hull2_Width = getBlockWidth(),
-	Hull3_Width = getBlockWidth(),
-	Hull4_Width = getBlockWidth(),
-	Hull5_Width = getBlockWidth(),
-	Hull6_Width = getBlockWidth(),
-	Hull7_Width = getBlockWidth(),
-	Hull8_Width = getBlockWidth(),
+	Mass1_Width = getBlockWidth(),
+	Mass2_Width = getBlockWidth(),
+	Mass3_Width = getBlockWidth(),
+	Mass4_Width = getBlockWidth(),
+	Mass5_Width = getBlockWidth(),
+	Mass6_Width = getBlockWidth(),
+	Mass7_Width = getBlockWidth(),
+	Mass8_Width = getBlockWidth(),
 	
-	Hull1_Inset = getBlockInset(),
-	Hull2_Inset = getBlockInset(),
-	Hull3_Inset = getBlockInset(),
-	Hull4_Inset = getBlockInset(),
-	Hull5_Inset = getBlockInset(),
-	Hull6_Inset = getBlockInset(),
-	Hull7_Inset = getBlockInset(),
-	Hull8_Inset = getBlockInset(),
+	Mass1_Inset = getBlockInset(),
+	Mass2_Inset = getBlockInset(),
+	Mass3_Inset = getBlockInset(),
+	Mass4_Inset = getBlockInset(),
+	Mass5_Inset = getBlockInset(),
+	Mass6_Inset = getBlockInset(),
+	Mass7_Inset = getBlockInset(),
+	Mass8_Inset = getBlockInset(),
 	
-	Hull1_Height = getBlockHeight(),
-	Hull2_Height = getBlockHeight(),
-	Hull3_Height = getBlockHeight(),
-	Hull4_Height = getBlockHeight(),
-	Hull5_Height = getBlockHeight(),
-	Hull6_Height = getBlockHeight(),
-	Hull7_Height = getBlockHeight(),
-	Hull8_Height = getBlockHeight()	
+	Mass1_Height = getBlockHeight(),
+	Mass2_Height = getBlockHeight(),
+	Mass3_Height = getBlockHeight(),
+	Mass4_Height = getBlockHeight(),
+	Mass5_Height = getBlockHeight(),
+	Mass6_Height = getBlockHeight(),
+	Mass7_Height = getBlockHeight(),
+	Mass8_Height = getBlockHeight()	
 )
 
 
@@ -166,4 +166,4 @@ getBlockHeight() = Random.getPseudoGauss(Block_Height_Min, Block_Height_Max, Blo
 
 
 start Start -->
-	Perimeter_Hulls.start
+	Perimeter_Masses.start

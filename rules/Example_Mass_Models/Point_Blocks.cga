@@ -1,5 +1,5 @@
 extension Surroundings --> NIL
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension GroundFloorMass --> GroundFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
@@ -15,7 +15,7 @@ import Simple_Footprint : "Footprint/Single_Footprint.cga" (
 )
 
 import Extrude : "Mass/Extruded_Mass.cga" (
-	FloorMass --> FloorMass,
+	RegularFloorMass --> RegularFloorMass,
 	GroundFloorMass --> GroundFloorMass,
 	TopFloorMass --> TopFloorMass
 )

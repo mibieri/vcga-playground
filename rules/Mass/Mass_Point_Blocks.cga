@@ -1,8 +1,8 @@
-extension Hull --> Hull.
+extension Mass --> Mass.
 extension Surroundings --> NIL
 extension GridCells --> NIL
 
-import Grid : "Footprint/Grid_Subdivision_Footprints.cga" (
+import Grid : "Utilities/Grid_Subdivision_Footprints.cga" (
 	Footprint --> Footprint_Shape.start,
 	Surroundings --> Surroundings,
 	Exact_Cell_Size = false,
@@ -11,8 +11,8 @@ import Grid : "Footprint/Grid_Subdivision_Footprints.cga" (
 	Interleaved = true
 )
 
-import Footprint_Shape : "Building_Hull/Single_Hull.cga"(
-	Hull --> Hull,
+import Footprint_Shape : "Mass/Mass_Single_Building.cga"(
+	Mass --> Mass,
 	Shape = Shape,
 	SizeX = Footprint_SizeX,
 	SizeZ = Footprint_SizeZ

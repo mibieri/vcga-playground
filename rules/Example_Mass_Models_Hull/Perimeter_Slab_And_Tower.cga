@@ -22,17 +22,17 @@ import Footprints : "Building_Hull/Perimeter_Slab_And_Tower_Hulls.cga" (
 	TowerHull --> Tower_Floors.start
 )
 
-import Tower_Floors : "Floor_Split/Two_Tier_Stack.cga" (
+import Tower_Floors : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> TowerGroundFloorMass,
-	LowerTierFloorMass --> TowerLowerTierFLoorMass,
-	UpperTierFloorMass --> TowerUpperTierFloorMass,
+	RegularFloorMass --> TowerLowerTierFLoorMass,
+	SecondTierFloorMass --> TowerUpperTierFloorMass,
 	TopFloorMass --> TowerTopFloorMass
 )
 
-import Slab_Floors : "Floor_Split/Two_Tier_Stack.cga" (
+import Slab_Floors : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> SlabGroundFloorMass,
-	LowerTierFloorMass --> SlabLowerTierFLoorMass,
-	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	RegularFloorMass --> SlabLowerTierFLoorMass,
+	SecondTierFloorMass --> SlabUpperTierFloorMass,
 	TopFloorMass --> SlabTopFloorMass
 )
 

@@ -1,22 +1,22 @@
-extension SlabHull --> SlabHull.
-extension PointBlockHull --> PointBlockHull.
+extension SlabMass --> SlabMass.
+extension PointBlockMass --> PointBlockMass.
 extension Surroundings --> NIL
 
-import Slab_Footprint : "Building_Hull/Perimeter_Slab_Hull.cga"(
-	Hull --> SlabHull,
+import Slab_Mass : "Mass/Mass_Perimeter_Slab.cga"(
+	Mass --> SlabMass,
 	Surroundings --> Point_Block_Setback.start,
 	Start_Position = Slab_Start_Position,
 	Length = Slab_Length,
 	Width = Slab_Width
 )
 
-import Point_Block_Setback:"Zoning/Setback.cga"(
-	Remainder --> Point_Block_Hulls.start,
+import Point_Block_Setback : "Zoning/Setback.cga"(
+	Remainder --> Point_Block_Masses.start,
 	Setback_Rear = Slab_Block_Distance
 )
 
-import Point_Block_Hulls : "Building_Hull/Point_Block_Hulls.cga" (
-	Hull --> PointBlockHull,
+import Point_Block_Masses : "Mass/Mass_Point_Blocks.cga" (
+	Mass --> PointBlockMass,
 	Surroundings --> Surroundings
 )
 
@@ -49,8 +49,8 @@ attr Cell_Size_Z = 40
 
 @Order(24)
 @Handle(Shape=FootprintBoundingBox, type=selector)
-@Enum(valuesAttr=Point_Block_Hulls.Footprint_Shape.footprintShapes)
-attr Shape = Point_Block_Hulls.Footprint_Shape.label_shape_rectangle
+@Enum(valuesAttr=Point_Block_Mass.Footprint_Shape.footprintShapes)
+attr Shape = Point_Block_Masses.Footprint_Shape.label_shape_rectangle
 
 @Order(25)
 @Range(min=0, max=100, restricted=false)
@@ -63,4 +63,4 @@ attr Footprint_SizeZ = 20
 
 @StartRule
 start Rule --> 
-	Slab_Footprint.start
+	Slab_Mass.start

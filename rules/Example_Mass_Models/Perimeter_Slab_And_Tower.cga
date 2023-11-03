@@ -36,29 +36,29 @@ import Footprints : "Footprint/Perimeter_Slab_And_Tower_Footprints.cga" (
 
 import Tower_Mass : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> TowerGroundFloorMass,
-	LowerTierFloorMass --> TowerLowerTierFLoorMass,
-	UpperTierFloorMass --> TowerUpperTierFloorMass,
+	RegularFloorMass --> TowerLowerTierFLoorMass,
+	SecondTierFloorMass --> TowerUpperTierFloorMass,
 	N_Floors = Tower_N_Floors
 )
 
 import Slab_Mass : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> SlabGroundFloorMass,
-	LowerTierFloorMass --> SlabLowerTierFLoorMass,
-	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	RegularFloorMass --> SlabLowerTierFLoorMass,
+	SecondTierFloorMass --> SlabUpperTierFloorMass,
 	N_Floors = Slab_N_Floors
 )
 
 import Tower2_Mass : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Tower2GroundFloorMass,
-	LowerTierFloorMass --> Tower2LowerTierFLoorMass,
-	UpperTierFloorMass --> Tower2UpperTierFloorMass,
+	RegularFloorMass --> Tower2LowerTierFLoorMass,
+	SecondTierFloorMass --> Tower2UpperTierFloorMass,
 	N_Floors = Tower_N_Floors
 )
 
 import Slab2_Mass : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Slab2GroundFloorMass,
-	LowerTierFloorMass --> Slab2LowerTierFLoorMass,
-	UpperTierFloorMass --> Slab2UpperTierFloorMass,
+	RegularFloorMass --> Slab2LowerTierFLoorMass,
+	SecondTierFloorMass --> Slab2UpperTierFloorMass,
 	N_Floors = Slab_N_Floors
 )
 

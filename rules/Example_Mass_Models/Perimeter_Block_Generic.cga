@@ -1,48 +1,48 @@
 extension Surroundings --> NIL
 
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFloorMass --> LowerTierFloorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass
 
 extension Block1_GroundFloorMass --> GroundFloorMass.
-extension Block1_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block1_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block1_LowerTierFloorMass --> RegularFloorMass.
+extension Block1_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block1_TopFloorMass --> TopFloorMass.
 
 extension Block2_GroundFloorMass --> GroundFloorMass.
-extension Block2_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block2_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block2_LowerTierFloorMass --> RegularFloorMass.
+extension Block2_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block2_TopFloorMass --> TopFloorMass.
 
 extension Block3_GroundFloorMass --> GroundFloorMass.
-extension Block3_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block3_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block3_LowerTierFloorMass --> RegularFloorMass.
+extension Block3_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block3_TopFloorMass --> TopFloorMass.
 
 extension Block4_GroundFloorMass --> GroundFloorMass.
-extension Block4_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block4_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block4_LowerTierFloorMass --> RegularFloorMass.
+extension Block4_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block4_TopFloorMass --> TopFloorMass.
 
 extension Block5_GroundFloorMass --> GroundFloorMass.
-extension Block5_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block5_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block5_LowerTierFloorMass --> RegularFloorMass.
+extension Block5_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block5_TopFloorMass --> TopFloorMass.
 
 extension Block6_GroundFloorMass --> GroundFloorMass.
-extension Block6_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block6_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block6_LowerTierFloorMass --> RegularFloorMass.
+extension Block6_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block6_TopFloorMass --> TopFloorMass.
 
 extension Block7_GroundFloorMass --> GroundFloorMass.
-extension Block7_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block7_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block7_LowerTierFloorMass --> RegularFloorMass.
+extension Block7_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block7_TopFloorMass --> TopFloorMass.
 
 extension Block8_GroundFloorMass --> GroundFloorMass.
-extension Block8_LowerTierFloorMass --> LowerTierFloorMass.
-extension Block8_UpperTierFloorMass --> UpperTierFloorMass.
+extension Block8_LowerTierFloorMass --> RegularFloorMass.
+extension Block8_UpperTierFloorMass --> SecondTierFloorMass.
 extension Block8_TopFloorMass --> TopFloorMass.
 
 import Perimeter_Footprints : "Footprint/Perimeter_Footprints_Generic.cga" (
@@ -59,64 +59,64 @@ import Perimeter_Footprints : "Footprint/Perimeter_Footprints_Generic.cga" (
 
 import Two_Tier1 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block1_GroundFloorMass,
-	LowerTierFloorMass --> Block1_LowerTierFloorMass,
-	UpperTierFloorMass --> Block1_UpperTierFloorMass,
+	RegularFloorMass --> Block1_LowerTierFloorMass,
+	SecondTierFloorMass --> Block1_UpperTierFloorMass,
 	TopFloorMass --> Block1_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier2 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block2_GroundFloorMass,
-	LowerTierFloorMass --> Block2_LowerTierFloorMass,
-	UpperTierFloorMass --> Block2_UpperTierFloorMass,
+	RegularFloorMass --> Block2_LowerTierFloorMass,
+	SecondTierFloorMass --> Block2_UpperTierFloorMass,
 	TopFloorMass --> Block2_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier3 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block3_GroundFloorMass,
-	LowerTierFloorMass --> Block3_LowerTierFloorMass,
-	UpperTierFloorMass --> Block3_UpperTierFloorMass,
+	RegularFloorMass --> Block3_LowerTierFloorMass,
+	SecondTierFloorMass --> Block3_UpperTierFloorMass,
 	TopFloorMass --> Block3_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier4 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block4_GroundFloorMass,
-	LowerTierFloorMass --> Block4_LowerTierFloorMass,
-	UpperTierFloorMass --> Block4_UpperTierFloorMass,
+	RegularFloorMass --> Block4_LowerTierFloorMass,
+	SecondTierFloorMass --> Block4_UpperTierFloorMass,
 	TopFloorMass --> Block4_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier5 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block5_GroundFloorMass,
-	LowerTierFloorMass --> Block5_LowerTierFloorMass,
-	UpperTierFloorMass --> Block5_UpperTierFloorMass,
+	RegularFloorMass --> Block5_LowerTierFloorMass,
+	SecondTierFloorMass --> Block5_UpperTierFloorMass,
 	TopFloorMass --> Block5_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier6 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block6_GroundFloorMass,
-	LowerTierFloorMass --> Block6_LowerTierFloorMass,
-	UpperTierFloorMass --> Block6_UpperTierFloorMass,
+	RegularFloorMass --> Block6_LowerTierFloorMass,
+	SecondTierFloorMass --> Block6_UpperTierFloorMass,
 	TopFloorMass --> Block6_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier7 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block7_GroundFloorMass,
-	LowerTierFloorMass --> Block7_LowerTierFloorMass,
-	UpperTierFloorMass --> Block7_UpperTierFloorMass,
+	RegularFloorMass --> Block7_LowerTierFloorMass,
+	SecondTierFloorMass --> Block7_UpperTierFloorMass,
 	TopFloorMass --> Block7_TopFloorMass,
 	Stepback_Enabled = false
 )
 
 import Two_Tier8 : "Mass/Two_Tier_Mass.cga" (
 	GroundFloorMass --> Block8_GroundFloorMass,
-	LowerTierFloorMass --> Block8_LowerTierFloorMass,
-	UpperTierFloorMass --> Block8_UpperTierFloorMass,
+	RegularFloorMass --> Block8_LowerTierFloorMass,
+	SecondTierFloorMass --> Block8_UpperTierFloorMass,
 	TopFloorMass --> Block8_TopFloorMass,
 	Stepback_Enabled = false
 )

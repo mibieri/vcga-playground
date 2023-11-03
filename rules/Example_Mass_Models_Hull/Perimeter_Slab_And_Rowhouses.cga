@@ -16,17 +16,17 @@ import Hulls : "Building_Hull/Perimeter_Slab_And_Rowhouses_Hulls.cga"(
 	Surroundings --> Surroundings
 )
 
-import Slab_Floors : "Floor_Split/Two_Tier_Stack.cga"(
+import Slab_Floors : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga"(
 	GroundFloorMass --> SlabGroundFloorMass,
-	LowerTierFloorMass --> SlabLowerTierFloorMass,
-	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	RegularFloorMass --> SlabLowerTierFloorMass,
+	SecondTierFloorMass --> SlabUpperTierFloorMass,
 	TopFloorMass --> SlabTopFloorMass
 )
 
-import Rowhouse_Floors : "Floor_Split/Two_Tier_Stack.cga"(
+import Rowhouse_Floors : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga"(
 	GroundFloorMass --> RowhouseGroundFloorMass,
-	LowerTierFloorMass --> RowhouseLowerTierFloorMass,
-	UpperTierFloorMass --> RowhouseUpperTierFloorMass,
+	RegularFloorMass --> RowhouseLowerTierFloorMass,
+	SecondTierFloorMass --> RowhouseUpperTierFloorMass,
 	TopFloorMass --> RowhouseTopFloorMass,
 	Stepback_Enabled = false
 )

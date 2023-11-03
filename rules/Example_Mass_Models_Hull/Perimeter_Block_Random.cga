@@ -1,12 +1,12 @@
 extension Surroundings --> NIL
 
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFloorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 
-@Group("Hulls: Block Length", 10)
+@Group("Block Length", 10)
 @Order(11)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
 attr Block_Length_Min = 30
@@ -24,7 +24,7 @@ attr Block_Length_Peak = 0.5
 attr Block_Length_Uniformness = 0.5
 
 
-@Group("Hulls: Block Gap", 20)
+@Group("Block Gap", 20)
 @Order(21)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
 attr Block_Gap_Length_Min = 0
@@ -42,7 +42,7 @@ attr Block_Gap_Length_Peak = 0.2
 attr Block_Gap_Length_Uniformness = 0.5
 
 
-@Group("Hulls: Block Width", 30)
+@Group("Block Width", 30)
 @Order(31)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
 attr Block_Width_Min = 10
@@ -60,7 +60,7 @@ attr Block_Width_Peak = 0.3
 attr Block_Width_Uniformness = 0.3
 
 
-@Group("Hulls: Block Inset", 40)
+@Group("Block Inset", 40)
 @Order(41)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
 attr Block_Inset_Min = 0
@@ -78,7 +78,7 @@ attr Block_Inset_Peak = 0.1
 attr Block_Inset_Uniformness = 0.3
 
 
-@Group("Hulls: Height", 50)
+@Group("Block Height", 50)
 @Order(51)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
 attr Block_Height_Min = 20
@@ -150,24 +150,24 @@ attr Upper_Tier_Stepback_Front_Peak = 0.5
 attr Upper_Tier_Stepback_Front_Uniformness = 0.5
 
 
-import Perimeter_Hulls : "Building_Hull/Perimeter_Hulls_Random.cga" (
+import Perimeter_Masses : "Building_Hull/Mass_Perimeter_Random.cga" (
 	Surroundings --> Surroundings,
-	Hull1 --> Random_Two_Tiers.start(1),
-	Hull2 --> Random_Two_Tiers.start(2),
-	Hull3 --> Random_Two_Tiers.start(3),
-	Hull4 --> Random_Two_Tiers.start(4),
-	Hull5 --> Random_Two_Tiers.start(5),
-	Hull6 --> Random_Two_Tiers.start(6),
-	Hull7 --> Random_Two_Tiers.start(7),
-	Hull8 --> Random_Two_Tiers.start(8)
+	Mass1 --> Random_Two_Tiers.start(1),
+	Mass2 --> Random_Two_Tiers.start(2),
+	Mass3 --> Random_Two_Tiers.start(3),
+	Mass4 --> Random_Two_Tiers.start(4),
+	Mass5 --> Random_Two_Tiers.start(5),
+	Mass6 --> Random_Two_Tiers.start(6),
+	Mass7 --> Random_Two_Tiers.start(7),
+	Mass8 --> Random_Two_Tiers.start(8)
 )
 
 import Random_Two_Tiers : "Floor_Split/Two_Tier_Stack_Random.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass
 )
 
 start Start -->
-	Perimeter_Hulls.start
+	Perimeter_Masses.start

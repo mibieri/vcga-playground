@@ -1,4 +1,4 @@
-extension Hull --> Hull.
+extension Mass --> Mass. 
 extension Surroundings --> NIL
 
 
@@ -60,10 +60,10 @@ start Start -->
 	
 FootprintBoundingBox -->
 	case Shape == label_shape_rectangle:
-		Extrude_Hull
+		Extrude_Mass
 	case Shape == label_shape_ellipse:
 		primitiveDisk(64)
-		Extrude_Hull
+		Extrude_Mass
 	case Shape == label_shape_cross:
 		CrossFootprint
 	case Shape == label_shape_amoeba:
@@ -77,7 +77,7 @@ FootprintBoundingBox -->
 CrossFootprint -->
 	split(x, noAdjust){
 		~1: CrossFootprint_Rows |
-		Slab_Thickness: Extrude_Hull |
+		Slab_Thickness: Extrude_Mass |
 		~1: CrossFootprint_Rows
 	}
 
@@ -85,7 +85,7 @@ CrossFootprint -->
 CrossFootprint_Rows -->
 	split(z, noAdjust){
 		~1: Surroundings |
-		Slab_Thickness: Extrude_Hull |
+		Slab_Thickness: Extrude_Mass |
 		~1: Surroundings
 	}
 	
@@ -93,9 +93,9 @@ CrossFootprint_Rows -->
 AssetFootprint(assetFileName) -->
 	i(assetFileName)
 	cleanupGeometry(all, 0.1)
-	Extrude_Hull
+	Extrude_Mass
 
 
-Extrude_Hull -->
+Extrude_Mass -->
 	extrude(Height)
-	Hull
+	Mass

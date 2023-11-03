@@ -23,16 +23,16 @@ import Rowhouse_Setback : "Zoning/Setback.cga"(
 
 import Slab : "Mass/Two_Tier_Mass.cga"(
 	GroundFloorMass --> SlabGroundFloorMass,
-	LowerTierFloorMass --> SlabLowerTierFloorMass,
-	UpperTierFloorMass --> SlabUpperTierFloorMass,
+	RegularFloorMass --> SlabLowerTierFloorMass,
+	SecondTierFloorMass --> SlabUpperTierFloorMass,
 	TopFloorMass --> SlabTopFloorMass,
 	N_Floors = Slab_N_Floors
 )
 
 import Rowhouses : "Mass/Two_Tier_Mass.cga"(
 	GroundFloorMass --> RowhouseGroundFloorMass,
-	LowerTierFloorMass --> RowhouseLowerTierFloorMass,
-	UpperTierFloorMass --> RowhouseUpperTierFloorMass,
+	RegularFloorMass --> RowhouseLowerTierFloorMass,
+	SecondTierFloorMass --> RowhouseUpperTierFloorMass,
 	TopFloorMass --> RowhouseTopFloorMass,
 	N_Floors = Rowhouses_N_Floors,
 	Stepback_Enabled = false

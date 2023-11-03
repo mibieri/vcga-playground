@@ -1,7 +1,7 @@
 extension Surroundings --> NIL
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 @Order(0)
@@ -165,8 +165,8 @@ import Perimeter_Footprints : "Footprint/Perimeter_Footprints_Random.cga" (
 
 import Random_Two_Tiers : "Mass/Two_Tier_Mass_Random.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFLoorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass
 )
 

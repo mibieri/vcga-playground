@@ -1,6 +1,6 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFloorMass --> LowerTierFloorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 import Building_Hull : "Building_Hull/Single_Hull.cga" (
@@ -8,10 +8,10 @@ import Building_Hull : "Building_Hull/Single_Hull.cga" (
 	Hull --> Two_Tier.start
 )
 
-import Two_Tier: "Floor_Split/Two_Tier_Stack.cga" (
+import Two_Tier: "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass
 )
 

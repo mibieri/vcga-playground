@@ -1,4 +1,4 @@
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension GroundFloorMass --> GroundFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
@@ -125,5 +125,5 @@ Floor(absoluteTwist, floorIndex) -->
 	[
 		case floorIndex == 0: GroundFloorMass
 		case floorIndex == N_Floors - 1: TopFloorMass
-		else: FloorMass
+		else: RegularFloorMass
 	]

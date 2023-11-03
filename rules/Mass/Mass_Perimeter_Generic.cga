@@ -1,0 +1,325 @@
+extension Surroundings --> NIL
+extension Mass1 --> Mass1.
+extension Mass2 --> Mass2.
+extension Mass3 --> Mass3.
+extension Mass4 --> Mass4.
+extension Mass5 --> Mass5.
+extension Mass6 --> Mass6.
+extension Mass7 --> Mass7.
+extension Mass8 --> Mass8.
+
+@Hidden
+import Perimeter_Labels : "Utilities/Perimeter_Labels.cga"
+@Hidden
+import Perimeter_Edge_Selection : "Utilities/Perimeter_Edge_Selection.cga"
+
+@Group("General", 0)
+@Order(0)
+@Enum(valuesAttr=Perimeter_Labels.edge_labels)
+attr Edges = Perimeter_Labels.edge_labels[0]
+
+@Order(1)
+@Enum(valuesAttr=Perimeter_Labels.pattern_labels)
+attr Fill_Pattern = Perimeter_Labels.pattern_labels[0]
+
+@Order(2)
+@Percent
+attr Start_Position = 0.0
+
+@Order(3)
+@Percent
+attr Pattern_Length = 1.0
+
+
+@Group("Mass 1", 100)
+@Order(100)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass1_Length = 0
+
+@Order(110)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass1_GapLength = 0
+
+@Order(120)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass1_Width = 10
+
+@Order(130)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass1_Inset = 0
+
+@Order(140)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass1_Height = 0
+
+
+@Group("Mass 2", 200)
+@Order(200)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass2_Length = 0
+
+@Order(210)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass2_GapLength = 0
+
+@Order(220)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass2_Width = 10
+
+@Order(230)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass2_Inset = 0
+
+@Order(240)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass2_Height = 0
+
+
+@Group("Mass 3", 300)
+@Order(300)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass3_Length = 0
+
+@Order(310)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass3_GapLength = 0
+
+@Order(320)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass3_Width = 10
+
+@Order(330)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass3_Inset = 0
+
+@Order(340)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass3_Height = 0
+
+
+@Group("Mass 4", 400)
+@Order(400)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass4_Length = 0
+
+@Order(410)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass4_GapLength = 0
+
+@Order(420)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass4_Width = 10
+
+@Order(430)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass4_Inset = 0
+
+@Order(440)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass4_Height = 0
+
+
+@Group("Mass 5", 500)
+@Order(500)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass5_Length = 0
+
+@Order(510)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass5_GapLength = 0
+
+@Order(520)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass5_Width = 10
+
+@Order(530)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass5_Inset = 0
+
+@Order(540)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass5_Height = 0
+
+
+@Group("Mass 6", 600)
+@Order(600)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass6_Length = 0
+
+@Order(610)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass6_GapLength = 0
+
+@Order(620)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass6_Width = 10
+
+@Order(630)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass6_Inset = 0
+
+@Order(640)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass6_Height = 0
+
+
+@Group("Mass 7", 700)
+@Order(700)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass7_Length = 0
+
+@Order(710)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass7_GapLength = 0
+
+@Order(720)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass7_Width = 10
+
+@Order(730)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass7_Inset = 0
+
+@Order(740)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass7_Height = 0
+
+
+@Group("Mass 8", 800)
+@Order(800)
+@Range(min=0, max=200, stepsize=0.1, restricted=false)
+attr Mass8_Length = 0
+
+@Order(810)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass8_GapLength = 0
+
+@Order(820)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass8_Width = 10
+
+@Order(830)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass8_Inset = 0
+
+@Order(840)
+@Range(min=0, max=100, stepsize=0.1, restricted=false)
+attr Mass8_Height = 0
+
+
+const widths = [
+	Mass1_Width, Mass2_Width, Mass3_Width, Mass4_Width,
+	Mass5_Width, Mass6_Width, Mass7_Width, Mass8_Width
+]
+
+const insets = [
+	Mass1_Inset, Mass2_Inset, Mass3_Inset, Mass4_Inset,
+	Mass5_Inset, Mass6_Inset, Mass7_Inset, Mass8_Inset
+]
+
+const maxSetback with(
+	setbacks := insets .+ widths
+) = setbacks[sortIndices(setbacks)[size(setbacks) - 1]]
+
+
+start Start -->
+	splitAndSetbackPerimeter(0, 0, Perimeter_Edge_Selection.getEdgeMask(Edges)){
+		'Start_Position: 0 : Surroundings |
+		'Pattern_Length: maxSetback : Pattern
+	}{remainder: Surroundings}
+	
+f() = print(comp(fe){all: str(geometry.tags("setback"))})
+
+Pattern with(
+	setbackFrontMask := Perimeter_Edge_Selection.getSetbackFrontMask()
+	firstFrontEdge := print(Perimeter_Edge_Selection.getFirstSetbackFrontEdge())
+)-->
+	case Fill_Pattern == Perimeter_Labels.pattern_absolute:
+		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
+			Mass1_Length - Mass1_GapLength : Mass1_Width + Mass1_Inset : Inset(1) |
+			Mass1_GapLength : 0 : Surroundings |
+			Mass2_Length - Mass2_GapLength : Mass2_Width + Mass2_Inset : Inset(2) |
+			Mass2_GapLength : 0 : Surroundings |
+			Mass3_Length - Mass3_GapLength : Mass3_Width + Mass3_Inset : Inset(3) |
+			Mass3_GapLength : 0 : Surroundings |
+			Mass4_Length - Mass4_GapLength : Mass4_Width + Mass4_Inset : Inset(4) |
+			Mass4_GapLength : 0 : Surroundings |
+			Mass5_Length - Mass5_GapLength : Mass5_Width + Mass5_Inset : Inset(5) |
+			Mass5_GapLength : 0 : Surroundings |
+			Mass6_Length - Mass6_GapLength : Mass6_Width + Mass6_Inset : Inset(6) |
+			Mass6_GapLength : 0 : Surroundings |
+			Mass7_Length - Mass7_GapLength : Mass7_Width + Mass7_Inset : Inset(7) |
+			Mass7_GapLength : 0 : Surroundings |
+			Mass8_Length - Mass8_GapLength : Mass8_Width + Mass8_Inset : Inset(8) |
+			Mass8_GapLength : 0 : Surroundings
+		}{remainder: Surroundings}
+	case Fill_Pattern == Perimeter_Labels.pattern_absoluteRepeat:
+		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
+			Mass1_Length - Mass1_GapLength : Mass1_Width + Mass1_Inset : Inset(1) |
+			Mass1_GapLength : 0 : Surroundings |
+			Mass2_Length - Mass2_GapLength : Mass2_Width + Mass2_Inset : Inset(2) |
+			Mass2_GapLength : 0 : Surroundings |
+			Mass3_Length - Mass3_GapLength : Mass3_Width + Mass3_Inset : Inset(3) |
+			Mass3_GapLength : 0 : Surroundings |
+			Mass4_Length - Mass4_GapLength : Mass4_Width + Mass4_Inset : Inset(4) |
+			Mass4_GapLength : 0 : Surroundings |
+			Mass5_Length - Mass5_GapLength : Mass5_Width + Mass5_Inset : Inset(5) |
+			Mass5_GapLength : 0 : Surroundings |
+			Mass6_Length - Mass6_GapLength : Mass6_Width + Mass6_Inset : Inset(6) |
+			Mass6_GapLength : 0 : Surroundings |
+			Mass7_Length - Mass7_GapLength : Mass7_Width + Mass7_Inset : Inset(7) |
+			Mass7_GapLength : 0 : Surroundings |
+			Mass8_Length - Mass8_GapLength : Mass8_Width + Mass8_Inset : Inset(8) |
+			Mass8_GapLength : 0 : Surroundings
+		}*{remainder: Surroundings}
+	case Fill_Pattern == Perimeter_Labels.pattern_relative:
+		splitAndSetbackPerimeter(0, 0, setbackFrontMask){
+			~Mass1_Length - Mass1_GapLength : Mass1_Width + Mass1_Inset : Inset(1) |
+			~Mass1_GapLength : 0 : Surroundings |
+			~Mass2_Length - Mass2_GapLength : Mass2_Width + Mass2_Inset : Inset(2) |
+			~Mass2_GapLength : 0 : Surroundings |
+			~Mass3_Length - Mass3_GapLength : Mass3_Width + Mass3_Inset : Inset(3) |
+			~Mass3_GapLength : 0 : Surroundings |
+			~Mass4_Length - Mass4_GapLength : Mass4_Width + Mass4_Inset : Inset(4) |
+			~Mass4_GapLength : 0 : Surroundings |
+			~Mass5_Length - Mass5_GapLength : Mass5_Width + Mass5_Inset : Inset(5) |
+			~Mass5_GapLength : 0 : Surroundings |
+			~Mass6_Length - Mass6_GapLength : Mass6_Width + Mass6_Inset : Inset(6) |
+			~Mass6_GapLength : 0 : Surroundings |
+			~Mass7_Length - Mass7_GapLength : Mass7_Width + Mass7_Inset : Inset(7) |
+			~Mass7_GapLength : 0 : Surroundings |
+			~Mass8_Length - Mass8_GapLength : Mass8_Width + Mass8_Inset : Inset(8) |
+			~Mass8_GapLength : 0 : Surroundings
+		}{remainder: NIL}
+	else:
+		NIL
+
+Inset(elementIndex) with(
+	inset := insets[elementIndex - 1]
+) -->
+	case inset == 0:
+		Mass(elementIndex)
+	else:
+		#edge_visualisation.ShowAutoTags
+		setback(comp(fe){isTagged("setback.front"): inset}){
+			all: NIL | 
+			remainder: #edge_visualisation.ShowAutoTags
+				setback(comp(fe){isTagged("setback.back"): 1000}){
+					all: Mass(elementIndex) | remainder: Surroundings
+			}
+		}
+
+Mass(elementIndex) -->
+	[
+		case elementIndex == 1: extrude(Mass1_Height) Mass1
+		case elementIndex == 2: extrude(Mass2_Height) Mass2
+		case elementIndex == 3: extrude(Mass3_Height) Mass3
+		case elementIndex == 4: extrude(Mass4_Height) Mass4
+		case elementIndex == 5: extrude(Mass5_Height) Mass5
+		case elementIndex == 6: extrude(Mass6_Height) Mass6
+		case elementIndex == 7: extrude(Mass7_Height) Mass7
+		case elementIndex == 8: extrude(Mass8_Height) Mass8
+	else: NIL
+	]
+
+	

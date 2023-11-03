@@ -1,5 +1,5 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 @Order(10)
@@ -41,7 +41,7 @@ ExtrudeAndSplit(hullHeight) with(
 		split(y){
 			Ground_Floor_Height: GroundFloorMass |
 			{
-				Floor_Height: FloorMass
+				Floor_Height: RegularFloorMass
 			}* |
 			Floor_Height: TopFloorMass
 		}

@@ -1,6 +1,6 @@
 extension Surroundings --> Surroundings
 extension GroundFloorMass --> GroundFloorMass.
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension TopFloorMass --> TopFloorMass
 
 
@@ -16,8 +16,8 @@ import Rowhouse_Hulls : "Building_Hull/Rowhouse_Hulls_Generic.cga" (
 )
 
 
-import Extrude : "Floor_Split/Simple_Floor_Stack.cga" (
-	FloorMass --> FloorMass,
+import Extrude : "Floor_Splitter/Floor_Splitter_Extruded.cga" (
+	RegularFloorMass --> RegularFloorMass,
 	GroundFloorMass --> GroundFloorMass,
 	TopFloorMass --> TopFloorMass
 )

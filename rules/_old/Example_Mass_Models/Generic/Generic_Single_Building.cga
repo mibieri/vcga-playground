@@ -1,6 +1,6 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
 import Simple_Footprint : "Footprint/Quick/Single_Footprint.cga" (
@@ -10,8 +10,8 @@ import Simple_Footprint : "Footprint/Quick/Single_Footprint.cga" (
 
 import Two_Tier: "Two_Tier_Mass.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFLoorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass	
 )
 

@@ -1,126 +1,97 @@
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFloorMass --> LowerTierFloorMass.
-extension UpperTierFloorMass --> UpperTierFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension SecondTierFloorMass --> SecondTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
-import Random:"Imports/Random.cga"
+import Random : "Random.cga"
 
-import Two_Tier1 : "Two_Tier_Mass.cga" (
+import Two_Tiers_1 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier2 : "Two_Tier_Mass.cga" (
+import Two_Tiers_2 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier3 : "Two_Tier_Mass.cga" (
+import Two_Tiers_3 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier4 : "Two_Tier_Mass.cga" (
+import Two_Tiers_4 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier5 : "Two_Tier_Mass.cga" (
+import Two_Tiers_5 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier6 : "Two_Tier_Mass.cga" (
+import Two_Tiers_6 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier7 : "Two_Tier_Mass.cga" (
+import Two_Tiers_7 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
 
-import Two_Tier8 : "Two_Tier_Mass.cga" (
+import Two_Tiers_8 : "Floor_Splitter/Floor_Splitter_Two_Tiers.cga" (
 	GroundFloorMass --> GroundFloorMass,
-	LowerTierFloorMass --> LowerTierFloorMass,
-	UpperTierFloorMass --> UpperTierFloorMass,
+	RegularFloorMass --> RegularFloorMass,
+	SecondTierFloorMass --> SecondTierFloorMass,
 	TopFloorMass --> TopFloorMass,
-	N_Floors = getNFloors(),
 	Upper_Tier_N_Floors = getUpperTierNFloors(),
 	Stepback_All = getUpperTierStepback(),
 	Stepback_Front = getUpperTierStepbackFront()
 )
-
-@Order(0)
-attr Show_Handles = true
-
-@Group("Number of Floors", 10)
-@Order(11)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr N_Floors_Min = 3
-
-@Order(12)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr N_Floors_Max = 20
-
-@Order(13)
-@Percent
-attr N_Floors_Peak = 0.3
-
-@Order(14)
-@Percent
-attr N_Floors_Uniformness = 0.5
-
 
 @Group("Upper Tier Number of Floors", 20)
 @Order(21)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=100, stepsize=1, restricted=false)
 attr Upper_Tier_N_Floors_Min = 0
 
 @Order(22)
-@Range(min=0, max=100, stepsize=0.1, restricted=false)
+@Range(min=0, max=30, stepsize=1, restricted=false)
 attr Upper_Tier_N_Floors_Max = 2
 
 @Order(23)
@@ -167,9 +138,7 @@ attr Upper_Tier_Stepback_Front_Peak = 0.5
 @Percent
 attr Upper_Tier_Stepback_Front_Uniformness = 0.5
 
-
-getNFloors() = Random.getPseudoGauss(N_Floors_Min, N_Floors_Max, N_Floors_Peak, N_Floors_Uniformness)
-getUpperTierNFloors() = Random.getPseudoGauss(Upper_Tier_N_Floors_Min, Upper_Tier_N_Floors_Max, Upper_Tier_N_Floors_Peak, Upper_Tier_N_Floors_Uniformness)
+getUpperTierNFloors() = floor(0.5 + Random.getPseudoGauss(Upper_Tier_N_Floors_Min, Upper_Tier_N_Floors_Max, Upper_Tier_N_Floors_Peak, Upper_Tier_N_Floors_Uniformness))
 getUpperTierStepback() = Random.getPseudoGauss(Upper_Tier_Stepback_Min, Upper_Tier_Stepback_Max, Upper_Tier_Stepback_Peak, Upper_Tier_Stepback_Uniformness)
 getUpperTierStepbackFront() = Random.getPseudoGauss(Upper_Tier_Stepback_Front_Min, Upper_Tier_Stepback_Front_Max, Upper_Tier_Stepback_Front_Peak, Upper_Tier_Stepback_Front_Uniformness)
 
@@ -177,12 +146,12 @@ start Start -->
 	Start(0)
 
 start Start(parcelIndex) -->
-	case parcelIndex == 1: Two_Tier1.start
-	case parcelIndex == 2: Two_Tier2.start
-	case parcelIndex == 3: Two_Tier3.start
-	case parcelIndex == 4: Two_Tier4.start
-	case parcelIndex == 5: Two_Tier5.start
-	case parcelIndex == 6: Two_Tier6.start
-	case parcelIndex == 7: Two_Tier7.start
-	case parcelIndex == 8: Two_Tier8.start
+	case parcelIndex == 1: Two_Tiers_1.start
+	case parcelIndex == 2: Two_Tiers_2.start
+	case parcelIndex == 3: Two_Tiers_3.start
+	case parcelIndex == 4: Two_Tiers_4.start
+	case parcelIndex == 5: Two_Tiers_5.start
+	case parcelIndex == 6: Two_Tiers_6.start
+	case parcelIndex == 7: Two_Tiers_7.start
+	case parcelIndex == 8: Two_Tiers_8.start
 	else: NIL

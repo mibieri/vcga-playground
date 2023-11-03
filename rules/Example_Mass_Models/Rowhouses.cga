@@ -1,6 +1,6 @@
 extension Surroundings --> Surroundings
 extension GroundFloorMass --> GroundFloorMass.
-extension FloorMass --> FloorMass.
+extension RegularFloorMass --> RegularFloorMass.
 extension TopFloorMass --> TopFloorMass
 
 
@@ -17,7 +17,7 @@ import Rowhouse_Footprints : "Footprint/Rowhouse_Footprints_Generic.cga" (
 
 
 import Extrude : "Mass/Extruded_Mass.cga" (
-	FloorMass --> FloorMass,
+	RegularFloorMass --> RegularFloorMass,
 	GroundFloorMass --> GroundFloorMass,
 	TopFloorMass --> TopFloorMass,
 	N_Floors = N_Floors

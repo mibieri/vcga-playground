@@ -1,4 +1,4 @@
-extension Hull --> Hull.
+extension Mass --> Mass.
 extension Surroundings --> NIL
 
 @Order(1)
@@ -89,13 +89,13 @@ SplitRowIntoGroups -->
 Group -->
 	case isRectangular():
 		split(x){
-			~Footprint_Size_X: Extrude_Hull
+			~Footprint_Size_X: Extrude_Mass
 		}*
 	else:
 		Surroundings
 		
 
-Extrude_Hull -->
+Extrude_Mass -->
 	extrude(Height)
-	Hull
+	Mass
 		
