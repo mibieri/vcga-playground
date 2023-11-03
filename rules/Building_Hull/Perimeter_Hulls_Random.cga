@@ -1,12 +1,12 @@
 extension Surroundings --> NIL
-extension Footprint1 --> Footprint1.
-extension Footprint2 --> Footprint2.
-extension Footprint3 --> Footprint3.
-extension Footprint4 --> Footprint4.
-extension Footprint5 --> Footprint5.
-extension Footprint6 --> Footprint6.
-extension Footprint7 --> Footprint7.
-extension Footprint8 --> Footprint8.
+extension Hull1 --> Hull1.
+extension Hull2 --> Hull2.
+extension Hull3 --> Hull3.
+extension Hull4 --> Hull4.
+extension Hull5 --> Hull5.
+extension Hull6 --> Hull6.
+extension Hull7 --> Hull7.
+extension Hull8 --> Hull8.
 
 @Group("Block Length", 10)
 @Order(11)
@@ -100,52 +100,61 @@ attr Block_Height_Uniformness = 0.3
 
 import Random:"Imports/Random.cga"
 
-import Perimeter_Footprints : "Footprint/Perimeter_Footprints_Generic.cga" (
+import Perimeter_Hulls : "Building_Hull/Perimeter_Hulls_Generic.cga" (
 	Surroundings --> Surroundings,
-	Footprint1 --> Footprint1,
-	Footprint2 --> Footprint2,
-	Footprint3 --> Footprint3,
-	Footprint4 --> Footprint4,
-	Footprint5 --> Footprint5,
-	Footprint6 --> Footprint6,
-	Footprint7 --> Footprint7,
-	Footprint8 --> Footprint8,
+	Hull1 --> Hull1,
+	Hull2 --> Hull2,
+	Hull3 --> Hull3,
+	Hull4 --> Hull4,
+	Hull5 --> Hull5,
+	Hull6 --> Hull6,
+	Hull7 --> Hull7,
+	Hull8 --> Hull8,
 	
-	Footprint1_Length = getBlockLength(),
-	Footprint2_Length = getBlockLength(),
-	Footprint3_Length = getBlockLength(),
-	Footprint4_Length = getBlockLength(),
-	Footprint5_Length = getBlockLength(),
-	Footprint6_Length = getBlockLength(),
-	Footprint7_Length = getBlockLength(),
-	Footprint8_Length = getBlockLength(),
+	Hull1_Length = getBlockLength(),
+	Hull2_Length = getBlockLength(),
+	Hull3_Length = getBlockLength(),
+	Hull4_Length = getBlockLength(),
+	Hull5_Length = getBlockLength(),
+	Hull6_Length = getBlockLength(),
+	Hull7_Length = getBlockLength(),
+	Hull8_Length = getBlockLength(),
 	
-	Footprint1_GapLength = getBlockGapLength(),
-	Footprint2_GapLength = getBlockGapLength(),
-	Footprint3_GapLength = getBlockGapLength(),
-	Footprint4_GapLength = getBlockGapLength(),
-	Footprint5_GapLength = getBlockGapLength(),
-	Footprint6_GapLength = getBlockGapLength(),
-	Footprint7_GapLength = getBlockGapLength(),
-	Footprint8_GapLength = getBlockGapLength(),	
+	Hull1_GapLength = getBlockGapLength(),
+	Hull2_GapLength = getBlockGapLength(),
+	Hull3_GapLength = getBlockGapLength(),
+	Hull4_GapLength = getBlockGapLength(),
+	Hull5_GapLength = getBlockGapLength(),
+	Hull6_GapLength = getBlockGapLength(),
+	Hull7_GapLength = getBlockGapLength(),
+	Hull8_GapLength = getBlockGapLength(),	
 	
-	Footprint1_Width = getBlockWidth(),
-	Footprint2_Width = getBlockWidth(),
-	Footprint3_Width = getBlockWidth(),
-	Footprint4_Width = getBlockWidth(),
-	Footprint5_Width = getBlockWidth(),
-	Footprint6_Width = getBlockWidth(),
-	Footprint7_Width = getBlockWidth(),
-	Footprint8_Width = getBlockWidth(),
+	Hull1_Width = getBlockWidth(),
+	Hull2_Width = getBlockWidth(),
+	Hull3_Width = getBlockWidth(),
+	Hull4_Width = getBlockWidth(),
+	Hull5_Width = getBlockWidth(),
+	Hull6_Width = getBlockWidth(),
+	Hull7_Width = getBlockWidth(),
+	Hull8_Width = getBlockWidth(),
 	
-	Footprint1_Inset = getBlockInset(),
-	Footprint2_Inset = getBlockInset(),
-	Footprint3_Inset = getBlockInset(),
-	Footprint4_Inset = getBlockInset(),
-	Footprint5_Inset = getBlockInset(),
-	Footprint6_Inset = getBlockInset(),
-	Footprint7_Inset = getBlockInset(),
-	Footprint8_Inset = getBlockInset()
+	Hull1_Inset = getBlockInset(),
+	Hull2_Inset = getBlockInset(),
+	Hull3_Inset = getBlockInset(),
+	Hull4_Inset = getBlockInset(),
+	Hull5_Inset = getBlockInset(),
+	Hull6_Inset = getBlockInset(),
+	Hull7_Inset = getBlockInset(),
+	Hull8_Inset = getBlockInset(),
+	
+	Hull1_Height = getBlockHeight(),
+	Hull2_Height = getBlockHeight(),
+	Hull3_Height = getBlockHeight(),
+	Hull4_Height = getBlockHeight(),
+	Hull5_Height = getBlockHeight(),
+	Hull6_Height = getBlockHeight(),
+	Hull7_Height = getBlockHeight(),
+	Hull8_Height = getBlockHeight()	
 )
 
 
@@ -153,6 +162,8 @@ getBlockLength() = Random.getPseudoGauss(Block_Length_Min, Block_Length_Max, Blo
 getBlockGapLength() = Random.getPseudoGauss(Block_Gap_Length_Min, Block_Gap_Length_Max, Block_Gap_Length_Peak, Block_Gap_Length_Uniformness)
 getBlockWidth() = Random.getPseudoGauss(Block_Width_Min, Block_Width_Max, Block_Width_Peak, Block_Width_Uniformness)
 getBlockInset() = Random.getPseudoGauss(Block_Inset_Min, Block_Inset_Max, Block_Inset_Peak, Block_Inset_Uniformness)
+getBlockHeight() = Random.getPseudoGauss(Block_Height_Min, Block_Height_Max, Block_Height_Peak, Block_Height_Uniformness)
+
 
 start Start -->
-	Perimeter_Footprints.start
+	Perimeter_Hulls.start

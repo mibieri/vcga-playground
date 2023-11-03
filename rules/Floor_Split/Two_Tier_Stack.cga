@@ -17,9 +17,6 @@ import _Upper_Tier_Setback : "Zoning/Setback_Hidden.cga" (
 	Setback_Rear = Stepback_Rear
 )
 
-@Order(0)
-attr Show_Handles = false
-
 @Group("Lower Tier", 10)
 @Order(10)
 @Range(min=1, max=10)
@@ -33,7 +30,7 @@ attr Floor_Height = 3.0
 @Group("Upper Tier", 20)
 @Order(20)
 @Handle(shape=Handle_N_Floors_Upper., axis=y, reference=center, slip=inside)
-@Range(min=1, max=40, stepsize=1)
+@Range(min=0, max=40, stepsize=1)
 attr Upper_Tier_N_Floors = 1
 
 @Order(21)
@@ -74,19 +71,29 @@ attr Stepback_Rear = 0.0
 @Hidden
 attr _upperTierHeight = 0
 
+const epsilon = 0.01
 
 start Start with(
 	hullHeight := scope.sy
-	upperTierHeight := Upper_Tier_N_Floors * Upper_Tier_Floor_Height
-	nRegularFloors := 1 + floor((hullHeight - Ground_Floor_Height - upperTierHeight) / Floor_Height)
-	lowerTierHeight := Ground_Floor_Height + nRegularFloors * Floor_Height
+	upperTierHeight := min(
+		Upper_Tier_N_Floors * Upper_Tier_Floor_Height, 
+		Upper_Tier_Floor_Height * floor(epsilon + hullHeight / Upper_Tier_Floor_Height)
+	)
+	heightAvailableForRegularFloors := epsilon + hullHeight - Ground_Floor_Height - upperTierHeight
+	nRegularFloors := 
+		case heightAvailableForRegularFloors < 0:
+			0
+		else:
+			floor(heightAvailableForRegularFloors / Floor_Height)
+	nGroundFloors := case heightAvailableForRegularFloors > 0: 1 else: 0
+	lowerTierHeight := nGroundFloors * Ground_Floor_Height + nRegularFloors * Floor_Height
 )-->
 	comp(f){
 		bottom: 
-			LowerTier(lowerTierHeight)
+			[case lowerTierHeight > 0: LowerTier(lowerTierHeight) else: NIL]
 			t(0, 0, -lowerTierHeight)
 			set(_upperTierHeight, upperTierHeight)
-			_Upper_Tier_Setback.start
+			[case upperTierHeight > 0: _Upper_Tier_Setback.start else: NIL]
 	}
 
 
