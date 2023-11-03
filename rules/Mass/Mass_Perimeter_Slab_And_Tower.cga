@@ -53,14 +53,14 @@ start Start -->
 	splitAndSetbackPerimeter('Start_Position){
 		~(case Reverse: getTowerLength() else: 0): Tower_Width: Extrude_Tower_Mass |
 		~(case Reverse: Gap_Length else: 0): 0: NIL |
-		~Slab_Length : Slab_Width : Extrude_Slab_Mass |
+		~(Slab_Length - Gap_Length) : Slab_Width : Extrude_Slab_Mass |
 		~(case !Reverse: Gap_Length else: 0): 0: NIL |
 		~(case !Reverse: getTowerLength() else: 0): Tower_Width: Extrude_Tower_Mass |
 		~(1 - Slab_Length - Tower_Length): 0 : NIL |
 		
 		~forDuplicate(case Reverse: getTowerLength() else: 0): Tower_Width: Extrude_Tower_Mass |
 		~forDuplicate(case Reverse: Gap_Length else: 0): 0: NIL |
-		~forDuplicate(Slab_Length) : Slab_Width : Extrude_Slab_Mass |
+		~forDuplicate(Slab_Length - Gap_Length) : Slab_Width : Extrude_Slab_Mass |
 		~forDuplicate(case !Reverse: Gap_Length else: 0): 0: NIL |
 		~forDuplicate(case !Reverse: getTowerLength() else: 0): Tower_Width: Extrude_Tower_Mass |
 		~forDuplicate(1 - Slab_Length - Tower_Length): 0 : NIL
