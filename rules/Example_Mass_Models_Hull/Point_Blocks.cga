@@ -9,7 +9,7 @@ import Point_Block_Hulls : "Building_Hull/Point_Block_Hulls.cga" (
 	Surroundings --> Surroundings
 )
 
-import Extrude : "Floor_Splitter/Floor_Splitter_Extruded.cga" (
+import Extrude : "Floor_Splitter_One_Tier.cga" (
 	RegularFloorMass --> RegularFloorMass,
 	GroundFloorMass --> GroundFloorMass,
 	TopFloorMass --> TopFloorMass
