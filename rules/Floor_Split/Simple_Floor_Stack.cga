@@ -21,12 +21,27 @@ start Start with(
 			ExtrudeAndSplit(buildingHeight) 
 	}
 
-ExtrudeAndSplit(buildingHeight) -->
-	extrude(buildingHeight)
-	split(y){
-		Ground_Floor_Height: GroundFloorMass |
-		{
-			Floor_Height: FloorMass
-		}* |
-		Floor_Height: TopFloorMass
-	}
+ExtrudeAndSplit(hullHeight) with(
+	nRegularFloors := floor((hullHeight - Ground_Floor_Height) / Floor_Height)
+	buildingHeight := Ground_Floor_Height + nRegularFloors * Floor_Height
+) -->
+	case hullHeight < Ground_Floor_Height:
+		NIL
+	case nRegularFloors == 0:
+		extrude(Ground_Floor_Height)
+		split(y){Ground_Floor_Height: GroundFloorMass}
+	case nRegularFloors == 1:
+		extrude(Ground_Floor_Height + Floor_Height)
+		split(y){
+			Ground_Floor_Height: GroundFloorMass |
+			Floor_Height: TopFloorMass
+		}
+	else:
+		extrude(Ground_Floor_Height + nRegularFloors * Floor_Height)
+		split(y){
+			Ground_Floor_Height: GroundFloorMass |
+			{
+				Floor_Height: FloorMass
+			}* |
+			Floor_Height: TopFloorMass
+		}

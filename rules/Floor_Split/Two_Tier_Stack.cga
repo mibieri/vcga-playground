@@ -94,6 +94,8 @@ start Start with(
 			t(0, 0, -lowerTierHeight)
 			set(_upperTierHeight, upperTierHeight)
 			[case upperTierHeight > 0: _Upper_Tier_Setback.start else: NIL]
+		|
+		all: NIL
 	}
 
 
