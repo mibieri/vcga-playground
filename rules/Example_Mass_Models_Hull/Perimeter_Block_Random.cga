@@ -1,7 +1,7 @@
 extension Surroundings --> NIL
 
 extension GroundFloorMass --> GroundFloorMass.
-extension LowerTierFLoorMass --> LowerTierFLoorMass.
+extension LowerTierFloorMass --> LowerTierFLoorMass.
 extension UpperTierFloorMass --> UpperTierFloorMass.
 extension TopFloorMass --> TopFloorMass.
 
@@ -81,11 +81,11 @@ attr Block_Inset_Uniformness = 0.3
 @Group("Hulls: Height", 50)
 @Order(51)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr Block_Height_Min = 3
+attr Block_Height_Min = 20
 
 @Order(52)
 @Range(min=0, max=100, stepsize=0.1, restricted=false)
-attr Block_Height_Max = 20
+attr Block_Height_Max = 60
 
 @Order(53)
 @Percent
