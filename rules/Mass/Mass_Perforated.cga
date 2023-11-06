@@ -1,0 +1,84 @@
+extension BlockMass --> BlockMass.
+
+@Hidden
+import Perimeter_Edge_Selection : "Utilities/Perimeter_Edge_Selection.cga"
+@Hidden
+import Perimeter_Labels : "Utilities/Perimeter_Labels.cga"
+
+@Order(1)
+@Enum(valuesAttr=Perimeter_Labels.edge_labels)
+attr Edges = Perimeter_Labels.edge_all
+
+@Order(2)
+@Range(min=1, max=50, stepsize=0.1)
+attr Block_Width = 12
+
+@Order(3)
+@Range(min=1, max=50, stepsize=0.1)
+attr Block_Length = 25
+
+@Order(4)
+@Range(min=1, max=50, stepsize=0.1)
+attr Block_Height = 7
+
+@Order(5)
+@Range(min=1, max=50, stepsize=0.1)
+attr Gap_Length = 8
+
+@Order(6)
+@Percent
+@Range(min=-1.0, max=1.0)
+attr Start_Position = 0.0
+
+@Order(7)
+@Range(min=1, max=10, stepsize=1)
+attr N_Layers = 5
+
+@Order(8)
+@Range(min=0, max=10, stepsize=1)
+attr Block_Reduction_Per_Layer = 1
+
+@Order(9)
+@Range(min=0, max=10, stepsize=1)
+attr First_Reduced_Layer = 1
+
+
+getRelativeBlockShift(layerIndex) = 
+	case layerIndex % 2 > 0:
+		print(0.5 * (Block_Length + Gap_Length)  / Perimeter_Edge_Selection.getSetbackFrontLength())
+	else:
+		0
+
+start Start -->
+	setback(Perimeter_Edge_Selection.getSetback(Block_Width, Edges)){
+		all: Layer(0) |
+		remainder: NIL
+	}
+
+Layer(layerIndex) with(
+	edgeMask := Perimeter_Edge_Selection.getSetbackFrontMask()
+	firstEdge := Perimeter_Edge_Selection.getFirstSetbackFrontEdge()
+) -->
+	case layerIndex >= N_Layers:
+		NIL
+	else:
+		splitAndSetbackPerimeter('(Start_Position + getRelativeBlockShift(layerIndex)), firstEdge, edgeMask){
+			Block_Length: Block_Width: BlockFootprint(layerIndex) |
+			~Gap_Length: Block_Width: NIL
+		}*{remainder: NIL}
+		t(0, Block_Height, 0)
+		Layer(layerIndex + 1)
+		
+
+BlockFootprint(layerIndex) with(
+	blockReduction := max(0, (layerIndex - First_Reduced_Layer + 1) * Block_Reduction_Per_Layer)
+) -->
+	case (
+		((split.index / 2) >= blockReduction)
+		&&
+		((split.index / 2) < ceil(split.total / 2) - blockReduction)
+	):
+		extrude(Block_Height)
+		BlockMass
+	else:
+		NIL

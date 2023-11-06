@@ -97,7 +97,7 @@ attr Block_Height_Peak = 0.3
 @Percent
 attr Block_Height_Uniformness = 0.3
 
-
+@Hidden
 import Random : "Utilities/Random.cga"
 
 import Perimeter_Masses : "Mass/Mass_Perimeter_Generic.cga" (

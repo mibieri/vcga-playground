@@ -1,0 +1,57 @@
+extension GroundFloorMass --> GroundFloorMass.
+extension RegularFloorMass --> RegularFloorMass.
+extension TopFloorMass --> TopFloorMass.
+
+@Order(10)
+@Range(min=1, max=10)
+attr Ground_Floor_Height = 4.0
+
+@Order(11)
+@Range(min=1, max=10)
+attr Floor_Height = 3.0
+
+@Order(12)
+attr Exact_Floor_Height = false
+
+
+ifExact(valueForExactCase, otherwise) = case Exact_Floor_Height: valueForExactCase else: otherwise
+ifNotExact(otherwise, valueForExactCase) = ifExact(valueForExactCase, otherwise)
+
+start Start with(
+	hullHeight := scope.sy
+) -->
+	t(0, -hullHeight, 0)
+	comp(f){
+		top: 
+			ExtrudeAndSplit(hullHeight) 
+	}
+
+ExtrudeAndSplit(hullHeight) with(
+	nRegularFloors := floor((hullHeight - Ground_Floor_Height) / Floor_Height)
+	buildingHeight := Ground_Floor_Height + nRegularFloors * Floor_Height
+) -->
+	case hullHeight < Ground_Floor_Height:
+		NIL
+	case nRegularFloors == 0:
+		extrude(ifExact(Ground_Floor_Height, hullHeight))
+		split(y){
+			ifExact(Ground_Floor_Height, 0): GroundFloorMass |
+			~ifNotExact(Ground_Floor_Height, 0): GroundFloorMass
+		}
+	case nRegularFloors == 1:
+		extrude(ifExact(Ground_Floor_Height + Floor_Height, hullHeight))
+		split(y){
+			Ground_Floor_Height: GroundFloorMass |
+			ifExact(Floor_Height, 0): TopFloorMass |
+			~ifNotExact(Floor_Height, 0): TopFloorMass
+		}
+	else:
+		extrude(ifExact(Ground_Floor_Height + nRegularFloors * Floor_Height, hullHeight))
+		split(y){
+			Ground_Floor_Height: GroundFloorMass |
+			{
+				ifExact(Floor_Height, 0): RegularFloorMass |
+				~ifNotExact(Floor_Height, 0): RegularFloorMass
+			}* |
+			Floor_Height: TopFloorMass
+		}
